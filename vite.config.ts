@@ -28,5 +28,5 @@ export default defineConfig({
     // outDir: '../server/public',
     emptyOutDir: true,
   },
-  base: '/YOUR_REPOSITORY_NAME',
+  base: '/dist/index.html',
 });
