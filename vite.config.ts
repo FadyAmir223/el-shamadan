@@ -28,5 +28,5 @@ export default defineConfig({
     // outDir: '../server/public',
     emptyOutDir: true,
   },
-  base: '/el-shamadan/',
+  // base: '/el-shamadan/',
 });

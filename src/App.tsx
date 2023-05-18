@@ -5,7 +5,7 @@
 
 const App = () => {
   return (
-    <div className="text-3xl uppercase">text</div>
+    <div className="text-3xl uppercase bg-red-600">text</div>
     // <Suspense fallback={<div>loading...</div>}>
     //   <BrowserRouter>
     //     <Routes>
