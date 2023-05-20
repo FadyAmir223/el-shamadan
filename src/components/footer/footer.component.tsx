@@ -1,8 +1,6 @@
 import { FaFacebook, FaTwitter } from 'react-icons/fa';
 
-const products = ['wafer', 'biscuits', 'cake', 'chocolate'];
-
-const Footer = () => {
+const Footer = ({ products }: { products: string[] }) => {
   return (
     <footer className="bg-gray-900 text-white py-6">
       <div className="contain flex flex-col md:flex-row items-center md:items-start justify-between">
