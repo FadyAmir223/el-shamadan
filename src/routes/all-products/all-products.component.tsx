@@ -1,10 +1,13 @@
+import { useContext } from 'react';
 import ProductCard from '../../components/product-card/product-card.component';
-import { Product } from '../../utils/types';
+import { StaticContext } from '../../context/static.context';
 
-const AllProducts = ({ waferProducts }: { waferProducts: Product[] }) => {
+const AllProducts = () => {
+  const { waferProducts } = useContext(StaticContext);
+
   return (
-    <article className="relative">
-      <section className="py-10 relative z-10">
+    <article className="relative overflow-hidden py-14">
+      <section className="relative z-10">
         <div className="aspect-w-4 aspect-h-3 max-w-[150px] mx-auto mb-3">
           <img
             src="images/face.png"
@@ -30,12 +33,12 @@ const AllProducts = ({ waferProducts }: { waferProducts: Product[] }) => {
       <img
         src="images/magician_.png"
         alt="magician"
-        className="absolute top-0 left-0 h-full -translate-x-1/2 opacity-20"
+        className="absolute bottom-0 left-0 h-4/5 -translate-x-1/2 opacity-20"
       />
       <img
         src="images/king_.png"
         alt="king"
-        className="absolute top-0 right-0 h-full translate-x-1/2 opacity-20"
+        className="absolute bottom-0 right-0 h-4/5 translate-x-1/2 opacity-20"
       />
     </article>
   );

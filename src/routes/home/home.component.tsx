@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import ProductCard from '../../components/product-card/product-card.component';
-import { Product } from '../../utils/types';
+import { StaticContext } from '../../context/static.context';
+import Footer from '../../components/footer/footer.component';
 
 const INIT_TIME = {
   days: 2,
@@ -9,8 +10,9 @@ const INIT_TIME = {
   seconds: 0,
 };
 
-const Home = ({ waferProducts }: { waferProducts: Product[] }) => {
+const Home = () => {
   const [countdown, setCountdown] = useState(INIT_TIME);
+  const { waferProducts } = useContext(StaticContext);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -90,7 +92,7 @@ const Home = ({ waferProducts }: { waferProducts: Product[] }) => {
           </div>
         </section>
       </article>
-      {/* <Footer products={products} /> */}
+      <Footer />
     </>
   );
 };

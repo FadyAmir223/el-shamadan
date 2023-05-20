@@ -1,7 +1,11 @@
+import { useContext } from 'react';
 import { FaFacebook, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { StaticContext } from '../../context/static.context';
 
-const Footer = ({ products }: { products: string[] }) => {
+const Footer = () => {
+  const { products } = useContext(StaticContext);
+
   return (
     <footer className="bg-gray-900 text-white py-6">
       <div className="contain flex flex-col md:flex-row items-center md:items-start justify-between">

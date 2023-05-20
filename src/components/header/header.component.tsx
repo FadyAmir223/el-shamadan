@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { StaticContext } from '../../context/static.context';
 
-const nav = ['home', 'products', 'our ads', 'contact us'];
+const nav = ['home', 'products', 'video', 'contact us'];
 
-const Header = ({ products }: { products: string[] }) => {
+const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { products } = useContext(StaticContext);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
