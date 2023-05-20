@@ -28,7 +28,7 @@ const App = () => {
               <Routes>
                 <Route path="/" element={<Home />} />
               </Routes>
-              <div className="flex-grow"></div>
+              <div className="flex-grow" />
               <Footer />
             </div>
           </div>

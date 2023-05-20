@@ -10,7 +10,11 @@ const Footer = () => {
           <h3 className="text-lg font-bold mb-2">Products</h3>
           <nav>
             {products.map((product) => (
-              <a key={product} className="text-center md:text-start block mb-2">
+              <a
+                key={product}
+                href={`/#/products/${product}`}
+                className="text-center md:text-start block mb-2 hover:text-red capitalize"
+              >
                 {product}
               </a>
             ))}
@@ -21,7 +25,7 @@ const Footer = () => {
           <p>P.O Box 544 Om Zegheiw way, El-Dekheila, Alexandria, Egypt.</p>
         </div>
         <div className="flex items-center">
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 scale-125">
             <a
               href="https://www.facebook.com/ElShamadan/"
               target="_blank"

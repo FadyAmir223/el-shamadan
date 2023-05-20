@@ -41,7 +41,7 @@ const Header = () => {
                       >
                         {products.map((product) => (
                           <a
-                            href={`products/${product}`}
+                            href={`/#/products/${product}`}
                             key={product}
                             className="block p-2 hover:bg-gray-100 transition-colors duration-300"
                             onClick={() => setIsOpen(false)}
