@@ -1,11 +1,19 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route, HashRouter } from 'react-router-dom';
 
-const Home = lazy(() => import('./routes/home/home.component'));
 import Footer from './components/footer/footer.component';
 import Header from './components/header/header.component';
-import SingleProduct from './routes/single-product/single-product.component';
-import AllProducts from './routes/all-products/all-products.component';
+
+const Home = lazy(() => import('./routes/home/home.component'));
+const SingleProduct = lazy(
+  () => import('./routes/single-product/single-product.component')
+);
+const AllProducts = lazy(
+  () => import('./routes/all-products/all-products.component')
+);
+
+// import SingleProduct from './routes/single-product/single-product.component';
+// import AllProducts from './routes/all-products/all-products.component';
 
 const waferProducts = [
   {
