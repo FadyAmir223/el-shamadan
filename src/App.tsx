@@ -1,8 +1,9 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route, HashRouter } from 'react-router-dom';
 
-import Header from './components/header/header.component';
 const Home = lazy(() => import('./routes/home/home.component'));
+import Footer from './components/footer/footer.component';
+import Header from './components/header/header.component';
 
 const App = () => {
   return (
@@ -20,15 +21,18 @@ const App = () => {
             backgroundSize: '100px',
           }}
         ></div>
-        <div className="relative">
-          <HashRouter>
-            <Routes>
-              <Route path="/" element={<Header />}>
-                <Route index element={<Home />} />
-              </Route>
-            </Routes>
-          </HashRouter>
-        </div>
+        <HashRouter>
+          <div className="relative">
+            <Header />
+            <div className="flex flex-col min-h-[calc(100vh-66px)]">
+              <Routes>
+                <Route path="/" element={<Home />} />
+              </Routes>
+              <div className="flex-grow"></div>
+              <Footer />
+            </div>
+          </div>
+        </HashRouter>
       </div>
     </Suspense>
   );

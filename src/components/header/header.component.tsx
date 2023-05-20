@@ -56,6 +56,7 @@ const Header = () => {
                   return (
                     <a
                       key={item}
+                      href={`/#/${item.replace(' ', '-')}`}
                       className="border-2 border-yellow border-b-transparent p-2 bottom-up-animation"
                     >
                       {item}
