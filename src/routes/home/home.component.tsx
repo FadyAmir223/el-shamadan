@@ -52,43 +52,46 @@ const Home = ({ waferProducts }: { waferProducts: Product[] }) => {
   ];
 
   return (
-    <article>
-      <section className="py-6 contain">
-        <div className="w-fit mx-auto md:mx-0">
-          <img
-            src="images/secret.png"
-            alt="secret"
-            className="max-w-xs mx-auto md:mx-0 mb-4 w-full"
-          />
+    <>
+      <article>
+        <section className="py-6 contain">
+          <div className="w-fit mx-auto md:mx-0">
+            <img
+              src="images/secret.png"
+              alt="secret"
+              className="max-w-xs mx-auto md:mx-0 mb-4 w-full"
+            />
 
-          <div className="text-center grid grid-cols-4 gap-4">
-            {countdownBlocks.map((block) => (
-              <div key={block.label}>
-                <div className="bg-yellow py-2 rounded-lg">
-                  <span className="text-xl font-bold text-white">
-                    {block.value}
-                  </span>
+            <div className="text-center grid grid-cols-4 gap-4">
+              {countdownBlocks.map((block) => (
+                <div key={block.label}>
+                  <div className="bg-yellow py-2 rounded-lg">
+                    <span className="text-xl font-bold text-white">
+                      {block.value}
+                    </span>
+                  </div>
+                  <span className="block capitalize">{block.label}</span>
                 </div>
-                <span className="block capitalize">{block.label}</span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="bg-black py-8">
-        <h2 className="text-center text-3xl md:text-4xl pb-2 mb-6 uppercase text-white relative before:absolute before:bottom-0 before:w-20 before:left-1/2 before:-translate-x-1/2 before:h-[2px] before:bg-purple">
-          products
-        </h2>
-        <div className="contain">
-          <div className="grid grid-cols-2 gap-4">
-            {waferProducts.map((product) => (
-              <ProductCard key={product.name} product={product} />
-            ))}
+        <section className="bg-black py-8">
+          <h2 className="text-center text-3xl md:text-4xl pb-2 mb-6 uppercase text-white relative before:absolute before:bottom-0 before:w-20 before:left-1/2 before:-translate-x-1/2 before:h-[2px] before:bg-purple">
+            products
+          </h2>
+          <div className="contain">
+            <div className="grid grid-cols-2 gap-4">
+              {waferProducts.map((product) => (
+                <ProductCard key={product.name} product={product} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-    </article>
+        </section>
+      </article>
+      {/* <Footer products={products} /> */}
+    </>
   );
 };
 

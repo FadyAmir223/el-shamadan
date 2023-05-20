@@ -57,7 +57,7 @@ const App = () => {
         }}
       >
         <div
-          className="absolute top-0 left-0 w-full h-full bg-black opacity-20"
+          className="absolute top-0 left-0 w-full h-full bg-black opacity-[12%]"
           style={{
             backgroundImage: 'url("images/background.png")',
             backgroundSize: '100px',
