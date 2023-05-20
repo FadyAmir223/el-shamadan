@@ -56,7 +56,7 @@ const Home = ({ waferProducts }: { waferProducts: Product[] }) => {
       <section className="py-6 contain">
         <div className="w-fit mx-auto md:mx-0">
           <img
-            src="/images/secret.png"
+            src="images/secret.png"
             alt="secret"
             className="max-w-xs mx-auto md:mx-0 mb-4 w-full"
           />

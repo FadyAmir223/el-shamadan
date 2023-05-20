@@ -15,33 +15,33 @@ const AllProducts = lazy(
 const waferProducts = [
   {
     name: 'king',
-    coverUrl: '/images/king.png',
-    characterUrl: '/images/king_.png',
+    coverUrl: 'images/king.png',
+    characterUrl: 'images/king_.png',
   },
   {
     name: 'mafia',
-    coverUrl: '/images/mafia.png',
-    characterUrl: '/images/mafia_.png',
+    coverUrl: 'images/mafia.png',
+    characterUrl: 'images/mafia_.png',
   },
   {
     name: 'magician',
-    coverUrl: '/images/magician.png',
-    characterUrl: '/images/magician_.png',
+    coverUrl: 'images/magician.png',
+    characterUrl: 'images/magician_.png',
   },
   {
     name: 'hero',
-    coverUrl: '/images/hero.png',
-    characterUrl: '/images/hero_.png',
+    coverUrl: 'images/hero.png',
+    characterUrl: 'images/hero_.png',
   },
   {
     name: 'joker',
-    coverUrl: '/images/joker.png',
-    characterUrl: '/images/joker_.png',
+    coverUrl: 'images/joker.png',
+    characterUrl: 'images/joker_.png',
   },
   {
     name: 'diva',
-    coverUrl: '/images/diva.png',
-    characterUrl: '/images/diva_.png',
+    coverUrl: 'images/diva.png',
+    characterUrl: 'images/diva_.png',
   },
 ];
 
@@ -53,13 +53,13 @@ const App = () => {
       <div
         className="min-h-screen relative"
         style={{
-          cursor: 'url("/images/stick-left-64.png"), auto',
+          cursor: 'url("images/stick-left-64.png"), auto',
         }}
       >
         <div
           className="absolute top-0 left-0 w-full h-full bg-black opacity-20"
           style={{
-            backgroundImage: 'url("/images/background.png")',
+            backgroundImage: 'url("images/background.png")',
             backgroundSize: '100px',
           }}
         ></div>

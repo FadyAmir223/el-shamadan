@@ -17,7 +17,7 @@ const Header = ({ products }: { products: string[] }) => {
         <header className="bg-red py-2">
           <div className="contain flex justify-between items-center">
             <Link to="/">
-              <img src="/images/logo.png" alt="logo" className="w-10" />
+              <img src="images/logo.png" alt="logo" className="w-10" />
             </Link>
             <button className="p-2 md:hidden text-2xl" onClick={toggleDropdown}>
               <FiMenu />
