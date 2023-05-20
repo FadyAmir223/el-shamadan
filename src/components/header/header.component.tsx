@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 const nav = ['home', 'products', 'our ads', 'contact us'];
 
@@ -15,9 +16,9 @@ const Header = ({ products }: { products: string[] }) => {
       <div className="relative">
         <header className="bg-red py-2">
           <div className="contain flex justify-between items-center">
-            <a href="/">
+            <Link to="/">
               <img src="/images/logo.png" alt="logo" className="w-10" />
-            </a>
+            </Link>
             <button className="p-2 md:hidden text-2xl" onClick={toggleDropdown}>
               <FiMenu />
             </button>
@@ -39,27 +40,27 @@ const Header = ({ products }: { products: string[] }) => {
                         }`}
                       >
                         {products.map((product) => (
-                          <a
+                          <Link
                             key={product}
-                            href={`/#/products/${product}`}
+                            to={`/products/${product}`}
                             className="block p-2 hover:bg-gray-100 transition-colors duration-300"
                             onClick={() => setIsOpen(false)}
                           >
                             {product}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
                   );
                 else
                   return (
-                    <a
+                    <Link
                       key={item}
-                      href={`/#/${item.replace(' ', '-')}`}
+                      to={`/${item.replace(' ', '-')}`}
                       className="border-2 border-yellow border-b-transparent p-2 bottom-up-animation"
                     >
                       {item}
-                    </a>
+                    </Link>
                   );
               })}
             </nav>
@@ -73,13 +74,13 @@ const Header = ({ products }: { products: string[] }) => {
             <FiX className="text-2xl cursor-pointer absolute top-5 left-5 text-white" />
             <nav className="contain flex flex-col text-white">
               {nav.map((i) => (
-                <a
+                <Link
                   key={i}
-                  href={`/#/${i.replace(' ', '-')}`}
+                  to={`/${i.replace(' ', '-')}`}
                   className="text-center uppercase hover:text-red border-b border-b-red last:border-b-0 py-4"
                 >
                   {i}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>

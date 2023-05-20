@@ -73,6 +73,10 @@ const App = () => {
                   element={<Home waferProducts={waferProducts} />}
                 />
                 <Route
+                  path="/home"
+                  element={<Home waferProducts={waferProducts} />}
+                />
+                <Route
                   path="/products"
                   element={<AllProducts waferProducts={waferProducts} />}
                 />

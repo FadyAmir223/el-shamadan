@@ -1,4 +1,5 @@
 import { FaFacebook, FaTwitter } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Footer = ({ products }: { products: string[] }) => {
   return (
@@ -8,13 +9,13 @@ const Footer = ({ products }: { products: string[] }) => {
           <h3 className="text-lg font-bold mb-2">Products</h3>
           <nav>
             {products.map((product) => (
-              <a
+              <Link
                 key={product}
-                href={`/#/products/${product}`}
+                to={`/products/${product}`}
                 className="text-center md:text-start block mb-2 hover:text-red capitalize"
               >
                 {product}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import ProductCard from '../../components/product-card/product-card.component';
 import { Product } from '../../utils/types';
 
@@ -13,13 +14,13 @@ const AllProducts = ({ waferProducts }: { waferProducts: Product[] }) => {
         <div className="contain">
           <div className="grid grid-cols-2 gap-4">
             {waferProducts.map((product) => (
-              <a
+              <Link
                 key={product.name}
-                href={`/#/products/${product.name}`}
+                to={`/products/${product.name}`}
                 className=""
               >
                 <ProductCard product={product} />
-              </a>
+              </Link>
             ))}
           </div>
         </div>
