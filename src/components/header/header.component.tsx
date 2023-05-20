@@ -34,20 +34,22 @@ const Header = () => {
                       >
                         {item}
                       </button>
-                      {isOpen && (
-                        <div className="absolute mt-4 rounded-md shadow-2xl bg-red">
-                          {products.map((product) => (
-                            <a
-                              href={`products/${product}`}
-                              key={product}
-                              className="block px-4 py-2 hover:bg-gray-100 transition-colors duration-300"
-                              onClick={() => setIsOpen(false)}
-                            >
-                              {product}
-                            </a>
-                          ))}
-                        </div>
-                      )}
+                      <div
+                        className={`absolute mt-4 rounded-md shadow-2xl bg-red text-center duration-300 overflow-hidden ${
+                          isOpen ? 'h-40' : 'h-0'
+                        }`}
+                      >
+                        {products.map((product) => (
+                          <a
+                            href={`products/${product}`}
+                            key={product}
+                            className="block p-2 hover:bg-gray-100 transition-colors duration-300"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            {product}
+                          </a>
+                        ))}
+                      </div>
                     </div>
                   );
                 else
@@ -66,7 +68,7 @@ const Header = () => {
       </div>
       {isOpen && (
         <div
-          className="absolute top-0 left-0 w-screen h-screen bg-black md:hidden py-14"
+          className="absolute z-20 top-0 left-0 w-screen h-full bg-black md:hidden py-14 overflow-hidden"
           onClick={() => setIsOpen(false)}
         >
           <FiX className="text-2xl cursor-pointer absolute top-5 left-5" />
