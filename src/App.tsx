@@ -12,39 +12,36 @@ const AllProducts = lazy(
   () => import('./routes/all-products/all-products.component')
 );
 
-// import SingleProduct from './routes/single-product/single-product.component';
-// import AllProducts from './routes/all-products/all-products.component';
-
 const waferProducts = [
   {
     name: 'king',
-    coverUrl: 'images/king.png',
-    characterUrl: 'images/king_.png',
+    coverUrl: '/images/king.png',
+    characterUrl: '/images/king_.png',
   },
   {
     name: 'mafia',
-    coverUrl: 'images/mafia.png',
-    characterUrl: 'images/mafia_.png',
+    coverUrl: '/images/mafia.png',
+    characterUrl: '/images/mafia_.png',
   },
   {
     name: 'magician',
-    coverUrl: 'images/magician.png',
-    characterUrl: 'images/magician_.png',
+    coverUrl: '/images/magician.png',
+    characterUrl: '/images/magician_.png',
   },
   {
     name: 'hero',
-    coverUrl: 'images/hero.png',
-    characterUrl: 'images/hero_.png',
+    coverUrl: '/images/hero.png',
+    characterUrl: '/images/hero_.png',
   },
   {
     name: 'joker',
-    coverUrl: 'images/joker.png',
-    characterUrl: 'images/joker_.png',
+    coverUrl: '/images/joker.png',
+    characterUrl: '/images/joker_.png',
   },
   {
     name: 'diva',
-    coverUrl: 'images/diva.png',
-    characterUrl: 'images/diva_.png',
+    coverUrl: '/images/diva.png',
+    characterUrl: '/images/diva_.png',
   },
 ];
 
@@ -71,7 +68,10 @@ const App = () => {
             <Header products={products} />
             <div className="flex flex-col min-h-[calc(100vh-66px)]">
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route
+                  path="/"
+                  element={<Home waferProducts={waferProducts} />}
+                />
                 <Route
                   path="/products"
                   element={<AllProducts waferProducts={waferProducts} />}

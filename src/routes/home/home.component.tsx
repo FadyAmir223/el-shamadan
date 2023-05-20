@@ -1,38 +1,6 @@
 import { useState, useEffect } from 'react';
 import ProductCard from '../../components/product-card/product-card.component';
-
-const waferProducts = [
-  {
-    name: 'king',
-    coverUrl: 'images/king.png',
-    characterUrl: 'images/king_.png',
-  },
-  {
-    name: 'mafia',
-    coverUrl: 'images/mafia.png',
-    characterUrl: 'images/mafia_.png',
-  },
-  {
-    name: 'magician',
-    coverUrl: 'images/magician.png',
-    characterUrl: 'images/magician_.png',
-  },
-  {
-    name: 'hero',
-    coverUrl: 'images/hero.png',
-    characterUrl: 'images/hero_.png',
-  },
-  {
-    name: 'joker',
-    coverUrl: 'images/joker.png',
-    characterUrl: 'images/joker_.png',
-  },
-  {
-    name: 'diva',
-    coverUrl: 'images/diva.png',
-    characterUrl: 'images/diva_.png',
-  },
-];
+import { Product } from '../../utils/types';
 
 const INIT_TIME = {
   days: 2,
@@ -41,7 +9,7 @@ const INIT_TIME = {
   seconds: 0,
 };
 
-const Home = () => {
+const Home = ({ waferProducts }: { waferProducts: Product[] }) => {
   const [countdown, setCountdown] = useState(INIT_TIME);
 
   useEffect(() => {

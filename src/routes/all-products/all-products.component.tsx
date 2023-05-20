@@ -6,7 +6,7 @@ const AllProducts = ({ waferProducts }: { waferProducts: Product[] }) => {
     <article className="">
       <section className="bg-black py-10">
         <img
-          src="images/all.png"
+          src="/images/all.png"
           alt="all characters"
           className="max-w-md mx-auto mb-6 w-full"
         />
