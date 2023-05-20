@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.contain {
+  @apply container mx-auto px-4;
+}
+
+.bottom-up-animation {
+  @apply before:duration-300 relative before:absolute before:left-0 before:top-0 before:w-full before:bg-yellow before:opacity-50 before:h-0 hover:before:h-10;
+}

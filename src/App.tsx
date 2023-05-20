@@ -1,22 +1,36 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route, HashRouter } from 'react-router-dom';
 
+import Header from './components/header/header.component';
 const Home = lazy(() => import('./routes/home/home.component'));
-const About = lazy(() => import('./routes/about/about.component'));
 
 const App = () => {
   return (
-    <div className="bg-slate-50 min-h-screen">
-      <Suspense fallback={<div>loading...</div>}>
-        <div className="text-2xl uppercase">el-shamadan</div>
-        <HashRouter>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/about" element={<About />}></Route>
-          </Routes>
-        </HashRouter>
-      </Suspense>
-    </div>
+    <Suspense fallback={<div>loading...</div>}>
+      <div
+        className="min-h-screen relative"
+        style={{
+          cursor: 'url("/images/stick-left-64.png"), auto',
+        }}
+      >
+        <div
+          className="absolute top-0 left-0 w-full h-full bg-black opacity-20"
+          style={{
+            backgroundImage: 'url("/images/background.png")',
+            backgroundSize: '100px',
+          }}
+        ></div>
+        <div className="relative">
+          <HashRouter>
+            <Routes>
+              <Route path="/" element={<Header />}>
+                <Route index element={<Home />} />
+              </Route>
+            </Routes>
+          </HashRouter>
+        </div>
+      </div>
+    </Suspense>
   );
 };
 
