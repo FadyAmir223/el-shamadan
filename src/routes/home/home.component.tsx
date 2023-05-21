@@ -90,7 +90,7 @@ const Home = () => {
             {t('products')}
           </h2>
           <div className="contain">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 md:gap-6 lg:gap-8">
               {waferProducts.map((product) => (
                 <ProductCard key={product.name} product={product} />
               ))}

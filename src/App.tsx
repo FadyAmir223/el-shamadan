@@ -5,7 +5,6 @@ import Header from './components/header/header.component';
 import { StaticProvider } from './context/static.context';
 import { useTranslation } from 'react-i18next';
 import LoadingSpinnter from './components/loading-spinnter/loading-spinnter.component';
-import ContactUs from './routes/contact-us/contact-us.component';
 
 const Home = lazy(() => import('./routes/home/home.component'));
 const AllProducts = lazy(
@@ -15,13 +14,20 @@ const SingleProduct = lazy(
   () => import('./routes/single-product/single-product.component')
 );
 const Video = lazy(() => import('./routes/video/video.component'));
+const ContactUs = lazy(
+  () => import('./routes/contact-us/contact-us.component')
+);
 
 const App = () => {
   const [, i18n] = useTranslation('header');
   const [stickPosition, setStickPosition] = useState(null);
+  const [isMagicSoundPlaying, setMagicSoundPlaying] = useState(false);
 
-  const handleClick = (event) => {
-    const { clientX, clientY } = event;
+  const handleClick = (e) => {
+    new Audio('sounds/magic.mp3').play();
+    setMagicSoundPlaying(true);
+
+    const { clientX, clientY } = e;
     const { pageXOffset, pageYOffset } = window;
 
     setStickPosition({
@@ -42,6 +48,10 @@ const App = () => {
           className="min-h-screen relative bg-black/90"
           onClick={handleClick}
         >
+          {isMagicSoundPlaying && (
+            <audio autoPlay onEnded={() => setMagicSoundPlaying(false)} />
+          )}
+
           <div className="rtl:font-[abdo] ltr:font-[roboto]">
             {stickPosition && (
               <img
