@@ -12,9 +12,9 @@ module.exports = {
       xl: '1440px',
     },
     extend: {
-      fontFamily: {
-        sans: ['abdo', 'Roboto', 'sans-serif'],
-      },
+      // fontFamily: {
+      //   sans: ['abdo', 'Roboto', 'sans-serif'],
+      // },
       colors: {
         red: '#c62430',
         yellow: '#eda521',

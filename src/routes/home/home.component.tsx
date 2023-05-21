@@ -4,17 +4,27 @@ import { StaticContext } from '../../context/static.context';
 import Footer from '../../components/footer/footer.component';
 import { useTranslation } from 'react-i18next';
 
-const INIT_TIME = {
-  days: 2,
-  hours: 0,
-  minutes: 0,
-  seconds: 0,
+const calculateCountdown = () => {
+  const currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() + 2);
+  const nextDay = currentDate.toISOString().split('T')[0];
+  const remainingTime = new Date(nextDay).getTime() - new Date().getTime();
+
+  const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+  return { days, hours, minutes, seconds };
 };
 
 const Home = () => {
-  const [countdown, setCountdown] = useState(INIT_TIME);
   const { waferProducts } = useContext(StaticContext);
   const [t] = useTranslation('home');
+
+  const [countdown, setCountdown] = useState(calculateCountdown());
 
   useEffect(() => {
     document.title = 'home';
@@ -25,29 +35,12 @@ const Home = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCountdown((prevCountdown) => {
-        const { days, hours, minutes, seconds } = prevCountdown;
-        let remainingSeconds =
-          days * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds;
-        remainingSeconds--;
+      const newCountdown = calculateCountdown();
+      setCountdown(newCountdown);
 
-        if (days === 0) return INIT_TIME;
-        // if (remainingSeconds <= 0) return INIT_TIME;
-
-        const newDays = Math.floor(remainingSeconds / (24 * 60 * 60));
-        remainingSeconds %= 24 * 60 * 60;
-        const newHours = Math.floor(remainingSeconds / (60 * 60));
-        remainingSeconds %= 60 * 60;
-        const newMinutes = Math.floor(remainingSeconds / 60);
-        const newSeconds = remainingSeconds % 60;
-
-        return {
-          days: newDays,
-          hours: newHours,
-          minutes: newMinutes,
-          seconds: newSeconds,
-        };
-      });
+      if (newCountdown === null) {
+        clearInterval(interval);
+      }
     }, 1000);
 
     return () => {
@@ -55,12 +48,14 @@ const Home = () => {
     };
   }, []);
 
-  const countdownBlocks = [
-    { label: t('time.days'), value: countdown.days },
-    { label: t('time.hours'), value: countdown.hours },
-    { label: t('time.minutes'), value: countdown.minutes },
-    { label: t('time.seconds'), value: countdown.seconds },
-  ];
+  const countdownBlocks = countdown
+    ? [
+        { label: t('time.days'), value: countdown.days },
+        { label: t('time.hours'), value: countdown.hours },
+        { label: t('time.minutes'), value: countdown.minutes },
+        { label: t('time.seconds'), value: countdown.seconds },
+      ]
+    : [];
 
   return (
     <>
@@ -76,8 +71,8 @@ const Home = () => {
             <div className="text-center grid grid-cols-4 gap-4">
               {countdownBlocks.map((block) => (
                 <div key={block.label}>
-                  <div className="bg-yellow py-2 rounded-lg">
-                    <span className="text-xl font-bold text-white">
+                  <div className="bg-yellow rounded-lg h-10 grid place-items-center">
+                    <span className="rtl:text-2xl ltr:text-xl font-bold text-black">
                       {block.value}
                     </span>
                   </div>

@@ -18,6 +18,7 @@ const Header = () => {
 
   const toggleLanguage = () => {
     const newLanguage = i18n.language === 'en' ? 'ar' : 'en';
+    localStorage.language = newLanguage;
     i18n.changeLanguage(newLanguage);
   };
 
