@@ -35,7 +35,7 @@ const SingleProduct = () => {
         <img
           src={selectedProduct.characterUrl}
           alt={`${selectedProduct.name} character`}
-          className="absolute bottom-0 left-0 -translate-x-[40%] opacity-20 h-[90%] object-contain"
+          className="absolute bottom-0 -translate-x-[30%] left-0 sm:-translate-x-[40%] opacity-20 h-[80%] sm:h-[90%] object-contain"
         />
       </article>
     )
