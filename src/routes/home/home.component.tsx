@@ -76,7 +76,9 @@ const Home = () => {
                       {block.value}
                     </span>
                   </div>
-                  <span className="block capitalize">{block.label}</span>
+                  <span className="block capitalize text-white rtl:text-2xl h-5">
+                    {block.label}
+                  </span>
                 </div>
               ))}
             </div>
