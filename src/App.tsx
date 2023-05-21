@@ -22,6 +22,7 @@ const App = () => {
   const [, i18n] = useTranslation('header');
   const [stickPosition, setStickPosition] = useState(null);
   const [isMagicSoundPlaying, setMagicSoundPlaying] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = (e) => {
     new Audio('sounds/magic.mp3').play();
@@ -38,6 +39,8 @@ const App = () => {
     setTimeout(() => {
       setStickPosition(null);
     }, 500);
+
+    if (isOpen) setIsOpen(false);
   };
 
   return (
@@ -73,7 +76,7 @@ const App = () => {
             ></div>
             <div className="relative">
               <HashRouter>
-                <Header />
+                <Header isOpen={isOpen} setIsOpen={setIsOpen} />
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/home" element={<Home />} />

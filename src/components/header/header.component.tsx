@@ -1,11 +1,10 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { StaticContext } from '../../context/static.context';
 import { useTranslation } from 'react-i18next';
 
-const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const Header = ({ isOpen, setIsOpen }) => {
   const { waferProducts } = useContext(StaticContext);
   const [t, i18n] = useTranslation(['header', 'products']);
   const nav = t('nav', {
@@ -58,7 +57,7 @@ const Header = () => {
                         <Link
                           key={product.id}
                           to={`/products/${product.id}`}
-                          className="block p-2 hover:bg-gray transition-colors duration-300"
+                          className="block p-2 hover:bg-grey transition-colors duration-300"
                           onClick={() => setIsOpen(false)}
                         >
                           {product.name}

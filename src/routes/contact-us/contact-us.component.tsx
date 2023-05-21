@@ -5,32 +5,28 @@ const ContactUs = () => {
 
   return (
     <div className="contain py-8">
-      <div className="w-full max-w-md  mx-auto">
+      <div className="w-full max-w-md mx-auto">
         <form>
           <div className="mb-4">
-            <input
-              type="text"
-              placeholder={t('name')}
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-blue-500"
-            />
+            <input type="text" placeholder={t('name')} className="form-input" />
           </div>
           <div className="mb-4">
             <input
               type="email"
               placeholder={t('email')}
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-blue-500"
+              className="form-input"
             />
           </div>
           <div className="mb-4">
             <textarea
               placeholder={t('message')}
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-blue-500"
+              className="form-input"
               rows={5}
             ></textarea>
           </div>
           <button
             type="button"
-            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+            className="bg-purple text-white py-2 px-4 rounded hover:bg-purple/80"
           >
             {t('submit')}
           </button>

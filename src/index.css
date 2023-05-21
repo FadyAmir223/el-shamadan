@@ -9,3 +9,7 @@
 .bottom-up-animation {
   @apply before:duration-300 relative before:absolute before:left-0 before:top-0 before:w-full before:bg-yellow before:opacity-50 before:h-0 hover:before:h-10;
 }
+
+.form-input {
+  @apply w-full px-4 py-2 border rounded outline-none focus:ring-purple bg-stone-900 text-white focus:placeholder:opacity-0 placeholder:duration-300 placeholder:opacity-100;
+}
