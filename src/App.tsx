@@ -15,7 +15,8 @@ const SingleProduct = lazy(
 const Video = lazy(() => import('./routes/video/video.component'));
 
 const App = () => {
-  const [_, i18n] = useTranslation('header');
+  const [, i18n] = useTranslation('header');
+
   return (
     <StaticProvider>
       <Suspense fallback={<div>loading...</div>}>

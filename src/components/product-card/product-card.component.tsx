@@ -16,7 +16,7 @@ const ProductCard = ({ product }: { product: waferProduct }) => {
             alt={product.name}
             className="w-full h-auto mb-4 group-hover:scale-110 duration-500"
           />
-          <h3 className="text-xl font-bold mb-2 capitalize">{product.name}</h3>
+          <h3 className="text-xl mb-2 capitalize">{product.name}</h3>
         </div>
       </div>
     </Link>
