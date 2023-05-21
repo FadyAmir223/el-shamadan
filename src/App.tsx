@@ -4,6 +4,7 @@ import { Routes, Route, HashRouter } from 'react-router-dom';
 import Header from './components/header/header.component';
 import { StaticProvider } from './context/static.context';
 import { useTranslation } from 'react-i18next';
+import LoadingSpinnter from './components/loading-spinnter/loading-spinnter.component';
 
 const Home = lazy(() => import('./routes/home/home.component'));
 const AllProducts = lazy(
@@ -20,31 +21,34 @@ const App = () => {
 
   const handleClick = (event) => {
     const { clientX, clientY } = event;
-    setStickPosition({ x: clientX, y: clientY });
+    const scrollX = window.pageXOffset;
+    const scrollY = window.pageYOffset;
+    const x = clientX + scrollX;
+    const y = clientY + scrollY;
+
+    setStickPosition({ x, y });
 
     setTimeout(() => {
       setStickPosition(null);
-    }, 300);
+    }, 500);
   };
 
   return (
     <StaticProvider>
-      <Suspense fallback={<div>loading...</div>}>
+      <Suspense fallback={<LoadingSpinnter />}>
         <div
           dir={i18n.dir()}
           className="min-h-screen relative"
-          style={
-            {
-              // cursor: 'url("images/stick-left-64.png"), auto',
-            }
-          }
+          // style={{
+          //   cursor: 'url("images/stick-left-64.png"), auto',
+          // }}
           onClick={handleClick}
         >
           {stickPosition && (
             <img
               src="images/stick-left-64.png"
               alt="Stick"
-              className="absolute z-30 -translate-x-3/4 -translate-y-3/4"
+              className="absolute z-30 -translate-x-[60%] -translate-y-[56%]"
               style={{
                 top: stickPosition.y,
                 left: stickPosition.x,
