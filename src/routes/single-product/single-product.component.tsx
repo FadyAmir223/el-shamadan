@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { StaticContext } from '../../context/static.context';
 
 const SingleProduct = () => {
@@ -9,6 +9,13 @@ const SingleProduct = () => {
   const selectedProduct = waferProducts.find(
     (product) => product.id === productName
   );
+
+  useEffect(() => {
+    if (selectedProduct) document.title = selectedProduct.id;
+    return () => {
+      document.title = 'el-shamedan';
+    };
+  }, [selectedProduct]);
 
   return (
     selectedProduct && (

@@ -1,8 +1,15 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import ProductCard from '../../components/product-card/product-card.component';
 import { StaticContext } from '../../context/static.context';
 
 const AllProducts = () => {
+  useEffect(() => {
+    document.title = 'products';
+    return () => {
+      document.title = 'el-shamedan';
+    };
+  }, []);
+
   const { waferProducts } = useContext(StaticContext);
 
   return (

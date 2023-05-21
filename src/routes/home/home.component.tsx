@@ -17,6 +17,13 @@ const Home = () => {
   const [t] = useTranslation('home');
 
   useEffect(() => {
+    document.title = 'home';
+    return () => {
+      document.title = 'el-shamedan';
+    };
+  }, []);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       setCountdown((prevCountdown) => {
         const { days, hours, minutes, seconds } = prevCountdown;

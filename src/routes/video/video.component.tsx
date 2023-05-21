@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FiMaximize2 } from 'react-icons/fi';
 
 const Video: React.FC = () => {
@@ -15,6 +15,13 @@ const Video: React.FC = () => {
     else if (videoRef.current.msRequestFullscreen)
       videoRef.current.msRequestFullscreen();
   };
+
+  useEffect(() => {
+    document.title = 'video';
+    return () => {
+      document.title = 'el-shamedan';
+    };
+  }, []);
 
   return (
     <div className="relative">
