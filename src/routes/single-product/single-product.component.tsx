@@ -27,7 +27,9 @@ const SingleProduct = () => {
               alt={`${selectedProduct.name} box`}
               className="w-1/2 rotate-6 mx-auto my-10 hover:scale-110 hover:rotate-3 duration-500"
             />
-            <p className="max-w-md text-white">{selectedProduct.desc}</p>
+            <p className="max-w-md text-black text-2xl">
+              {selectedProduct.desc}
+            </p>
           </div>
         </section>
         <img

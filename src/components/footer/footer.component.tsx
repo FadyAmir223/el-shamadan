@@ -5,7 +5,7 @@ import { StaticContext } from '../../context/static.context';
 import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
-  const { products } = useContext(StaticContext);
+  const { waferProducts } = useContext(StaticContext);
   const [t] = useTranslation('footer');
 
   return (
@@ -14,13 +14,13 @@ const Footer = () => {
         <div className="mb-6 md:mb-0">
           <h3 className="text-lg font-bold mb-2">{t('products')}</h3>
           <nav>
-            {products.map((product) => (
+            {waferProducts.map((product) => (
               <Link
-                key={product}
-                to={`/products/${product}`}
+                key={product.id}
+                to={`/products/${product.id}`}
                 className="text-center md:text-start block mb-2 hover:text-red capitalize"
               >
-                {product}
+                {product.name}
               </Link>
             ))}
           </nav>
