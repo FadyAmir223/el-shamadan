@@ -9,8 +9,3 @@
 .bottom-up-animation {
   @apply before:duration-300 relative before:absolute before:left-0 before:top-0 before:w-full before:bg-yellow before:opacity-50 before:h-0 hover:before:h-10;
 }
-
-@font-face {
-  font-family: 'abdo';
-  src: url('fonts/abdo.ttf') format('truetype');
-}
