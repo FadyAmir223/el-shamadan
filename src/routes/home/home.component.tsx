@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import ProductCard from '../../components/product-card/product-card.component';
 import { StaticContext } from '../../context/static.context';
 import Footer from '../../components/footer/footer.component';
+import { useTranslation } from 'react-i18next';
 
 const INIT_TIME = {
   days: 2,
@@ -13,6 +14,7 @@ const INIT_TIME = {
 const Home = () => {
   const [countdown, setCountdown] = useState(INIT_TIME);
   const { waferProducts } = useContext(StaticContext);
+  const [t] = useTranslation('home');
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -47,10 +49,10 @@ const Home = () => {
   }, []);
 
   const countdownBlocks = [
-    { label: 'days', value: countdown.days },
-    { label: 'hours', value: countdown.hours },
-    { label: 'minutes', value: countdown.minutes },
-    { label: 'seconds', value: countdown.seconds },
+    { label: t('time.days'), value: countdown.days },
+    { label: t('time.hours'), value: countdown.hours },
+    { label: t('time.minutes'), value: countdown.minutes },
+    { label: t('time.seconds'), value: countdown.seconds },
   ];
 
   return (
@@ -81,7 +83,7 @@ const Home = () => {
 
         <section className="bg-black py-8">
           <h2 className="text-center text-3xl md:text-4xl pb-2 mb-6 uppercase text-white relative before:absolute before:bottom-0 before:w-20 before:left-1/2 before:-translate-x-1/2 before:h-[2px] before:bg-purple">
-            products
+            {t('products')}
           </h2>
           <div className="contain">
             <div className="grid grid-cols-2 gap-4">

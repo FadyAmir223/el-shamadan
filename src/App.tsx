@@ -3,6 +3,7 @@ import { Routes, Route, HashRouter } from 'react-router-dom';
 
 import Header from './components/header/header.component';
 import { StaticProvider } from './context/static.context';
+import { useTranslation } from 'react-i18next';
 
 const Home = lazy(() => import('./routes/home/home.component'));
 const AllProducts = lazy(
@@ -14,10 +15,12 @@ const SingleProduct = lazy(
 const Video = lazy(() => import('./routes/video/video.component'));
 
 const App = () => {
+  const [_, i18n] = useTranslation('header');
   return (
     <StaticProvider>
       <Suspense fallback={<div>loading...</div>}>
         <div
+          dir={i18n.dir()}
           className="min-h-screen relative"
           style={{
             cursor: 'url("images/stick-left-64.png"), auto',

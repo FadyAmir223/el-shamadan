@@ -2,15 +2,23 @@ import { useContext, useState } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { StaticContext } from '../../context/static.context';
-
-const nav = ['home', 'products', 'video', 'contact us'];
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { products } = useContext(StaticContext);
+  const [t, i18n] = useTranslation(['header', 'products']);
+  const nav = t('nav', {
+    returnObjects: true,
+  }) as string[];
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
+  };
+
+  const toggleLanguage = () => {
+    const newLanguage = i18n.language === 'en' ? 'ar' : 'en';
+    i18n.changeLanguage(newLanguage);
   };
 
   return (
@@ -21,12 +29,18 @@ const Header = () => {
             <Link to="/">
               <img src="images/logo.png" alt="logo" className="w-10" />
             </Link>
+            <button
+              className="p-1 border border-purple rounded-lg"
+              onClick={toggleLanguage}
+            >
+              {i18n.language === 'en' ? 'AR' : 'EN'}
+            </button>
             <button className="p-2 md:hidden text-2xl" onClick={toggleDropdown}>
               <FiMenu />
             </button>
             <nav className="capitalize tracking-wider hidden md:flex">
               {nav.map((item) => {
-                if (item === 'products')
+                if (['products', 'منتجاتنا'].includes(item))
                   return (
                     <div className="relative" key={item}>
                       <button

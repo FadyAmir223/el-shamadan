@@ -1,0 +1,9 @@
+{
+  "products": "products",
+  "time": {
+    "days": "days",
+    "hours": "hours",
+    "minutes": "minutes",
+    "seconds": "seconds"
+  }
+}

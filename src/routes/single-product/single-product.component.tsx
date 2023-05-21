@@ -20,12 +20,7 @@ const SingleProduct = () => {
               alt={`${selectedProduct.name} box`}
               className="w-1/2 rotate-6 mx-auto my-10 hover:scale-110 hover:rotate-3 duration-500"
             />
-            <p className="max-w-md text-white">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Doloremque et perspiciatis dicta ea nulla culpa numquam minus fuga
-              corrupti, amet omnis at neque quasi incidunt, perferendis quaerat
-              quae qui est?
-            </p>
+            <p className="max-w-md text-white">{selectedProduct.desc}</p>
           </div>
         </section>
         <img

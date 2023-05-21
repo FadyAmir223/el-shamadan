@@ -8,8 +8,8 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    lng: localStorage.language || 'en',
-    fallbackLng: 'en',
+    lng: 'ar' || localStorage.language,
+    fallbackLng: 'ar',
     interpolation: {
       escapeValue: false,
     },
