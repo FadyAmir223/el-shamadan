@@ -7,7 +7,7 @@ const SingleProduct = () => {
   const { waferProducts } = useContext(StaticContext);
 
   const selectedProduct = waferProducts.find(
-    (product) => product.name === productName
+    (product) => product.id === productName
   );
 
   return (

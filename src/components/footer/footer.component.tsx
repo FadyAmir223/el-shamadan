@@ -25,7 +25,7 @@ const Footer = () => {
             ))}
           </nav>
         </div>
-        <div className="mb-4 md:mb-0 text-center max-w-xs md:text-left">
+        <div className="mb-4 md:mb-0 text-center max-w-xs md:text-start">
           <h3 className="text-lg font-bold mb-2">{t('address')}</h3>
           <p>{t('addressVal')}</p>
         </div>

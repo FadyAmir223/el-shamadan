@@ -1,3 +1,20 @@
 {
-  "nav": ["home", "products", "video", "contactUs"]
+  "nav": [
+    {
+      "name": "home",
+      "link": "home"
+    },
+    {
+      "name": "products",
+      "link": "products"
+    },
+    {
+      "name": "video",
+      "link": "video"
+    },
+    {
+      "name": "contact us",
+      "link": "contact us"
+    }
+  ]
 }

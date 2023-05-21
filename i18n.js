@@ -9,7 +9,7 @@ i18n
   .use(initReactI18next)
   .init({
     lng: 'ar' || localStorage.language,
-    fallbackLng: 'ar',
+    fallbackLng: 'en',
     interpolation: {
       escapeValue: false,
     },
@@ -17,6 +17,9 @@ i18n
       useSuspense: false,
     },
     ns: [],
+    backend: {
+      loadPath: '/el-shamadan/locales/{{lng}}/{{ns}}.json',
+    },
   });
 
 export default i18n;

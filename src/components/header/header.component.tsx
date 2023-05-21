@@ -6,11 +6,11 @@ import { useTranslation } from 'react-i18next';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { products } = useContext(StaticContext);
+  const { waferProducts } = useContext(StaticContext);
   const [t, i18n] = useTranslation(['header', 'products']);
   const nav = t('nav', {
     returnObjects: true,
-  }) as string[];
+  }) as { name: string; link: string }[];
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -40,29 +40,28 @@ const Header = () => {
             </button>
             <nav className="capitalize tracking-wider hidden md:flex">
               {nav.map((item) => {
-                if (['products', 'منتجاتنا'].includes(item))
+                if (['products', 'منتجاتنا'].includes(item.name))
                   return (
-                    <div className="relative" key={item}>
+                    <div className="relative" key={item.link}>
                       <button
                         className="border-2 border-yellow border-b-transparent p-2 bottom-up-animation"
                         onClick={toggleDropdown}
-                        key={item}
                       >
-                        {item}
+                        {item.name}
                       </button>
                       <div
                         className={`absolute mt-4 rounded-md shadow-2xl bg-red text-center duration-300 overflow-hidden ${
                           isOpen ? 'h-[200px]' : 'h-0'
                         }`}
                       >
-                        {products.map((product) => (
+                        {waferProducts.map((product) => (
                           <Link
-                            key={product}
-                            to={`/products/${product}`}
+                            key={product.id}
+                            to={`/products/${product.id}`}
                             className="block p-2 hover:bg-gray-100 transition-colors duration-300"
                             onClick={() => setIsOpen(false)}
                           >
-                            {product}
+                            {product.name}
                           </Link>
                         ))}
                       </div>
@@ -71,11 +70,11 @@ const Header = () => {
                 else
                   return (
                     <Link
-                      key={item}
-                      to={`/${item.replace(' ', '-')}`}
+                      key={item.link}
+                      to={`/${item.link.replace(' ', '-')}`}
                       className="border-2 border-yellow border-b-transparent p-2 bottom-up-animation"
                     >
-                      {item}
+                      {item.name}
                     </Link>
                   );
               })}
@@ -89,13 +88,13 @@ const Header = () => {
           >
             <FiX className="text-2xl cursor-pointer absolute top-5 left-5 text-white" />
             <nav className="contain flex flex-col text-white">
-              {nav.map((i) => (
+              {nav.map((item) => (
                 <Link
-                  key={i}
-                  to={`/${i.replace(' ', '-')}`}
+                  key={item.link}
+                  to={`/${item.link.replace(' ', '-')}`}
                   className="text-center uppercase hover:text-red border-b border-b-red last:border-b-0 py-4"
                 >
-                  {i}
+                  {item.name}
                 </Link>
               ))}
             </nav>

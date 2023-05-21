@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { Product } from '../../utils/types';
+import { waferProduct } from '../../utils/types';
 
-const ProductCard = ({ product }: { product: Product }) => {
+const ProductCard = ({ product }: { product: waferProduct }) => {
   return (
-    <Link to={`/products/${product.name}`} className="relative group">
+    <Link to={`/products/${product.id}`} className="relative group">
       <img
         src={product.characterUrl}
         alt={product.name}
