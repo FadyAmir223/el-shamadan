@@ -31,7 +31,7 @@ const Header = () => {
               <img src="images/logo.png" alt="logo" className="w-10" />
             </Link>
             <button
-              className="p-1 border border-purple rounded-lg"
+              className="p-1 border border-white rounded-lg text-white"
               onClick={toggleLanguage}
             >
               {i18n.language === 'en' ? 'AR' : 'EN'}
@@ -45,13 +45,13 @@ const Header = () => {
                   return (
                     <div className="relative" key={item.link}>
                       <button
-                        className="border-2 border-yellow border-b-transparent p-2 bottom-up-animation"
+                        className="border-2 border-yellow border-b-transparent p-2 bottom-up-animation text-white"
                         onClick={toggleDropdown}
                       >
                         {item.name}
                       </button>
                       <div
-                        className={`absolute mt-4 rounded-md shadow-2xl bg-red text-center duration-300 overflow-hidden ${
+                        className={`absolute mt-4 rounded-md shadow-2xl bg-red text-center duration-300 overflow-hidden text-white ${
                           isOpen ? 'h-[200px]' : 'h-0'
                         }`}
                       >
@@ -73,7 +73,7 @@ const Header = () => {
                     <Link
                       key={item.link}
                       to={`/${item.link.replace(' ', '-')}`}
-                      className="border-2 border-yellow border-b-transparent p-2 bottom-up-animation"
+                      className="border-2 border-yellow border-b-transparent p-2 bottom-up-animation text-white"
                     >
                       {item.name}
                     </Link>
