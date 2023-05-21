@@ -40,45 +40,42 @@ const Header = () => {
               <FiMenu />
             </button>
             <nav className="capitalize tracking-wider hidden md:flex">
-              {nav.map((item) => {
-                if (['products', 'منتجاتنا'].includes(item.name))
-                  return (
-                    <div className="relative" key={item.link}>
-                      <button
-                        className="border-2 border-yellow border-b-transparent p-2 bottom-up-animation text-white"
-                        onClick={toggleDropdown}
-                      >
-                        {item.name}
-                      </button>
-                      <div
-                        className={`absolute mt-4 rounded-md shadow-2xl bg-red text-center duration-300 overflow-hidden text-white ${
-                          isOpen ? 'h-[200px]' : 'h-0'
-                        }`}
-                      >
-                        {waferProducts.map((product) => (
-                          <Link
-                            key={product.id}
-                            to={`/products/${product.id}`}
-                            className="block p-2 hover:bg-gray-100 transition-colors duration-300"
-                            onClick={() => setIsOpen(false)}
-                          >
-                            {product.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                else
-                  return (
-                    <Link
-                      key={item.link}
-                      to={`/${item.link.replace(' ', '-')}`}
+              {nav.map((item) =>
+                ['products', 'منتجاتنا'].includes(item.name) ? (
+                  <div className="relative" key={item.link}>
+                    <button
                       className="border-2 border-yellow border-b-transparent p-2 bottom-up-animation text-white"
+                      onClick={toggleDropdown}
                     >
                       {item.name}
-                    </Link>
-                  );
-              })}
+                    </button>
+                    <div
+                      className={`absolute z-50 mt-4 rounded-md shadow-2xl bg-red text-center duration-300 overflow-hidden text-white border-red ${
+                        isOpen ? 'h-[200px] border  ' : 'h-0'
+                      }`}
+                    >
+                      {waferProducts.map((product) => (
+                        <Link
+                          key={product.id}
+                          to={`/products/${product.id}`}
+                          className="block p-2 hover:bg-gray transition-colors duration-300"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {product.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    key={item.link}
+                    to={`/${item.link.replace(' ', '-')}`}
+                    className="border-2 border-yellow border-b-transparent p-2 bottom-up-animation text-white"
+                  >
+                    {item.name}
+                  </Link>
+                )
+              )}
             </nav>
           </div>
         </header>
