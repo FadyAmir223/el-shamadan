@@ -39,7 +39,7 @@ const App = () => {
       <Suspense fallback={<LoadingSpinnter />}>
         <div
           dir={i18n.dir()}
-          className="min-h-screen relative"
+          className="min-h-screen relative bg-black/90"
           onClick={handleClick}
         >
           <div className="rtl:font-[abdo] ltr:font-[roboto]">
@@ -55,14 +55,14 @@ const App = () => {
               />
             )}
             <div
-              className="absolute top-0 left-0 w-full h-full bg-black opacity-[15%]"
+              className="absolute top-0 left-0 w-full h-full opacity-[15%]"
               style={{
                 backgroundImage: 'url("images/background.png")',
                 backgroundSize: '100px',
               }}
             ></div>
-            <HashRouter>
-              <div className="relative">
+            <div className="relative">
+              <HashRouter>
                 <Header />
                 <Routes>
                   <Route path="/" element={<Home />} />
@@ -75,8 +75,8 @@ const App = () => {
                   <Route path="/video" element={<Video />} />
                   <Route path="/contact-us" element={<ContactUs />} />
                 </Routes>
-              </div>
-            </HashRouter>
+              </HashRouter>
+            </div>
           </div>
         </div>
       </Suspense>
