@@ -33,7 +33,7 @@ const SingleProduct = () => {
 
   return (
     selectedProduct && (
-      <article className="relative overflow-hidden py-6 min-h-[calc(100vh-66px)]">
+      <article className="relative overflow-hidden py-8 md:py-6 min-h-[calc(100vh-66px)]">
         <div className="absolute z-20 top-1/4 sm:top-1/2 left-0 transform -translate-y-1/2">
           <FaAngleLeft
             className="text-4xl cursor-pointer text-yellow hover:text-yellow/80"

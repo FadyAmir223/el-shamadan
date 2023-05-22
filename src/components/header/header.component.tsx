@@ -92,7 +92,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
         </header>
         {isOpen && (
           <div
-            className="fixed z-20 top-0 left-0 w-full h-screen bg-black py-14 overflow-hidden md:hidden"
+            className="fixed z-50 top-0 left-0 w-full h-screen bg-black py-14 overflow-hidden md:hidden"
             onClick={() => setIsOpen(false)}
           >
             <FiX className="text-2xl cursor-pointer absolute top-5 left-5 text-white" />
