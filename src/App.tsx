@@ -21,13 +21,18 @@ const ContactUs = lazy(
 const App = () => {
   const [, i18n] = useTranslation('header');
   const [stickPosition, setStickPosition] = useState(null);
-  const [isMagicSoundPlaying, setMagicSoundPlaying] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isSoundPlaying, setSoundPlaying] = useState(false);
+  const [isMuted, setMuted] = useState(false);
+  const [isOpen, setOpen] = useState(false);
 
   const handleClick = (e) => {
-    new Audio('sounds/magic.mp3').play();
-    setMagicSoundPlaying(true);
+    // stick sound
+    if (!isMuted) {
+      new Audio('sounds/magic.mp3').play();
+      setSoundPlaying(true);
+    }
 
+    // stick position
     const { clientX, clientY } = e;
     const { pageXOffset, pageYOffset } = window;
 
@@ -40,7 +45,8 @@ const App = () => {
       setStickPosition(null);
     }, 500);
 
-    if (isOpen) setIsOpen(false);
+    // dropdown menu
+    if (isOpen) setOpen(false);
   };
 
   return (
@@ -48,11 +54,11 @@ const App = () => {
       <Suspense fallback={<LoadingSpinnter />}>
         <div
           dir={i18n.dir()}
-          className="relative bg-black/90"
+          className="relative bg-black/90 min-h-screen"
           onClick={handleClick}
         >
-          {isMagicSoundPlaying && (
-            <audio autoPlay onEnded={() => setMagicSoundPlaying(false)} />
+          {isSoundPlaying && !isMuted && (
+            <audio autoPlay onEnded={() => setSoundPlaying(false)} />
           )}
 
           <div className="rtl:font-[abdo] ltr:font-[roboto]">
@@ -61,7 +67,6 @@ const App = () => {
                 src="images/stick-left-64.png"
                 alt="stick"
                 className="absolute z-30 will-change-transform stick-animation"
-                // -translate-x-3/4 -translate-y-3/4
                 style={{
                   top: stickPosition.y - 35,
                   left: stickPosition.x - 55,
@@ -76,9 +81,14 @@ const App = () => {
                 backgroundSize: '100px',
               }}
             ></div>
-            <div className="relative min-h-screen flex flex-col">
+            <div className="relative flex flex-col">
               <HashRouter>
-                <Header isOpen={isOpen} setIsOpen={setIsOpen} />
+                <Header
+                  isOpen={isOpen}
+                  setIsOpen={setOpen}
+                  isMuted={isMuted}
+                  setMuted={setMuted}
+                />
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/home" element={<Home />} />

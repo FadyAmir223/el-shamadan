@@ -1,10 +1,12 @@
 import { useContext } from 'react';
-import { FiMenu, FiX } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { FiMenu, FiX } from 'react-icons/fi';
+import { FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
+
 import { StaticContext } from '../../context/static.context';
 import { useTranslation } from 'react-i18next';
 
-const Header = ({ isOpen, setIsOpen }) => {
+const Header = ({ isOpen, setIsOpen, isMuted, setMuted }) => {
   const { waferProducts } = useContext(StaticContext);
   const [t, i18n] = useTranslation(['header', 'products']);
   const nav = t('nav', {
@@ -21,21 +23,33 @@ const Header = ({ isOpen, setIsOpen }) => {
     i18n.changeLanguage(newLanguage);
   };
 
+  const toggleMute = () => {
+    setMuted(!isMuted);
+  };
+
   return (
     <>
-      <div className="relative">
+      <main className="relative">
         <header className="bg-red py-2">
           <div className="contain flex justify-between items-center">
             <div className="flex justify-between w-1/2">
               <Link to="/">
                 <img src="images/logo.png" alt="logo" className="w-10" />
               </Link>
-              <button
-                className="p-1 border border-white rounded-lg text-white self-center uppercase"
-                onClick={toggleLanguage}
-              >
-                {i18n.language === 'en' ? 'ar' : 'en'}
-              </button>
+              <div className="flex items-center gap-x-3">
+                <button
+                  className="py-[2px] px-1 border border-white rounded-lg text-white uppercase"
+                  onClick={toggleLanguage}
+                >
+                  {i18n.language === 'en' ? 'ar' : 'en'}
+                </button>
+                <button
+                  className="p-1 border border-white rounded-lg text-white scale-[113%]"
+                  onClick={toggleMute}
+                >
+                  {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
+                </button>
+              </div>
             </div>
             <button className="p-2 md:hidden text-2xl" onClick={toggleDropdown}>
               <FiMenu />
@@ -99,7 +113,7 @@ const Header = ({ isOpen, setIsOpen }) => {
             </nav>
           </div>
         )}
-      </div>
+      </main>
     </>
   );
 };
