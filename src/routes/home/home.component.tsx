@@ -7,15 +7,32 @@ import { useTranslation } from 'react-i18next';
 const calculateCountdown = () => {
   const currentDate = new Date();
   currentDate.setDate(currentDate.getDate() + 2);
-  const nextDay = currentDate.toISOString().split('T')[0];
-  const remainingTime = new Date(nextDay).getTime() - new Date().getTime();
 
-  const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(
-    (remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  const nextDay = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth(),
+    currentDate.getDate()
   );
-  const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+  let remainingTime = nextDay.getTime() - Date.now();
+
+  const time_ms = {
+    day: 1000 * 60 * 60 * 24,
+    hour: 1000 * 60 * 60,
+    minute: 1000 * 60,
+    second: 1000,
+  };
+
+  const days = Math.floor(remainingTime / time_ms.day);
+  remainingTime = remainingTime % time_ms.day;
+
+  const hours = Math.floor(remainingTime / time_ms.hour);
+  remainingTime = remainingTime % time_ms.hour;
+
+  const minutes = Math.floor(remainingTime / time_ms.minute);
+  remainingTime = remainingTime % time_ms.minute;
+
+  const seconds = Math.floor(remainingTime / time_ms.second);
 
   return { days, hours, minutes, seconds };
 };
