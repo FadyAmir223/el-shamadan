@@ -12,13 +12,13 @@ const Footer = () => {
     <footer className="bg-gray-900 text-white py-6">
       <div className="contain flex flex-col md:flex-row items-center md:items-start justify-between">
         <div className="mb-6 md:mb-0">
-          <h3 className="text-lg font-bold mb-2">{t('products')}</h3>
+          <h3 className="text-lg lg:text-xl font-bold mb-2">{t('products')}</h3>
           <nav>
             {waferProducts.map((product) => (
               <Link
                 key={product.id}
                 to={`/products/${product.id}`}
-                className="text-center md:text-start block mb-2 hover:text-red capitalize"
+                className="text-center md:text-start block mb-2 hover:text-red capitalize lg:text-lg"
               >
                 {product.name}
               </Link>
@@ -26,8 +26,8 @@ const Footer = () => {
           </nav>
         </div>
         <div className="mb-4 md:mb-0 text-center max-w-xs md:text-start">
-          <h3 className="text-lg font-bold mb-2">{t('address')}</h3>
-          <p>{t('addressVal')}</p>
+          <h3 className="text-lg lg:text-xl font-bold mb-2">{t('address')}</h3>
+          <p className="lg:text-lg">{t('addressVal')}</p>
         </div>
         <div className="flex items-center">
           <div className="flex items-center gap-x-4 scale-125">

@@ -74,7 +74,7 @@ const App = () => {
                 className="absolute z-30 will-change-transform animate-[stickRotation_ease-out_0.6s]"
                 style={{
                   top: stickPosition.y - 50,
-                  left: stickPosition.x - 62,
+                  left: stickPosition.x - 72,
                 }}
               />
             )}

@@ -96,11 +96,11 @@ const Home = () => {
         </section>
 
         <section className="bg-black py-8">
-          <h2 className="text-center text-3xl md:text-4xl md:rtl:text-5xl pb-2 mb-6 uppercase text-white relative before:absolute before:bottom-0 before:w-20 before:left-1/2 before:-translate-x-1/2 before:h-[2px] before:bg-purple">
+          <h2 className="text-center text-3xl md:text-4xl md:rtl:text-5xl pb-2 mb-6 lg:mb-14 uppercase text-white relative before:absolute before:bottom-0 before:w-20 before:left-1/2 before:-translate-x-1/2 before:h-[2px] before:bg-purple">
             {t('products')}
           </h2>
           <div className="contain">
-            <div className="grid grid-cols-2 gap-4 md:gap-6 lg:gap-8">
+            <div className="grid grid-cols-2 gap-4 md:gap-6 lg:gap-16">
               {waferProducts.map((product) => (
                 <ProductCard key={product.name} product={product} />
               ))}

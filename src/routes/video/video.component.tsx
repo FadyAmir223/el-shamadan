@@ -24,12 +24,12 @@ const Video: React.FC = () => {
       <img
         src="images/curtain-left.png"
         alt="curtain-left"
-        className="absolute top-0 left-0 opacity-20 h-5/6 object-contain md:hidden"
+        className="absolute top-0 left-0 opacity-20 h-4/5 object-contain sm:hidden"
       />
       <img
         src="images/curtain-right.png"
         alt="curtain-right"
-        className="absolute top-0 right-0 opacity-20 h-full object-contain hidden sm:block md:hidden"
+        className="absolute top-0 right-0 opacity-20 h-4/5 object-contain sm:hidden"
       />
     </article>
   );
