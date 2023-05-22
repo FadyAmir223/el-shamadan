@@ -34,7 +34,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
               </Link>
               <div className="flex items-center gap-x-3">
                 <button
-                  className="py-[2px] px-1 border border-white rounded-lg text-white uppercase"
+                  className="py-[2px] px-1 border border-white rounded-lg text-white uppercase rtl:font-sans"
                   onClick={toggleLanguage}
                 >
                   {i18n.language === 'en' ? 'ar' : 'en'}

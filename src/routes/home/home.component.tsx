@@ -57,27 +57,40 @@ const Home = () => {
   return (
     <>
       <article>
-        <section className="py-6 contain">
-          <div className="w-fit mx-auto md:mx-0">
+        <section className="py-6 relative">
+          <div className="contain">
             <img
-              src="images/secret.png"
-              alt="secret"
-              className="max-w-xs mx-auto md:mx-0 mb-4 w-full"
+              src="images/curtain-left.png"
+              alt="curtain-left"
+              className="absolute left-0 top-0 h-4/5 opacity-50"
             />
 
-            <div className="text-center grid grid-cols-4 gap-4">
-              {countdownBlocks.map((block) => (
-                <div key={block.label}>
-                  <div className="bg-yellow rounded-lg h-10 grid place-items-center">
-                    <span className="rtl:text-2xl ltr:text-xl font-bold text-black">
-                      {block.value}
+            <img
+              src="images/curtain-right.png"
+              alt="curtain-left"
+              className="absolute right-0 top-0 h-4/5 opacity-50"
+            />
+            <div className="w-fit mx-auto md:mx-0 relative">
+              <img
+                src="images/secret.png"
+                alt="secret"
+                className="max-w-xs mx-auto md:mx-0 mb-4 w-full"
+              />
+
+              <div className="text-center grid grid-cols-4 gap-4">
+                {countdownBlocks.map((block) => (
+                  <div key={block.label}>
+                    <div className="bg-yellow rounded-lg h-10 grid place-items-center">
+                      <span className="rtl:text-2xl ltr:text-xl font-bold text-black">
+                        {block.value}
+                      </span>
+                    </div>
+                    <span className="block capitalize text-white rtl:text-2xl h-5">
+                      {block.label}
                     </span>
                   </div>
-                  <span className="block capitalize text-white rtl:text-2xl h-5">
-                    {block.label}
-                  </span>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>

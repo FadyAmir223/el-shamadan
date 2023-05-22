@@ -24,7 +24,7 @@ const Video: React.FC = () => {
       <img
         src="images/curtain-left.png"
         alt="curtain-left"
-        className="absolute top-0 left-0 opacity-20 h-full object-contain md:hidden"
+        className="absolute top-0 left-0 opacity-20 h-5/6 object-contain md:hidden"
       />
       <img
         src="images/curtain-right.png"
