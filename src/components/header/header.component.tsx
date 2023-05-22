@@ -26,15 +26,17 @@ const Header = ({ isOpen, setIsOpen }) => {
       <div className="relative">
         <header className="bg-red py-2">
           <div className="contain flex justify-between items-center">
-            <Link to="/">
-              <img src="images/logo.png" alt="logo" className="w-10" />
-            </Link>
-            <button
-              className="p-1 border border-white rounded-lg text-white"
-              onClick={toggleLanguage}
-            >
-              {i18n.language === 'en' ? 'AR' : 'EN'}
-            </button>
+            <div className="flex justify-between w-1/2">
+              <Link to="/">
+                <img src="images/logo.png" alt="logo" className="w-10" />
+              </Link>
+              <button
+                className="p-1 border border-white rounded-lg text-white self-center uppercase"
+                onClick={toggleLanguage}
+              >
+                {i18n.language === 'en' ? 'ar' : 'en'}
+              </button>
+            </div>
             <button className="p-2 md:hidden text-2xl" onClick={toggleDropdown}>
               <FiMenu />
             </button>

@@ -45,7 +45,7 @@ const Footer = () => {
             >
               <FaTwitter className="text-white text-xl" />
             </a>
-            <a href="mailto:contact@example.com">
+            <a href="mailto:contact@elshamedan.com">
               <span className="text-white text-xl">@</span>
             </a>
           </div>

@@ -60,7 +60,7 @@ const App = () => {
               <img
                 src="images/stick-left-64.png"
                 alt="Stick"
-                className="absolute z-30 -translate-x-[60%] -translate-y-[56%]"
+                className="absolute z-30 -translate-x-3/4 -translate-y-3/4"
                 style={{
                   top: stickPosition.y,
                   left: stickPosition.x,

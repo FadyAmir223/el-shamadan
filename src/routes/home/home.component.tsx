@@ -37,10 +37,7 @@ const Home = () => {
     const interval = setInterval(() => {
       const newCountdown = calculateCountdown();
       setCountdown(newCountdown);
-
-      if (newCountdown === null) {
-        clearInterval(interval);
-      }
+      if (newCountdown === null) clearInterval(interval);
     }, 1000);
 
     return () => {
@@ -86,7 +83,7 @@ const Home = () => {
         </section>
 
         <section className="bg-black py-8">
-          <h2 className="text-center text-3xl md:text-4xl pb-2 mb-6 uppercase text-white relative before:absolute before:bottom-0 before:w-20 before:left-1/2 before:-translate-x-1/2 before:h-[2px] before:bg-purple">
+          <h2 className="text-center text-3xl md:text-4xl md:rtl:text-5xl pb-2 mb-6 uppercase text-white relative before:absolute before:bottom-0 before:w-20 before:left-1/2 before:-translate-x-1/2 before:h-[2px] before:bg-purple">
             {t('products')}
           </h2>
           <div className="contain">

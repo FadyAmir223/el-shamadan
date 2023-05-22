@@ -25,7 +25,7 @@ const SingleProduct = () => {
             <img
               src={selectedProduct.coverUrl}
               alt={`${selectedProduct.name} box`}
-              className="w-2/3 max-w-md rotate-6 mx-auto my-10 hover:scale-110 hover:rotate-3 duration-500 shadow-md"
+              className="w-2/3 max-w-md rotate-6 mx-auto my-10 hover:scale-110 hover:rotate-3 will-change-transform duration-500 shadow-md"
             />
             <p className="max-w-md text-white md:mx-auto lg:text-xl rtl:text-2xl">
               {selectedProduct.desc}

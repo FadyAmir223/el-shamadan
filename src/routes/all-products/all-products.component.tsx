@@ -13,7 +13,7 @@ const AllProducts = () => {
   const { waferProducts } = useContext(StaticContext);
 
   return (
-    <article className="relative overflow-hidden py-14">
+    <article className="relative overflow-hidden py-7">
       <section className="relative z-10">
         <div className="aspect-w-4 aspect-h-3 max-w-[150px] mx-auto mb-3">
           <img
