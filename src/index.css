@@ -21,10 +21,6 @@
   }
   100% {
     transform-origin: 120% 120%;
-    transform: rotate(0deg);
+    transform: rotate(8deg);
   }
-}
-
-.stick-animation {
-  animation: stickRotation ease-out 0.8s infinite;
 }

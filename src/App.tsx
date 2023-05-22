@@ -41,7 +41,6 @@ const App = () => {
     // stick position
     const { clientX, clientY } = e;
     const { pageXOffset, pageYOffset } = window;
-
     setStickPosition({
       x: clientX + pageXOffset,
       y: clientY + pageYOffset,
@@ -72,10 +71,10 @@ const App = () => {
               <img
                 src="images/stick-left-64.png"
                 alt="stick"
-                className="absolute z-30 will-change-transform stick-animation"
+                className="absolute z-30 will-change-transform animate-[stickRotation_ease-out_0.6s]"
                 style={{
-                  top: stickPosition.y - 35,
-                  left: stickPosition.x - 55,
+                  top: stickPosition.y - 50,
+                  left: stickPosition.x - 62,
                 }}
               />
             )}
