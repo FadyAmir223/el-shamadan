@@ -6,7 +6,7 @@ import { FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
 import { StaticContext } from '../../context/static.context';
 import { useTranslation } from 'react-i18next';
 
-const Header = ({ isOpen, setIsOpen, isMuted, setMuted }) => {
+const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
   const { waferProducts } = useContext(StaticContext);
   const [t, i18n] = useTranslation(['header', 'products']);
   const nav = t('nav', {
@@ -21,10 +21,6 @@ const Header = ({ isOpen, setIsOpen, isMuted, setMuted }) => {
     const newLanguage = i18n.language === 'en' ? 'ar' : 'en';
     localStorage.language = newLanguage;
     i18n.changeLanguage(newLanguage);
-  };
-
-  const toggleMute = () => {
-    setMuted(!isMuted);
   };
 
   return (
@@ -45,7 +41,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, setMuted }) => {
                 </button>
                 <button
                   className="p-1 border border-white rounded-lg text-white scale-[113%]"
-                  onClick={toggleMute}
+                  ref={refHeader}
                 >
                   {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
                 </button>

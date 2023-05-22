@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense, useRef, useState } from 'react';
 import { Routes, Route, HashRouter } from 'react-router-dom';
 
 import Header from './components/header/header.component';
@@ -24,13 +24,19 @@ const App = () => {
   const [isSoundPlaying, setSoundPlaying] = useState(false);
   const [isMuted, setMuted] = useState(false);
   const [isOpen, setOpen] = useState(false);
+  const refHeader = useRef(null);
 
-  const handleClick = (e) => {
-    // stick sound
-    if (!isMuted) {
-      new Audio('sounds/magic.mp3').play();
-      setSoundPlaying(true);
-    }
+  const runAudio = () => {
+    new Audio('sounds/magic.mp3').play();
+    setSoundPlaying(true);
+  };
+
+  const handleClick = async (e) => {
+    // mute toggle
+    if (refHeader.current && refHeader.current.contains(e.target)) {
+      if (isMuted) runAudio();
+      setMuted(!isMuted);
+    } else if (!isMuted) runAudio();
 
     // stick position
     const { clientX, clientY } = e;
@@ -87,7 +93,7 @@ const App = () => {
                   isOpen={isOpen}
                   setIsOpen={setOpen}
                   isMuted={isMuted}
-                  setMuted={setMuted}
+                  refHeader={refHeader}
                 />
                 <Routes>
                   <Route path="/" element={<Home />} />
