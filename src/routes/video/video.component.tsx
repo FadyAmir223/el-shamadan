@@ -11,18 +11,27 @@ const Video: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative">
-      <img src="images/logo.png" alt="logo" className="py-6 w-20 mx-auto" />
+    <article className="relative min-h-[calc(100vh-66px)]">
+      <img src="images/logo.png" alt="logo" className="py-6 w-16 mx-auto" />
       <video
         ref={videoRef}
         controls
-        // autoPlay
         poster="images/thumbnail.jpg"
-        className="focus:outline-0"
+        className="focus:outline-0 w-full relative z-10"
       >
         <source src="videos/shamdan.mp4" type="video/mp4" />
       </video>
-    </div>
+      <img
+        src="images/curtain-left.png"
+        alt="curtain-left"
+        className="absolute top-0 left-0 opacity-20 h-full object-contain md:hidden"
+      />
+      <img
+        src="images/curtain-right.png"
+        alt="curtain-right"
+        className="absolute top-0 right-0 opacity-20 h-full object-contain hidden sm:block md:hidden"
+      />
+    </article>
   );
 };
 

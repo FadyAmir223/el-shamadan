@@ -48,7 +48,7 @@ const App = () => {
       <Suspense fallback={<LoadingSpinnter />}>
         <div
           dir={i18n.dir()}
-          className="min-h-screen relative bg-black/90"
+          className="relative bg-black/90"
           onClick={handleClick}
         >
           {isMagicSoundPlaying && (
@@ -59,14 +59,16 @@ const App = () => {
             {stickPosition && (
               <img
                 src="images/stick-left-64.png"
-                alt="Stick"
-                className="absolute z-30 -translate-x-3/4 -translate-y-3/4"
+                alt="stick"
+                className="absolute z-30 will-change-transform stick-animation"
+                // -translate-x-3/4 -translate-y-3/4
                 style={{
-                  top: stickPosition.y,
-                  left: stickPosition.x,
+                  top: stickPosition.y - 35,
+                  left: stickPosition.x - 55,
                 }}
               />
             )}
+
             <div
               className="absolute top-0 left-0 w-full h-full opacity-[15%]"
               style={{
@@ -74,7 +76,7 @@ const App = () => {
                 backgroundSize: '100px',
               }}
             ></div>
-            <div className="relative">
+            <div className="relative min-h-screen flex flex-col">
               <HashRouter>
                 <Header isOpen={isOpen} setIsOpen={setIsOpen} />
                 <Routes>

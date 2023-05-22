@@ -19,7 +19,7 @@ const SingleProduct = () => {
 
   return (
     selectedProduct && (
-      <article className="relative overflow-hidden py-6 min-h-[calc(100vh-66px)]">
+      <article className="relative overflow-hidden py-6">
         <section className="relative z-10 contain">
           <div className="">
             <img
