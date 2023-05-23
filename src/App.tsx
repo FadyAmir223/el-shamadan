@@ -34,7 +34,7 @@ const App = () => {
     waferProducts.forEach((waferProduct) => {
       new Image().src = `/images/${waferProduct.id}.png`;
     });
-  }, []);
+  }, [waferProducts]);
 
   const runAudio = () => {
     new Audio('sounds/magic.mp3').play();

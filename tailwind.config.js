@@ -13,7 +13,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['abdo', 'Roboto', 'sans-serif'],
+        sans: ['Roboto', 'abdo', 'sans-serif'],
       },
       colors: {
         red: '#c62430',

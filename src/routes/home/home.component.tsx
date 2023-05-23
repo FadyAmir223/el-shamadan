@@ -98,7 +98,7 @@ const Home = () => {
                 {countdownBlocks.map((block) => (
                   <div key={block.label}>
                     <div className="bg-yellow rounded-lg h-10 grid place-items-center">
-                      <span className="rtl:text-2xl ltr:text-xl font-bold text-black">
+                      <span className="rtl:text-2xl ltr:text-xl font-bold text-grey">
                         {block.value}
                       </span>
                     </div>

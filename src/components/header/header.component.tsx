@@ -19,7 +19,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
 
   const toggleLanguage = () => {
     const newLanguage = i18n.language === 'en' ? 'ar' : 'en';
-    localStorage.language = newLanguage;
+    localStorage.i18nextLng = newLanguage;
     i18n.changeLanguage(newLanguage);
   };
 
