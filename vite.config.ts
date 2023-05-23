@@ -11,16 +11,16 @@ export default defineConfig({
     // svgr(),
     ViteImageOptimizer({
       png: {
-        quality: 80,
+        quality: 10,
       },
       jpg: {
-        quality: 80,
+        quality: 10,
       },
       jpeg: {
-        quality: 80,
+        quality: 10,
       },
       webp: {
-        quality: 80,
+        quality: 10,
       },
     }),
   ],

@@ -28,7 +28,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
       <main className="relative">
         <header className="bg-red py-2">
           <div className="contain flex justify-between items-center">
-            <div className="flex justify-between w-1/2">
+            <div className="flex justify-between w-[calc(50%+40px)] md:w-1/2">
               <Link to="/">
                 <img src="images/logo.png" alt="logo" className="w-10" />
               </Link>
@@ -40,7 +40,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
                   {i18n.language === 'en' ? 'ar' : 'en'}
                 </button>
                 <button
-                  className="p-1 border border-white rounded-lg text-white scale-[113%]"
+                  className="p-1 border border-white rounded-lg text-white scale-[114%]"
                   ref={refHeader}
                 >
                   {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}

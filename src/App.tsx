@@ -1,9 +1,9 @@
-import { lazy, useRef, useState } from 'react';
+import { lazy, useContext, useEffect, useRef, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Header from './components/header/header.component';
 import { useTranslation } from 'react-i18next';
-import Error from './routes/error/error.component';
+import { StaticContext } from './context/static.context';
 
 const Home = lazy(() => import('./routes/home/home.component'));
 const AllProducts = lazy(
@@ -16,6 +16,7 @@ const Video = lazy(() => import('./routes/video/video.component'));
 const ContactUs = lazy(
   () => import('./routes/contact-us/contact-us.component')
 );
+const Error = lazy(() => import('./routes/error/error.component'));
 
 const App = () => {
   const [, i18n] = useTranslation('header');
@@ -26,6 +27,14 @@ const App = () => {
   );
   const [isOpen, setOpen] = useState(false);
   const refHeader = useRef(null);
+
+  const { waferProducts } = useContext(StaticContext);
+
+  useEffect(() => {
+    waferProducts.forEach((waferProduct) => {
+      new Image().src = `/images/${waferProduct.id}.png`;
+    });
+  }, []);
 
   const runAudio = () => {
     new Audio('sounds/magic.mp3').play();
@@ -68,7 +77,7 @@ const App = () => {
         <audio autoPlay onEnded={() => setSoundPlaying(false)} />
       )}
 
-      <div className="rtl:font-[abdo] ltr:font-[roboto]">
+      <div className="rtl:font-[abdo] ltr:font-[roboto_serif]">
         {stickPosition && (
           <img
             src="images/stick-left-64.png"
