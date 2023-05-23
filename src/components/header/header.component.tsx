@@ -47,7 +47,10 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
                 </button>
               </div>
             </div>
-            <button className="p-2 md:hidden text-2xl" onClick={toggleDropdown}>
+            <button
+              className="p-2 md:hidden text-2xl text-white"
+              onClick={toggleDropdown}
+            >
               <FiMenu />
             </button>
             <nav className="capitalize tracking-wider hidden md:flex">

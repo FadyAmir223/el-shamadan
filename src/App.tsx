@@ -70,7 +70,7 @@ const App = () => {
   return (
     <div
       dir={i18n.dir()}
-      className="relative bg-black/90 min-h-screen"
+      className="relative bg-black/90 min-h-screen overflow-hidden"
       onClick={handleClick}
     >
       {isSoundPlaying && !isMuted && (
