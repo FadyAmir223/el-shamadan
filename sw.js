@@ -1214,9 +1214,9 @@ function se(a, e) {
 }
 se([
   { url: "favicon.ico", revision: null },
-  { url: "/images/*", revision: null },
-  { url: "/locales/*", revision: null },
-  { url: "/fonts/*", revision: null },
-  { url: "/sounds/*", revision: null },
+  { url: "/images/**", revision: null },
+  { url: "/locales/**", revision: null },
+  { url: "/fonts/**", revision: null },
+  { url: "/sounds/**", revision: null },
   ...[{"revision":null,"url":"assets/all-products.component-2a644eaf.js"},{"revision":null,"url":"assets/contact-us.component-b0d318e7.js"},{"revision":null,"url":"assets/error.component-0dd31722.js"},{"revision":null,"url":"assets/footer.component-b82e6f48.js"},{"revision":null,"url":"assets/home.component-51781d30.js"},{"revision":null,"url":"assets/index-04b04962.css"},{"revision":null,"url":"assets/index-cfd0a01c.js"},{"revision":null,"url":"assets/product-card.component-0e400b9c.js"},{"revision":null,"url":"assets/single-product.component-b58fbfaa.js"},{"revision":null,"url":"assets/video.component-71a9bb2a.js"},{"revision":"4f2628ac4d675e8ef8f21a54a594cf62","url":"index.html"},{"revision":"ef31508ea54c9805220261c6bd8628a1","url":"registerSW.js"},{"revision":"d5f8d8e2cd559ca3adb009856213ce35","url":"pwa-192x192.png"},{"revision":"1d809b42a4d8399ed3c3470aedfbc3e1","url":"pwa-512x512.png"},{"revision":"20f7fcaa015816d651df41f177f2a9d2","url":"manifest.webmanifest"}]
 ]);
