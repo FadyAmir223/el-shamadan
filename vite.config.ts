@@ -17,9 +17,9 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       strategies: 'injectManifest',
-      srcDir: 'src',
-      filename: 'sw.js',
-      outDir: 'dist',
+      // srcDir: 'src',
+      // filename: 'sw.js',
+      // outDir: 'dist',
 
       // includeAssets: ['**/*.{ttf,png,json}'],
       manifest: {
