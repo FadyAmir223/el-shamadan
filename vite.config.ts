@@ -27,7 +27,7 @@ export default defineConfig({
         short_name: 'el-Shamedan',
         description: 're-branding to el-shamedan wafer products',
         start_url: '/el-shamadan/',
-        scope: '/',
+        // scope: '/',
         display: 'standalone',
         theme_color: '#181a1B',
         // background_color: '#e8ebf2',
