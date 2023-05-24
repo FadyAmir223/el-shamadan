@@ -42,6 +42,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
                 <button
                   className="p-1 border border-white rounded-lg text-white scale-[114%]"
                   ref={refHeader}
+                  aria-label={isMuted ? 'Mute' : 'Unmute'}
                 >
                   {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
                 </button>
@@ -50,6 +51,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
             <button
               className="p-2 md:hidden text-2xl text-white"
               onClick={toggleDropdown}
+              aria-label="dropdown"
             >
               <FiMenu />
             </button>

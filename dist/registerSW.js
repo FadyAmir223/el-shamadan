@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/el-shamadan/sw.js', { scope: '/el-shamadan/' })})}
