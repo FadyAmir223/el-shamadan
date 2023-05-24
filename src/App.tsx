@@ -1,9 +1,14 @@
-import { lazy, useContext, useEffect, useRef, useState } from 'react';
+import {
+  lazy,
+  useRef,
+  useState,
+  // , useContext, useEffect
+} from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Header from './components/header/header.component';
 import { useTranslation } from 'react-i18next';
-import { StaticContext } from './context/static.context';
+// import { StaticContext } from './context/static.context';
 
 const Home = lazy(() => import('./routes/home/home.component'));
 const AllProducts = lazy(
@@ -28,13 +33,24 @@ const App = () => {
   const [isOpen, setOpen] = useState(false);
   const refHeader = useRef(null);
 
-  const { waferProducts } = useContext(StaticContext);
+  // const { waferProducts } = useContext(StaticContext);
 
-  useEffect(() => {
-    waferProducts.forEach((waferProduct) => {
-      new Image().src = `/images/${waferProduct.id}.png`;
-    });
-  }, [waferProducts]);
+  // useEffect(() => {
+  //   const imgs = waferProducts.map((i) => `images/${i.id}.png`);
+  //   (async () => {
+  //     const promises = imgs.map(
+  //       (src) =>
+  //         new Promise((resolve, reject) => {
+  //           const img = new Image();
+  //           img.src = src;
+  //           img.onload = resolve;
+  //           img.onerror = reject;
+  //         })
+  //     );
+
+  //     await Promise.all(promises);
+  //   })();
+  // }, [waferProducts]);
 
   const runAudio = () => {
     new Audio('sounds/magic.mp3').play();

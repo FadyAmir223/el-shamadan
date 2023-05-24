@@ -35,6 +35,7 @@ const Footer = () => {
               href="https://www.facebook.com/ElShamadan/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Visit Facebook page of ElShamadan"
             >
               <FaFacebook className="text-white text-xl" />
             </a>
@@ -42,6 +43,7 @@ const Footer = () => {
               href="https://twitter.com/elshamadanco"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Visit Twitter page of ElShamadan"
             >
               <FaTwitter className="text-white text-xl" />
             </a>
