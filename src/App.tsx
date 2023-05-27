@@ -1,14 +1,9 @@
-import {
-  lazy,
-  useRef,
-  useState,
-  // , useContext, useEffect
-} from 'react';
+import { lazy, useRef, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Header from './components/header/header.component';
 import { useTranslation } from 'react-i18next';
-// import { StaticContext } from './context/static.context';
+import Img from './components/img/img.component';
 
 const Home = lazy(() => import('./routes/home/home.component'));
 const AllProducts = lazy(
@@ -33,28 +28,13 @@ const App = () => {
   const [isOpen, setOpen] = useState(false);
   const refHeader = useRef(null);
 
-  // const { waferProducts } = useContext(StaticContext);
-
-  // useEffect(() => {
-  //   const imgs = waferProducts.map((i) => `images/${i.id}.png`);
-  //   (async () => {
-  //     const promises = imgs.map(
-  //       (src) =>
-  //         new Promise((resolve, reject) => {
-  //           const img = new Image();
-  //           img.src = src;
-  //           img.onload = resolve;
-  //           img.onerror = reject;
-  //         })
-  //     );
-
-  //     await Promise.all(promises);
-  //   })();
-  // }, [waferProducts]);
-
   const runAudio = () => {
     new Audio('sounds/magic.mp3').play();
     setSoundPlaying(true);
+  };
+
+  const handleSoundPlaying = () => {
+    setSoundPlaying(false);
   };
 
   const handleClick = async (e) => {
@@ -90,12 +70,12 @@ const App = () => {
       onClick={handleClick}
     >
       {isSoundPlaying && !isMuted && (
-        <audio autoPlay onEnded={() => setSoundPlaying(false)} />
+        <audio autoPlay onEnded={handleSoundPlaying} />
       )}
 
-      <div className="rtl:font-[abdo] ltr:font-[roboto_serif]">
+      <div className="rtl:font-[abdo] ltr:font-[roboto]">
         {stickPosition && (
-          <img
+          <Img
             src="images/stick-left-64.png"
             alt="stick"
             className="absolute z-30 will-change-transform animate-[stickRotation_ease-out_0.6s]"
@@ -109,10 +89,11 @@ const App = () => {
         <div
           className="absolute top-0 left-0 w-full h-full opacity-[15%]"
           style={{
-            backgroundImage: 'url("images/background.png")',
+            backgroundImage: 'url("images/background.webp")',
             backgroundSize: '100px',
           }}
         ></div>
+
         <div className="relative flex flex-col">
           <Header
             isOpen={isOpen}

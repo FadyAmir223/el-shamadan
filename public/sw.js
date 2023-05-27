@@ -1,24 +1,71 @@
-// import { precacheAndRoute } from 'workbox-precaching';
-
-// // precacheAndRoute(self.__WB_MANIFEST);
-
-// precacheAndRoute([
-//   { url: 'favicon.ico', revision: null },
-//   { url: '/images/', revision: null },
-//   { url: '/locales/', revision: null },
-//   { url: '/fonts/', revision: null },
-//   { url: '/sounds/', revision: null },
-//   ...self.__WB_MANIFEST,
-// ]);
-
 import { precacheAndRoute } from 'workbox-precaching';
+import { registerRoute } from 'workbox-routing';
+import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
+import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 
 precacheAndRoute(self.__WB_MANIFEST);
 
-precacheAndRoute([
-  'favicon.ico',
-  '/images/',
-  '/locales/',
-  '/fonts/',
-  '/sounds/',
-]);
+const revision = '1';
+
+const assets = [
+  '/el-shamadan/favicon.ico',
+  '/el-shamadan/images/background.webp',
+  '/el-shamadan/images/belt.webp',
+  '/el-shamadan/images/curtain-left.webp',
+  '/el-shamadan/images/curtain-right.webp',
+  '/el-shamadan/images/diva.webp',
+  '/el-shamadan/images/diva_.webp',
+  '/el-shamadan/images/face.webp',
+  '/el-shamadan/images/hero.webp',
+  '/el-shamadan/images/hero_.webp',
+  '/el-shamadan/images/joker.webp',
+  '/el-shamadan/images/joker_.webp',
+  '/el-shamadan/images/king.webp',
+  '/el-shamadan/images/king_.webp',
+  '/el-shamadan/images/logo.webp',
+  '/el-shamadan/images/mafia.webp',
+  '/el-shamadan/images/mafia_.webp',
+  '/el-shamadan/images/magician.webp',
+  '/el-shamadan/images/magician_.webp',
+  '/el-shamadan/images/secret.webp',
+  '/el-shamadan/images/stick-left-64.webp',
+  '/el-shamadan/images/thumbnail.webp',
+  '/el-shamadan/locales/ar/contact.json',
+  '/el-shamadan/locales/ar/footer.json',
+  '/el-shamadan/locales/ar/header.json',
+  '/el-shamadan/locales/ar/home.json',
+  '/el-shamadan/locales/ar/products.json',
+  '/el-shamadan/locales/en/contact.json',
+  '/el-shamadan/locales/en/footer.json',
+  '/el-shamadan/locales/en/header.json',
+  '/el-shamadan/locales/en/home.json',
+  '/el-shamadan/locales/en/products.json',
+];
+
+const assetsRevision = assets.map((url) => ({ url, revision }));
+
+precacheAndRoute(assetsRevision);
+
+registerRoute(
+  ({ request }) => request.mode === 'navigate',
+  new StaleWhileRevalidate({
+    cacheName: 'navigate',
+    plugins: [new CacheableResponsePlugin({ statuses: [200] })],
+  })
+);
+
+registerRoute(
+  ({ request }) => request.destination === 'script',
+  new StaleWhileRevalidate({
+    cacheName: 'scripts',
+    plugins: [new CacheableResponsePlugin({ statuses: [200] })],
+  })
+);
+
+registerRoute(
+  ({ request }) => request.destination === 'font',
+  new CacheFirst({
+    cacheName: 'fonts',
+    plugins: [new CacheableResponsePlugin({ statuses: [200] })],
+  })
+);

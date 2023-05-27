@@ -5,6 +5,7 @@ import { FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
 
 import { StaticContext } from '../../context/static.context';
 import { useTranslation } from 'react-i18next';
+import Img from '../img/img.component';
 
 const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
   const { waferProducts } = useContext(StaticContext);
@@ -30,7 +31,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
           <div className="contain flex justify-between items-center">
             <div className="flex justify-between w-[calc(50%+40px)] md:w-1/2">
               <Link to="/">
-                <img src="images/logo.png" alt="logo" className="w-10" />
+                <Img src="images/logo.png" alt="logo" className="w-10" />
               </Link>
               <div className="flex items-center gap-x-3">
                 <button
@@ -40,7 +41,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
                   {i18n.language === 'en' ? 'ar' : 'en'}
                 </button>
                 <button
-                  className="p-1 border border-white rounded-lg text-white scale-[114%]"
+                  className="select-none p-1 border border-white rounded-lg text-white scale-[114%]"
                   ref={refHeader}
                   aria-label={isMuted ? 'Mute' : 'Unmute'}
                 >
@@ -49,7 +50,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
               </div>
             </div>
             <button
-              className="p-2 md:hidden text-2xl text-white"
+              className="select-none p-2 md:hidden text-2xl text-white"
               onClick={toggleDropdown}
               aria-label="dropdown"
             >

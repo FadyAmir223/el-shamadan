@@ -2,10 +2,10 @@ try {
   self["workbox:core:6.5.3"] && _();
 } catch {
 }
-const N = (a, ...e) => {
+const j = (a, ...e) => {
   let t = a;
   return e.length > 0 && (t += ` :: ${JSON.stringify(e)}`), t;
-}, E = N;
+}, M = j;
 class l extends Error {
   /**
    *
@@ -16,7 +16,7 @@ class l extends Error {
    * be added as a key on the context object.
    */
   constructor(e, t) {
-    const s = E(e, t);
+    const s = M(e, t);
     super(s), this.name = e, this.details = t;
   }
 }
@@ -26,12 +26,12 @@ const f = {
   prefix: "workbox",
   runtime: "runtime",
   suffix: typeof registration < "u" ? registration.scope : ""
-}, C = (a) => [f.prefix, a, f.suffix].filter((e) => e && e.length > 0).join("-"), v = (a) => {
+}, C = (a) => [f.prefix, a, f.suffix].filter((e) => e && e.length > 0).join("-"), I = (a) => {
   for (const e of Object.keys(f))
     a(e);
-}, U = {
+}, k = {
   updateDetails: (a) => {
-    v((e) => {
+    I((e) => {
       typeof a[e] == "string" && (f[e] = a[e]);
     });
   },
@@ -41,7 +41,7 @@ const f = {
   getRuntimeName: (a) => a || C(f.runtime),
   getSuffix: () => f.suffix
 };
-function k(a, e) {
+function x(a, e) {
   const t = e();
   return a.waitUntil(t), t;
 }
@@ -49,8 +49,8 @@ try {
   self["workbox:precaching:6.5.3"] && _();
 } catch {
 }
-const O = "__WB_REVISION__";
-function I(a) {
+const W = "__WB_REVISION__";
+function A(a) {
   if (!a)
     throw new l("add-to-cache-list-unexpected-type", { entry: a });
   if (typeof a == "string") {
@@ -71,12 +71,12 @@ function I(a) {
     };
   }
   const s = new URL(t, location.href), n = new URL(t, location.href);
-  return s.searchParams.set(O, e), {
+  return s.searchParams.set(W, e), {
     cacheKey: s.href,
     url: n.href
   };
 }
-class M {
+class D {
   constructor() {
     this.updatedURLs = [], this.notUpdatedURLs = [], this.handlerWillStart = async ({ request: e, state: t }) => {
       t && (t.originalRequest = e);
@@ -89,7 +89,7 @@ class M {
     };
   }
 }
-class W {
+class S {
   constructor({ precacheController: e }) {
     this.cacheKeyWillBeUsed = async ({ request: t, params: s }) => {
       const n = (s == null ? void 0 : s.cacheKey) || this._precacheController.getCacheKeyForURL(t.url);
@@ -97,21 +97,21 @@ class W {
     }, this._precacheController = e;
   }
 }
-let p;
+let g;
 function q() {
-  if (p === void 0) {
+  if (g === void 0) {
     const a = new Response("");
     if ("body" in a)
       try {
-        new Response(a.body), p = !0;
+        new Response(a.body), g = !0;
       } catch {
-        p = !1;
+        g = !1;
       }
-    p = !1;
+    g = !1;
   }
-  return p;
+  return g;
 }
-async function A(a, e) {
+async function F(a, e) {
   let t = null;
   if (a.url && (t = new URL(a.url).origin), t !== self.location.origin)
     throw new l("cross-origin-copy-response", { origin: t });
@@ -122,25 +122,25 @@ async function A(a, e) {
   }, r = e ? e(n) : n, c = q() ? s.body : await s.blob();
   return new Response(c, r);
 }
-const D = (a) => new URL(String(a), location.href).href.replace(new RegExp(`^${location.origin}`), "");
-function P(a, e) {
+const H = (a) => new URL(String(a), location.href).href.replace(new RegExp(`^${location.origin}`), "");
+function T(a, e) {
   const t = new URL(a);
   for (const s of e)
     t.searchParams.delete(s);
   return t.href;
 }
-async function S(a, e, t, s) {
-  const n = P(e.url, t);
+async function B(a, e, t, s) {
+  const n = T(e.url, t);
   if (e.url === n)
     return a.match(e, s);
   const r = Object.assign(Object.assign({}, s), { ignoreSearch: !0 }), c = await a.keys(e, r);
   for (const i of c) {
-    const o = P(i.url, t);
+    const o = T(i.url, t);
     if (n === o)
       return a.match(i, s);
   }
 }
-class j {
+class $ {
   /**
    * Creates a promise and exposes its resolve and reject functions as methods.
    */
@@ -150,22 +150,22 @@ class j {
     });
   }
 }
-const H = /* @__PURE__ */ new Set();
-async function F() {
-  for (const a of H)
+const V = /* @__PURE__ */ new Set();
+async function G() {
+  for (const a of V)
     await a();
 }
-function B(a) {
+function Q(a) {
   return new Promise((e) => setTimeout(e, a));
 }
 try {
   self["workbox:strategies:6.5.3"] && _();
 } catch {
 }
-function R(a) {
+function y(a) {
   return typeof a == "string" ? new Request(a) : a;
 }
-class $ {
+class z {
   /**
    * Creates a new instance associated with the passed strategy and event
    * that's handling the request.
@@ -183,7 +183,7 @@ class $ {
    *     {@link workbox-routing~matchCallback} (if applicable).
    */
   constructor(e, t) {
-    this._cacheKeys = {}, Object.assign(this, t), this.event = t.event, this._strategy = e, this._handlerDeferred = new j(), this._extendLifetimePromises = [], this._plugins = [...e.plugins], this._pluginStateMap = /* @__PURE__ */ new Map();
+    this._cacheKeys = {}, Object.assign(this, t), this.event = t.event, this._strategy = e, this._handlerDeferred = new $(), this._extendLifetimePromises = [], this._plugins = [...e.plugins], this._pluginStateMap = /* @__PURE__ */ new Map();
     for (const s of this._plugins)
       this._pluginStateMap.set(s, {});
     this.event.waitUntil(this._handlerDeferred.promise);
@@ -203,7 +203,7 @@ class $ {
    */
   async fetch(e) {
     const { event: t } = this;
-    let s = R(e);
+    let s = y(e);
     if (s.mode === "navigate" && t instanceof FetchEvent && t.preloadResponse) {
       const c = await t.preloadResponse;
       if (c)
@@ -266,7 +266,7 @@ class $ {
    * @return {Promise<Response|undefined>} A matching response, if found.
    */
   async cacheMatch(e) {
-    const t = R(e);
+    const t = y(e);
     let s;
     const { cacheName: n, matchOptions: r } = this._strategy, c = await this.getCacheKey(t, "read"), i = Object.assign(Object.assign({}, r), { cacheName: n });
     s = await caches.match(c, i);
@@ -296,17 +296,17 @@ class $ {
    * not be cached, and `true` otherwise.
    */
   async cachePut(e, t) {
-    const s = R(e);
-    await B(0);
+    const s = y(e);
+    await Q(0);
     const n = await this.getCacheKey(s, "write");
     if (!t)
       throw new l("cache-put-with-no-response", {
-        url: D(n.url)
+        url: H(n.url)
       });
     const r = await this._ensureResponseSafeToCache(t);
     if (!r)
       return !1;
-    const { cacheName: c, matchOptions: i } = this._strategy, o = await self.caches.open(c), h = this.hasCallback("cacheDidUpdate"), g = h ? await S(
+    const { cacheName: c, matchOptions: i } = this._strategy, o = await self.caches.open(c), h = this.hasCallback("cacheDidUpdate"), p = h ? await B(
       // TODO(philipwalton): the `__WB_REVISION__` param is a precaching
       // feature. Consider into ways to only add this behavior if using
       // precaching.
@@ -319,12 +319,12 @@ class $ {
       await o.put(n, h ? r.clone() : r);
     } catch (u) {
       if (u instanceof Error)
-        throw u.name === "QuotaExceededError" && await F(), u;
+        throw u.name === "QuotaExceededError" && await G(), u;
     }
     for (const u of this.iterateCallbacks("cacheDidUpdate"))
       await u({
         cacheName: c,
-        oldResponse: g,
+        oldResponse: p,
         newResponse: r.clone(),
         request: n,
         event: this.event
@@ -347,7 +347,7 @@ class $ {
     if (!this._cacheKeys[s]) {
       let n = e;
       for (const r of this.iterateCallbacks("cacheKeyWillBeUsed"))
-        n = R(await r({
+        n = y(await r({
           mode: t,
           request: n,
           event: this.event,
@@ -471,7 +471,7 @@ class $ {
     return s || t && t.status !== 200 && (t = void 0), t;
   }
 }
-class V {
+class L {
   /**
    * Creates a new instance of the strategy and sets all documented option
    * properties as public instance properties.
@@ -495,7 +495,7 @@ class V {
    * for any `cache.match()` or `cache.put()` calls made by this strategy.
    */
   constructor(e = {}) {
-    this.cacheName = U.getRuntimeName(e.cacheName), this.plugins = e.plugins || [], this.fetchOptions = e.fetchOptions, this.matchOptions = e.matchOptions;
+    this.cacheName = k.getRuntimeName(e.cacheName), this.plugins = e.plugins || [], this.fetchOptions = e.fetchOptions, this.matchOptions = e.matchOptions;
   }
   /**
    * Perform a request strategy and returns a `Promise` that will resolve with
@@ -547,7 +547,7 @@ class V {
       event: e,
       request: e.request
     });
-    const t = e.event, s = typeof e.request == "string" ? new Request(e.request) : e.request, n = "params" in e ? e.params : void 0, r = new $(this, { event: t, request: s, params: n }), c = this._getResponse(r, s, t), i = this._awaitComplete(c, r, s, t);
+    const t = e.event, s = typeof e.request == "string" ? new Request(e.request) : e.request, n = "params" in e ? e.params : void 0, r = new z(this, { event: t, request: s, params: n }), c = this._getResponse(r, s, t), i = this._awaitComplete(c, r, s, t);
     return [c, i];
   }
   async _getResponse(e, t, s) {
@@ -593,7 +593,7 @@ class V {
       throw c;
   }
 }
-class d extends V {
+class d extends L {
   /**
    *
    * @param {Object} [options]
@@ -612,7 +612,7 @@ class d extends V {
    * get the response from the network if there's a precache miss.
    */
   constructor(e = {}) {
-    e.cacheName = U.getPrecacheName(e.cacheName), super(e), this._fallbackToNetwork = e.fallbackToNetwork !== !1, this.plugins.push(d.copyRedirectedCacheableResponsesPlugin);
+    e.cacheName = k.getPrecacheName(e.cacheName), super(e), this._fallbackToNetwork = e.fallbackToNetwork !== !1, this.plugins.push(d.copyRedirectedCacheableResponsesPlugin);
   }
   /**
    * @private
@@ -691,10 +691,10 @@ d.defaultPrecacheCacheabilityPlugin = {
 };
 d.copyRedirectedCacheableResponsesPlugin = {
   async cacheWillUpdate({ response: a }) {
-    return a.redirected ? await A(a) : a;
+    return a.redirected ? await F(a) : a;
   }
 };
-class G {
+class J {
   /**
    * Create a new PrecacheController.
    *
@@ -707,10 +707,10 @@ class G {
    */
   constructor({ cacheName: e, plugins: t = [], fallbackToNetwork: s = !0 } = {}) {
     this._urlsToCacheKeys = /* @__PURE__ */ new Map(), this._urlsToCacheModes = /* @__PURE__ */ new Map(), this._cacheKeysToIntegrities = /* @__PURE__ */ new Map(), this._strategy = new d({
-      cacheName: U.getPrecacheName(e),
+      cacheName: k.getPrecacheName(e),
       plugins: [
         ...t,
-        new W({ precacheController: this })
+        new S({ precacheController: this })
       ],
       fallbackToNetwork: s
     }), this.install = this.install.bind(this), this.activate = this.activate.bind(this);
@@ -746,7 +746,7 @@ class G {
     const t = [];
     for (const s of e) {
       typeof s == "string" ? t.push(s) : s && s.revision === void 0 && t.push(s.url);
-      const { cacheKey: n, url: r } = I(s), c = typeof s != "string" && s.revision ? "reload" : "default";
+      const { cacheKey: n, url: r } = A(s), c = typeof s != "string" && s.revision ? "reload" : "default";
       if (this._urlsToCacheKeys.has(r) && this._urlsToCacheKeys.get(r) !== n)
         throw new l("add-to-cache-list-conflicting-entries", {
           firstEntry: this._urlsToCacheKeys.get(r),
@@ -777,8 +777,8 @@ This is generally NOT safe. Learn more at https://bit.ly/wb-precache`;
    * @return {Promise<workbox-precaching.InstallResult>}
    */
   install(e) {
-    return k(e, async () => {
-      const t = new M();
+    return x(e, async () => {
+      const t = new D();
       this.strategy.plugins.push(t);
       for (const [r, c] of this._urlsToCacheKeys) {
         const i = this._cacheKeysToIntegrities.get(c), o = this._urlsToCacheModes.get(r), h = new Request(r, {
@@ -807,7 +807,7 @@ This is generally NOT safe. Learn more at https://bit.ly/wb-precache`;
    * @return {Promise<workbox-precaching.CleanupResult>}
    */
   activate(e) {
-    return k(e, async () => {
+    return x(e, async () => {
       const t = await self.caches.open(this.strategy.cacheName), s = await t.keys(), n = new Set(this._urlsToCacheKeys.values()), r = [];
       for (const c of s)
         n.has(c.url) || (await t.delete(c), r.push(c.url));
@@ -891,14 +891,14 @@ This is generally NOT safe. Learn more at https://bit.ly/wb-precache`;
     return (s) => (s.request = new Request(e), s.params = Object.assign({ cacheKey: t }, s.params), this.strategy.handle(s));
   }
 }
-let b;
-const K = () => (b || (b = new G()), b);
+let U;
+const v = () => (U || (U = new J()), U);
 try {
   self["workbox:routing:6.5.3"] && _();
 } catch {
 }
-const T = "GET", m = (a) => a && typeof a == "object" ? a : { handle: a };
-class w {
+const N = "GET", R = (a) => a && typeof a == "object" ? a : { handle: a };
+class m {
   /**
    * Constructor for Route class.
    *
@@ -910,8 +910,8 @@ class w {
    * @param {string} [method='GET'] The HTTP method to match the Route
    * against.
    */
-  constructor(e, t, s = T) {
-    this.handler = m(t), this.match = e, this.method = s;
+  constructor(e, t, s = N) {
+    this.handler = R(t), this.match = e, this.method = s;
   }
   /**
    *
@@ -919,10 +919,10 @@ class w {
    * function that returns a Promise resolving to a Response
    */
   setCatchHandler(e) {
-    this.catchHandler = m(e);
+    this.catchHandler = R(e);
   }
 }
-class Q extends w {
+class X extends m {
   /**
    * If the regular expression contains
    * [capture groups]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp#grouping-back-references},
@@ -945,7 +945,7 @@ class Q extends w {
     super(n, t, s);
   }
 }
-class z {
+class Y {
   /**
    * Initializes a new Router.
    */
@@ -1036,13 +1036,13 @@ class z {
     } catch (u) {
       h = Promise.reject(u);
     }
-    const g = c && c.catchHandler;
-    return h instanceof Promise && (this._catchHandler || g) && (h = h.catch(async (u) => {
-      if (g)
+    const p = c && c.catchHandler;
+    return h instanceof Promise && (this._catchHandler || p) && (h = h.catch(async (u) => {
+      if (p)
         try {
-          return await g.handle({ url: s, request: e, event: t, params: r });
-        } catch (L) {
-          L instanceof Error && (u = L);
+          return await p.handle({ url: s, request: e, event: t, params: r });
+        } catch (K) {
+          K instanceof Error && (u = K);
         }
       if (this._catchHandler)
         return this._catchHandler.handle({ url: s, request: e, event: t });
@@ -1089,8 +1089,8 @@ class z {
    * @param {string} [method='GET'] The HTTP method to associate with this
    * default handler. Each method has its own default.
    */
-  setDefaultHandler(e, t = T) {
-    this._defaultHandlerMap.set(t, m(e));
+  setDefaultHandler(e, t = N) {
+    this._defaultHandlerMap.set(t, R(e));
   }
   /**
    * If a Route throws an error while handling a request, this `handler`
@@ -1100,7 +1100,7 @@ class z {
    * function that returns a Promise resulting in a Response.
    */
   setCatchHandler(e) {
-    this._catchHandler = m(e);
+    this._catchHandler = R(e);
   }
   /**
    * Registers a route with the router.
@@ -1127,18 +1127,18 @@ class z {
       throw new l("unregister-route-route-not-registered");
   }
 }
-let y;
-const J = () => (y || (y = new z(), y.addFetchListener(), y.addCacheListener()), y);
-function X(a, e, t) {
+let w;
+const Z = () => (w || (w = new Y(), w.addFetchListener(), w.addCacheListener()), w);
+function b(a, e, t) {
   let s;
   if (typeof a == "string") {
     const r = new URL(a, location.href), c = ({ url: i }) => i.href === r.href;
-    s = new w(c, e, t);
+    s = new m(c, e, t);
   } else if (a instanceof RegExp)
-    s = new Q(a, e, t);
+    s = new X(a, e, t);
   else if (typeof a == "function")
-    s = new w(a, e, t);
-  else if (a instanceof w)
+    s = new m(a, e, t);
+  else if (a instanceof m)
     s = a;
   else
     throw new l("unsupported-route-type", {
@@ -1146,17 +1146,17 @@ function X(a, e, t) {
       funcName: "registerRoute",
       paramName: "capture"
     });
-  return J().registerRoute(s), s;
+  return Z().registerRoute(s), s;
 }
-function Y(a, e = []) {
+function ee(a, e = []) {
   for (const t of [...a.searchParams.keys()])
     e.some((s) => s.test(t)) && a.searchParams.delete(t);
   return a;
 }
-function* Z(a, { ignoreURLParametersMatching: e = [/^utm_/, /^fbclid$/], directoryIndex: t = "index.html", cleanURLs: s = !0, urlManipulation: n } = {}) {
+function* te(a, { ignoreURLParametersMatching: e = [/^utm_/, /^fbclid$/], directoryIndex: t = "index.html", cleanURLs: s = !0, urlManipulation: n } = {}) {
   const r = new URL(a, location.href);
   r.hash = "", yield r.href;
-  const c = Y(r, e);
+  const c = ee(r, e);
   if (yield c.href, t && c.pathname.endsWith("/")) {
     const i = new URL(c.href);
     i.pathname += t, yield i.href;
@@ -1171,7 +1171,7 @@ function* Z(a, { ignoreURLParametersMatching: e = [/^utm_/, /^fbclid$/], directo
       yield o.href;
   }
 }
-class ee extends w {
+class se extends m {
   /**
    * @param {PrecacheController} precacheController A `PrecacheController`
    * instance used to both match requests and respond to fetch events.
@@ -1191,7 +1191,7 @@ class ee extends w {
   constructor(e, t) {
     const s = ({ request: n }) => {
       const r = e.getURLsToCacheKeys();
-      for (const c of Z(n.url, t)) {
+      for (const c of te(n.url, t)) {
         const i = r.get(c);
         if (i) {
           const o = e.getIntegrityForCacheKey(i);
@@ -1202,21 +1202,199 @@ class ee extends w {
     super(s, e.strategy);
   }
 }
-function te(a) {
-  const e = K(), t = new ee(e, a);
-  X(t);
+function ae(a) {
+  const e = v(), t = new se(e, a);
+  b(t);
 }
-function se(a) {
-  K().precache(a);
+function ne(a) {
+  v().precache(a);
 }
-function x(a, e) {
-  se(a), te(e);
+function E(a, e) {
+  ne(a), ae(e);
 }
-x([{"revision":null,"url":"assets/all-products.component-2a644eaf.js"},{"revision":null,"url":"assets/contact-us.component-b0d318e7.js"},{"revision":null,"url":"assets/error.component-0dd31722.js"},{"revision":null,"url":"assets/footer.component-b82e6f48.js"},{"revision":null,"url":"assets/home.component-51781d30.js"},{"revision":null,"url":"assets/index-04b04962.css"},{"revision":null,"url":"assets/index-cfd0a01c.js"},{"revision":null,"url":"assets/product-card.component-0e400b9c.js"},{"revision":null,"url":"assets/single-product.component-b58fbfaa.js"},{"revision":null,"url":"assets/video.component-71a9bb2a.js"},{"revision":"4f2628ac4d675e8ef8f21a54a594cf62","url":"index.html"},{"revision":"ef31508ea54c9805220261c6bd8628a1","url":"registerSW.js"},{"revision":"d5f8d8e2cd559ca3adb009856213ce35","url":"pwa-192x192.png"},{"revision":"1d809b42a4d8399ed3c3470aedfbc3e1","url":"pwa-512x512.png"},{"revision":"860448b7fca66f51a643239f928f0606","url":"manifest.webmanifest"}]);
-x([
-  "favicon.ico",
-  "/images/",
-  "/locales/",
-  "/fonts/",
-  "/sounds/"
-]);
+class re extends L {
+  /**
+   * @private
+   * @param {Request|string} request A request to run this strategy for.
+   * @param {workbox-strategies.StrategyHandler} handler The event that
+   *     triggered the request.
+   * @return {Promise<Response>}
+   */
+  async _handle(e, t) {
+    let s = await t.cacheMatch(e), n;
+    if (!s)
+      try {
+        s = await t.fetchAndCachePut(e);
+      } catch (r) {
+        r instanceof Error && (n = r);
+      }
+    if (!s)
+      throw new l("no-response", { url: e.url, error: n });
+    return s;
+  }
+}
+const ce = {
+  /**
+   * Returns a valid response (to allow caching) if the status is 200 (OK) or
+   * 0 (opaque).
+   *
+   * @param {Object} options
+   * @param {Response} options.response
+   * @return {Response|null}
+   *
+   * @private
+   */
+  cacheWillUpdate: async ({ response: a }) => a.status === 200 || a.status === 0 ? a : null
+};
+class O extends L {
+  /**
+   * @param {Object} [options]
+   * @param {string} [options.cacheName] Cache name to store and retrieve
+   * requests. Defaults to cache names provided by
+   * {@link workbox-core.cacheNames}.
+   * @param {Array<Object>} [options.plugins] [Plugins]{@link https://developers.google.com/web/tools/workbox/guides/using-plugins}
+   * to use in conjunction with this caching strategy.
+   * @param {Object} [options.fetchOptions] Values passed along to the
+   * [`init`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters)
+   * of [non-navigation](https://github.com/GoogleChrome/workbox/issues/1796)
+   * `fetch()` requests made by this strategy.
+   * @param {Object} [options.matchOptions] [`CacheQueryOptions`](https://w3c.github.io/ServiceWorker/#dictdef-cachequeryoptions)
+   */
+  constructor(e = {}) {
+    super(e), this.plugins.some((t) => "cacheWillUpdate" in t) || this.plugins.unshift(ce);
+  }
+  /**
+   * @private
+   * @param {Request|string} request A request to run this strategy for.
+   * @param {workbox-strategies.StrategyHandler} handler The event that
+   *     triggered the request.
+   * @return {Promise<Response>}
+   */
+  async _handle(e, t) {
+    const s = t.fetchAndCachePut(e).catch(() => {
+    });
+    t.waitUntil(s);
+    let n = await t.cacheMatch(e), r;
+    if (!n)
+      try {
+        n = await s;
+      } catch (c) {
+        c instanceof Error && (r = c);
+      }
+    if (!n)
+      throw new l("no-response", { url: e.url, error: r });
+    return n;
+  }
+}
+try {
+  self["workbox:cacheable-response:6.5.3"] && _();
+} catch {
+}
+class ie {
+  /**
+   * To construct a new CacheableResponse instance you must provide at least
+   * one of the `config` properties.
+   *
+   * If both `statuses` and `headers` are specified, then both conditions must
+   * be met for the `Response` to be considered cacheable.
+   *
+   * @param {Object} config
+   * @param {Array<number>} [config.statuses] One or more status codes that a
+   * `Response` can have and be considered cacheable.
+   * @param {Object<string,string>} [config.headers] A mapping of header names
+   * and expected values that a `Response` can have and be considered cacheable.
+   * If multiple headers are provided, only one needs to be present.
+   */
+  constructor(e = {}) {
+    this._statuses = e.statuses, this._headers = e.headers;
+  }
+  /**
+   * Checks a response to see whether it's cacheable or not, based on this
+   * object's configuration.
+   *
+   * @param {Response} response The response whose cacheability is being
+   * checked.
+   * @return {boolean} `true` if the `Response` is cacheable, and `false`
+   * otherwise.
+   */
+  isResponseCacheable(e) {
+    let t = !0;
+    return this._statuses && (t = this._statuses.includes(e.status)), this._headers && t && (t = Object.keys(this._headers).some((s) => e.headers.get(s) === this._headers[s])), t;
+  }
+}
+class P {
+  /**
+   * To construct a new CacheableResponsePlugin instance you must provide at
+   * least one of the `config` properties.
+   *
+   * If both `statuses` and `headers` are specified, then both conditions must
+   * be met for the `Response` to be considered cacheable.
+   *
+   * @param {Object} config
+   * @param {Array<number>} [config.statuses] One or more status codes that a
+   * `Response` can have and be considered cacheable.
+   * @param {Object<string,string>} [config.headers] A mapping of header names
+   * and expected values that a `Response` can have and be considered cacheable.
+   * If multiple headers are provided, only one needs to be present.
+   */
+  constructor(e) {
+    this.cacheWillUpdate = async ({ response: t }) => this._cacheableResponse.isResponseCacheable(t) ? t : null, this._cacheableResponse = new ie(e);
+  }
+}
+E([{"revision":null,"url":"assets/all-products.component-a9ed7cbd.js"},{"revision":null,"url":"assets/contact-us.component-1cc8778b.js"},{"revision":null,"url":"assets/error.component-6bb0a9cd.js"},{"revision":null,"url":"assets/footer.component-3dddaf14.js"},{"revision":null,"url":"assets/home.component-69d2b4c1.js"},{"revision":null,"url":"assets/index-733334ca.js"},{"revision":null,"url":"assets/index-ffb91ee5.css"},{"revision":null,"url":"assets/product-card.component-36bd5f3c.js"},{"revision":null,"url":"assets/single-product.component-a5d329e9.js"},{"revision":null,"url":"assets/video.component-034b66d3.js"},{"revision":"606e7588eaa97e88cb51001e39ecf47f","url":"index.html"},{"revision":"ef31508ea54c9805220261c6bd8628a1","url":"registerSW.js"},{"revision":"d5f8d8e2cd559ca3adb009856213ce35","url":"pwa-192x192.png"},{"revision":"1d809b42a4d8399ed3c3470aedfbc3e1","url":"pwa-512x512.png"},{"revision":"dba8266e376bed77dd2d16a40554aabf","url":"manifest.webmanifest"}]);
+const oe = "1", le = [
+  "/el-shamadan/favicon.ico",
+  "/el-shamadan/images/background.webp",
+  "/el-shamadan/images/belt.webp",
+  "/el-shamadan/images/curtain-left.webp",
+  "/el-shamadan/images/curtain-right.webp",
+  "/el-shamadan/images/diva.webp",
+  "/el-shamadan/images/diva_.webp",
+  "/el-shamadan/images/face.webp",
+  "/el-shamadan/images/hero.webp",
+  "/el-shamadan/images/hero_.webp",
+  "/el-shamadan/images/joker.webp",
+  "/el-shamadan/images/joker_.webp",
+  "/el-shamadan/images/king.webp",
+  "/el-shamadan/images/king_.webp",
+  "/el-shamadan/images/logo.webp",
+  "/el-shamadan/images/mafia.webp",
+  "/el-shamadan/images/mafia_.webp",
+  "/el-shamadan/images/magician.webp",
+  "/el-shamadan/images/magician_.webp",
+  "/el-shamadan/images/secret.webp",
+  "/el-shamadan/images/stick-left-64.webp",
+  "/el-shamadan/images/thumbnail.webp",
+  "/el-shamadan/locales/ar/contact.json",
+  "/el-shamadan/locales/ar/footer.json",
+  "/el-shamadan/locales/ar/header.json",
+  "/el-shamadan/locales/ar/home.json",
+  "/el-shamadan/locales/ar/products.json",
+  "/el-shamadan/locales/en/contact.json",
+  "/el-shamadan/locales/en/footer.json",
+  "/el-shamadan/locales/en/header.json",
+  "/el-shamadan/locales/en/home.json",
+  "/el-shamadan/locales/en/products.json"
+], he = le.map((a) => ({ url: a, revision: oe }));
+E(he);
+b(
+  ({ request: a }) => a.mode === "navigate",
+  new O({
+    cacheName: "navigate",
+    plugins: [new P({ statuses: [200] })]
+  })
+);
+b(
+  ({ request: a }) => a.destination === "script",
+  new O({
+    cacheName: "scripts",
+    plugins: [new P({ statuses: [200] })]
+  })
+);
+b(
+  ({ request: a }) => a.destination === "font",
+  new re({
+    cacheName: "fonts",
+    plugins: [new P({ statuses: [200] })]
+  })
+);

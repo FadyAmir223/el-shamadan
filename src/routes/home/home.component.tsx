@@ -3,6 +3,7 @@ import ProductCard from '../../components/product-card/product-card.component';
 import { StaticContext } from '../../context/static.context';
 import Footer from '../../components/footer/footer.component';
 import { useTranslation } from 'react-i18next';
+import Img from '../../components/img/img.component';
 
 const calculateCountdown = () => {
   const currentDate = new Date();
@@ -46,7 +47,7 @@ const Home = () => {
   useEffect(() => {
     document.title = 'home';
     return () => {
-      document.title = 'el-shamedan';
+      document.title = 'el-shamadan';
     };
   }, []);
 
@@ -76,19 +77,19 @@ const Home = () => {
       <article>
         <section className="py-6 relative">
           <div className="contain">
-            <img
+            <Img
               src="images/curtain-left.png"
               alt="curtain-left"
               className="absolute left-0 top-0 h-4/5 opacity-50"
             />
 
-            <img
+            <Img
               src="images/curtain-right.png"
               alt="curtain-left"
               className="absolute right-0 top-0 h-4/5 opacity-50"
             />
             <div className="w-fit mx-auto md:mx-0 relative">
-              <img
+              <Img
                 src="images/secret.png"
                 alt="secret"
                 className="max-w-xs mx-auto md:mx-0 mb-4 w-full"

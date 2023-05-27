@@ -23,8 +23,3 @@ i18n
   });
 
 export default i18n;
-
-/*
-namespaces:
-  https://github.com/chejen/keys-translations-manager/blob/master/public/locale/en-US/translation.json
-*/

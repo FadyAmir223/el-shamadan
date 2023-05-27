@@ -1,43 +1,61 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { createHtmlPlugin } from 'vite-plugin-html';
-import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import { VitePWA } from 'vite-plugin-pwa';
+import Unfonts from 'unplugin-fonts/vite';
+// import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
+import webp from 'vite-plugin-webp';
+import { join } from 'path';
 
 export default defineConfig({
   plugins: [
     react(),
     createHtmlPlugin({ minify: true }),
-    ViteImageOptimizer({
-      png: {
-        quality: 10,
+
+    webp({
+      onlyWebp: join(__dirname, 'public/images'),
+      imageType: ['.png', '.jpg'],
+      shartOptions: {
+        quality: 80,
+      },
+    }),
+
+    // ViteImageOptimizer({
+    //   png: {
+    //     quality: 10,
+    //   },
+    // }),
+
+    Unfonts({
+      custom: {
+        families: [
+          {
+            name: 'abdo',
+            local: 'abdo',
+            src: './src/assets/fonts/abdo.ttf',
+          },
+        ],
+        injectTo: 'head-prepend',
       },
     }),
 
     VitePWA({
       registerType: 'autoUpdate',
       strategies: 'injectManifest',
-      // srcDir: 'src',
-      // filename: 'sw.js',
-      // outDir: 'dist',
-
-      // includeAssets: ['**/*.{ttf,png,json}'],
       manifest: {
-        name: 'el-Shamedan',
-        short_name: 'el-Shamedan',
-        description: 're-branding to el-shamedan wafer products',
+        name: 'el-shamadan',
+        short_name: 'el-shamadan',
+        description: 're-branding to el-shamadan wafer products',
         start_url: '/el-shamadan/',
-        // scope: '/',
         display: 'standalone',
-        theme_color: '#181a1B',
-        // background_color: '#e8ebf2',
         orientation: 'portrait',
+        theme_color: '#181a1B',
+        background_color: '#181a1B',
         icons: [
           {
             src: 'pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png',
-            purpose: 'any maskable',
           },
           {
             src: 'pwa-512x512.png',
@@ -47,14 +65,13 @@ export default defineConfig({
           },
         ],
       },
-      // devOptions: {
-      //   enabled: true,
-      //   type: 'module'
-      // },
     }),
   ],
   build: {
     emptyOutDir: true,
+  },
+  optimizeDeps: {
+    exclude: ['images/*.png', 'images/*.jpg'],
   },
   base: '/el-shamadan/',
 });
