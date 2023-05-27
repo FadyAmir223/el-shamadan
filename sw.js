@@ -97,19 +97,19 @@ class S {
     }, this._precacheController = e;
   }
 }
-let g;
+let p;
 function q() {
-  if (g === void 0) {
+  if (p === void 0) {
     const a = new Response("");
     if ("body" in a)
       try {
-        new Response(a.body), g = !0;
+        new Response(a.body), p = !0;
       } catch {
-        g = !1;
+        p = !1;
       }
-    g = !1;
+    p = !1;
   }
-  return g;
+  return p;
 }
 async function F(a, e) {
   let t = null;
@@ -306,7 +306,7 @@ class z {
     const r = await this._ensureResponseSafeToCache(t);
     if (!r)
       return !1;
-    const { cacheName: c, matchOptions: i } = this._strategy, o = await self.caches.open(c), h = this.hasCallback("cacheDidUpdate"), p = h ? await B(
+    const { cacheName: c, matchOptions: i } = this._strategy, o = await self.caches.open(c), h = this.hasCallback("cacheDidUpdate"), g = h ? await B(
       // TODO(philipwalton): the `__WB_REVISION__` param is a precaching
       // feature. Consider into ways to only add this behavior if using
       // precaching.
@@ -324,7 +324,7 @@ class z {
     for (const u of this.iterateCallbacks("cacheDidUpdate"))
       await u({
         cacheName: c,
-        oldResponse: p,
+        oldResponse: g,
         newResponse: r.clone(),
         request: n,
         event: this.event
@@ -1036,11 +1036,11 @@ class Y {
     } catch (u) {
       h = Promise.reject(u);
     }
-    const p = c && c.catchHandler;
-    return h instanceof Promise && (this._catchHandler || p) && (h = h.catch(async (u) => {
-      if (p)
+    const g = c && c.catchHandler;
+    return h instanceof Promise && (this._catchHandler || g) && (h = h.catch(async (u) => {
+      if (g)
         try {
-          return await p.handle({ url: s, request: e, event: t, params: r });
+          return await g.handle({ url: s, request: e, event: t, params: r });
         } catch (K) {
           K instanceof Error && (u = K);
         }
@@ -1341,7 +1341,7 @@ class P {
     this.cacheWillUpdate = async ({ response: t }) => this._cacheableResponse.isResponseCacheable(t) ? t : null, this._cacheableResponse = new ie(e);
   }
 }
-E([{"revision":null,"url":"assets/all-products.component-a9ed7cbd.js"},{"revision":null,"url":"assets/contact-us.component-1cc8778b.js"},{"revision":null,"url":"assets/error.component-6bb0a9cd.js"},{"revision":null,"url":"assets/footer.component-3dddaf14.js"},{"revision":null,"url":"assets/home.component-69d2b4c1.js"},{"revision":null,"url":"assets/index-733334ca.js"},{"revision":null,"url":"assets/index-ffb91ee5.css"},{"revision":null,"url":"assets/product-card.component-36bd5f3c.js"},{"revision":null,"url":"assets/single-product.component-a5d329e9.js"},{"revision":null,"url":"assets/video.component-034b66d3.js"},{"revision":"606e7588eaa97e88cb51001e39ecf47f","url":"index.html"},{"revision":"ef31508ea54c9805220261c6bd8628a1","url":"registerSW.js"},{"revision":"d5f8d8e2cd559ca3adb009856213ce35","url":"pwa-192x192.png"},{"revision":"1d809b42a4d8399ed3c3470aedfbc3e1","url":"pwa-512x512.png"},{"revision":"dba8266e376bed77dd2d16a40554aabf","url":"manifest.webmanifest"}]);
+E([{"revision":null,"url":"assets/all-products.component-107bab71.js"},{"revision":null,"url":"assets/contact-us.component-ab64ded0.js"},{"revision":null,"url":"assets/error.component-4981ad89.js"},{"revision":null,"url":"assets/footer.component-07534e73.js"},{"revision":null,"url":"assets/home.component-655ed2a6.js"},{"revision":null,"url":"assets/index-38e5fee1.js"},{"revision":null,"url":"assets/index-7e160b8d.css"},{"revision":null,"url":"assets/product-card.component-9034a2a8.js"},{"revision":null,"url":"assets/single-product.component-41cd6de9.js"},{"revision":null,"url":"assets/video.component-d1cc8d0a.js"},{"revision":"b9ee6f5a45ef0bc94c67f94be260b7b2","url":"index.html"},{"revision":"ef31508ea54c9805220261c6bd8628a1","url":"registerSW.js"},{"revision":"d5f8d8e2cd559ca3adb009856213ce35","url":"pwa-192x192.png"},{"revision":"1d809b42a4d8399ed3c3470aedfbc3e1","url":"pwa-512x512.png"},{"revision":"dba8266e376bed77dd2d16a40554aabf","url":"manifest.webmanifest"}]);
 const oe = "1", le = [
   "/el-shamadan/favicon.ico",
   "/el-shamadan/images/background.webp",
@@ -1374,7 +1374,7 @@ const oe = "1", le = [
   "/el-shamadan/locales/en/footer.json",
   "/el-shamadan/locales/en/header.json",
   "/el-shamadan/locales/en/home.json",
-  "/el-shamadan/locales/en/products.json"
+  "/el-shamadan/locales/en/*.json"
 ], he = le.map((a) => ({ url: a, revision: oe }));
 E(he);
 b(
