@@ -1,18 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Footer from '../../components/footer/footer.component';
+import { useTitle } from '../../hooks/useTitle';
 
 const ContactUs = () => {
   const [t] = useTranslation('contact');
   const formRef = useRef(null);
   const [msg, setMsg] = useState('');
 
-  useEffect(() => {
-    document.title = 'contact us';
-    return () => {
-      document.title = 'el-shamadan';
-    };
-  }, []);
+  useTitle('contact us');
 
   const handleSubmit = (e) => {
     e.preventDefault();

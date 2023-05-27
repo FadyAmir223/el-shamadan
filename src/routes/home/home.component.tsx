@@ -4,6 +4,7 @@ import { StaticContext } from '../../context/static.context';
 import Footer from '../../components/footer/footer.component';
 import { useTranslation } from 'react-i18next';
 import Img from '../../components/img/img.component';
+import { useTitle } from '../../hooks/useTitle';
 
 const calculateCountdown = () => {
   const currentDate = new Date();
@@ -44,12 +45,7 @@ const Home = () => {
 
   const [countdown, setCountdown] = useState(calculateCountdown());
 
-  useEffect(() => {
-    document.title = 'home';
-    return () => {
-      document.title = 'el-shamadan';
-    };
-  }, []);
+  useTitle('home');
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -82,17 +78,17 @@ const Home = () => {
               alt="curtain-left"
               className="absolute left-0 top-0 h-4/5 opacity-50"
             />
-
             <Img
               src="images/curtain-right.png"
               alt="curtain-left"
               className="absolute right-0 top-0 h-4/5 opacity-50"
             />
-            <div className="w-fit mx-auto md:mx-0 relative">
+
+            <div className="w-fit relative mx-auto">
               <Img
                 src="images/secret.png"
                 alt="secret"
-                className="max-w-xs mx-auto md:mx-0 mb-4 w-full"
+                className="max-w-xs mb-4 w-full"
               />
 
               <div className="text-center grid grid-cols-4 gap-4">
@@ -114,7 +110,7 @@ const Home = () => {
         </section>
 
         <section className="bg-black py-8">
-          <h2 className="text-center text-3xl md:text-4xl md:rtl:text-5xl pb-2 mb-6 lg:mb-14 uppercase text-white relative before:absolute before:bottom-0 before:w-20 before:left-1/2 before:-translate-x-1/2 before:h-[2px] before:bg-purple">
+          <h2 className="text-center text-3xl md:text-4xl md:rtl:text-5xl pb-2 mb-6 md:mb-14 uppercase text-white relative before:absolute before:bottom-0 before:w-20 before:left-1/2 before:-translate-x-1/2 before:h-[2px] before:bg-purple">
             {t('products')}
           </h2>
           <div className="contain">

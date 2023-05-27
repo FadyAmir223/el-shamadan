@@ -16,7 +16,7 @@ export default defineConfig({
       onlyWebp: join(__dirname, 'public/images'),
       imageType: ['.png', '.jpg'],
       shartOptions: {
-        quality: 80,
+        quality: 70,
       },
     }),
 
@@ -61,7 +61,6 @@ export default defineConfig({
             src: 'pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
-            purpose: 'any maskable',
           },
         ],
       },
@@ -69,9 +68,6 @@ export default defineConfig({
   ],
   build: {
     emptyOutDir: true,
-  },
-  optimizeDeps: {
-    exclude: ['images/*.png', 'images/*.jpg'],
   },
   base: '/el-shamadan/',
 });
