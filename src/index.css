@@ -24,3 +24,8 @@
     transform: rotate(8deg);
   }
 }
+
+/* @font-face {
+  font-family: 'abdo';
+  src: url('./assets/fonts/abdo.ttf') format('truetype');
+} */

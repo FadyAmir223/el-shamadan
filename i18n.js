@@ -18,13 +18,8 @@ i18n
     },
     ns: [],
     backend: {
-      loadPath: '/el-shamadan/locales/{{lng}}/{{ns}}.json',
+      loadPath: '/shamedan/locales/{{lng}}/{{ns}}.json',
     },
   });
 
 export default i18n;
-
-/*
-namespaces:
-  https://github.com/chejen/keys-translations-manager/blob/master/public/locale/en-US/translation.json
-*/

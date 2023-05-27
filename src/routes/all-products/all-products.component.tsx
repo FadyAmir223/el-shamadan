@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import ProductCard from '../../components/product-card/product-card.component';
 import { StaticContext } from '../../context/static.context';
+import Img from '../../components/img/img.component';
 
 const AllProducts = () => {
   useEffect(() => {
@@ -16,7 +17,7 @@ const AllProducts = () => {
     <article className="relative overflow-hidden py-7">
       <section className="relative z-10">
         <div className="aspect-w-4 aspect-h-3 max-w-[150px] mx-auto mb-3">
-          <img
+          <Img
             src="images/face.png"
             alt="all characters"
             className="object-cover w-full h-full"
@@ -30,19 +31,19 @@ const AllProducts = () => {
           </div>
         </div>
         <div className="aspect-w-4 aspect-h-3 max-w-[150px] mx-auto mt-3">
-          <img
+          <Img
             src="images/belt.png"
             alt="all characters"
             className="object-cover w-full h-full"
           />
         </div>
       </section>
-      <img
+      <Img
         src="images/magician_.png"
         alt="magician"
         className="absolute bottom-0 left-0 h-4/5 -translate-x-1/2 opacity-20"
       />
-      <img
+      <Img
         src="images/king_.png"
         alt="king"
         className="absolute bottom-0 right-0 h-4/5 translate-x-1/2 opacity-20"
