@@ -19,7 +19,7 @@ const AllProducts = () => {
         <div className="aspect-w-4 aspect-h-3 max-w-[150px] mx-auto mb-3">
           <Img
             src="images/face.png"
-            alt="all characters"
+            alt="face"
             className="object-cover w-full h-full"
           />
         </div>
@@ -33,7 +33,7 @@ const AllProducts = () => {
         <div className="aspect-w-4 aspect-h-3 max-w-[150px] mx-auto mt-3">
           <Img
             src="images/belt.png"
-            alt="all characters"
+            alt="belt"
             className="object-cover w-full h-full"
           />
         </div>
@@ -41,12 +41,12 @@ const AllProducts = () => {
       <Img
         src="images/magician_.png"
         alt="magician"
-        className="absolute bottom-0 left-0 h-4/5 -translate-x-1/2 opacity-20"
+        className="absolute bottom-0 left-0 h-3/4 sm:h-4/5 -translate-x-1/2 opacity-20 object-contain"
       />
       <Img
         src="images/king_.png"
         alt="king"
-        className="absolute bottom-0 right-0 h-4/5 translate-x-1/2 opacity-20"
+        className="absolute bottom-0 right-0 h-3/4 sm:h-4/5 translate-x-1/2 opacity-20 object-contain"
       />
     </article>
   );

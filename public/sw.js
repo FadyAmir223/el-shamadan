@@ -39,7 +39,7 @@ const assets = [
   '/el-shamadan/locales/en/footer.json',
   '/el-shamadan/locales/en/header.json',
   '/el-shamadan/locales/en/home.json',
-  '/el-shamadan/locales/en/products.json',
+  '/el-shamadan/locales/en/*.json',
 ];
 
 const assetsRevision = assets.map((url) => ({ url, revision }));

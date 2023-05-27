@@ -16,7 +16,7 @@ export default defineConfig({
       onlyWebp: join(__dirname, 'public/images'),
       imageType: ['.png', '.jpg'],
       shartOptions: {
-        quality: 80,
+        quality: 70,
       },
     }),
 
