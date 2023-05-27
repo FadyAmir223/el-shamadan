@@ -6,7 +6,7 @@ const j = (a, ...e) => {
   let t = a;
   return e.length > 0 && (t += ` :: ${JSON.stringify(e)}`), t;
 }, M = j;
-class h extends Error {
+class l extends Error {
   /**
    *
    * @param {string} errorCode The error code that
@@ -52,7 +52,7 @@ try {
 const W = "__WB_REVISION__";
 function A(a) {
   if (!a)
-    throw new h("add-to-cache-list-unexpected-type", { entry: a });
+    throw new l("add-to-cache-list-unexpected-type", { entry: a });
   if (typeof a == "string") {
     const r = new URL(a, location.href);
     return {
@@ -62,7 +62,7 @@ function A(a) {
   }
   const { revision: e, url: t } = a;
   if (!t)
-    throw new h("add-to-cache-list-unexpected-type", { entry: a });
+    throw new l("add-to-cache-list-unexpected-type", { entry: a });
   if (!e) {
     const r = new URL(t, location.href);
     return {
@@ -114,7 +114,7 @@ function q() {
 async function F(a, e) {
   let t = null;
   if (a.url && (t = new URL(a.url).origin), t !== self.location.origin)
-    throw new h("cross-origin-copy-response", { origin: t });
+    throw new l("cross-origin-copy-response", { origin: t });
   const s = a.clone(), n = {
     headers: new Headers(s.headers),
     status: s.status,
@@ -215,7 +215,7 @@ class z {
         s = await c({ request: s.clone(), event: t });
     } catch (c) {
       if (c instanceof Error)
-        throw new h("plugin-error-request-will-fetch", {
+        throw new l("plugin-error-request-will-fetch", {
           thrownErrorMessage: c.message
         });
     }
@@ -300,13 +300,13 @@ class z {
     await Q(0);
     const n = await this.getCacheKey(s, "write");
     if (!t)
-      throw new h("cache-put-with-no-response", {
+      throw new l("cache-put-with-no-response", {
         url: H(n.url)
       });
     const r = await this._ensureResponseSafeToCache(t);
     if (!r)
       return !1;
-    const { cacheName: c, matchOptions: i } = this._strategy, o = await self.caches.open(c), l = this.hasCallback("cacheDidUpdate"), p = l ? await B(
+    const { cacheName: c, matchOptions: i } = this._strategy, o = await self.caches.open(c), h = this.hasCallback("cacheDidUpdate"), p = h ? await B(
       // TODO(philipwalton): the `__WB_REVISION__` param is a precaching
       // feature. Consider into ways to only add this behavior if using
       // precaching.
@@ -316,7 +316,7 @@ class z {
       i
     ) : null;
     try {
-      await o.put(n, l ? r.clone() : r);
+      await o.put(n, h ? r.clone() : r);
     } catch (u) {
       if (u instanceof Error)
         throw u.name === "QuotaExceededError" && await G(), u;
@@ -555,7 +555,7 @@ class L {
     let n;
     try {
       if (n = await this._handle(t, e), !n || n.type === "error")
-        throw new h("no-response", { url: t.url });
+        throw new l("no-response", { url: t.url });
     } catch (r) {
       if (r instanceof Error) {
         for (const c of e.iterateCallbacks("handlerDidError"))
@@ -634,7 +634,7 @@ class d extends L {
         integrity: e.mode !== "no-cors" ? c || r : void 0
       })), r && i && e.mode !== "no-cors" && (this._useDefaultCacheabilityPluginIfNeeded(), await t.cachePut(e, s.clone()));
     } else
-      throw new h("missing-precache-entry", {
+      throw new l("missing-precache-entry", {
         cacheName: this.cacheName,
         url: e.url
       });
@@ -644,7 +644,7 @@ class d extends L {
     this._useDefaultCacheabilityPluginIfNeeded();
     const s = await t.fetch(e);
     if (!await t.cachePut(e, s.clone()))
-      throw new h("bad-precaching-response", {
+      throw new l("bad-precaching-response", {
         url: e.url,
         status: s.status
       });
@@ -748,13 +748,13 @@ class J {
       typeof s == "string" ? t.push(s) : s && s.revision === void 0 && t.push(s.url);
       const { cacheKey: n, url: r } = A(s), c = typeof s != "string" && s.revision ? "reload" : "default";
       if (this._urlsToCacheKeys.has(r) && this._urlsToCacheKeys.get(r) !== n)
-        throw new h("add-to-cache-list-conflicting-entries", {
+        throw new l("add-to-cache-list-conflicting-entries", {
           firstEntry: this._urlsToCacheKeys.get(r),
           secondEntry: n
         });
       if (typeof s != "string" && s.integrity) {
         if (this._cacheKeysToIntegrities.has(n) && this._cacheKeysToIntegrities.get(n) !== s.integrity)
-          throw new h("add-to-cache-list-conflicting-integrities", {
+          throw new l("add-to-cache-list-conflicting-integrities", {
             url: r
           });
         this._cacheKeysToIntegrities.set(n, s.integrity);
@@ -781,14 +781,14 @@ This is generally NOT safe. Learn more at https://bit.ly/wb-precache`;
       const t = new D();
       this.strategy.plugins.push(t);
       for (const [r, c] of this._urlsToCacheKeys) {
-        const i = this._cacheKeysToIntegrities.get(c), o = this._urlsToCacheModes.get(r), l = new Request(r, {
+        const i = this._cacheKeysToIntegrities.get(c), o = this._urlsToCacheModes.get(r), h = new Request(r, {
           integrity: i,
           cache: o,
           credentials: "same-origin"
         });
         await Promise.all(this.strategy.handleAll({
           params: { cacheKey: c },
-          request: l,
+          request: h,
           event: e
         }));
       }
@@ -887,7 +887,7 @@ This is generally NOT safe. Learn more at https://bit.ly/wb-precache`;
   createHandlerBoundToURL(e) {
     const t = this.getCacheKeyForURL(e);
     if (!t)
-      throw new h("non-precached-url", { url: e });
+      throw new l("non-precached-url", { url: e });
     return (s) => (s.request = new Request(e), s.params = Object.assign({ cacheKey: t }, s.params), this.strategy.handle(s));
   }
 }
@@ -1030,14 +1030,14 @@ class Y {
     const o = e.method;
     if (!i && this._defaultHandlerMap.has(o) && (i = this._defaultHandlerMap.get(o)), !i)
       return;
-    let l;
+    let h;
     try {
-      l = i.handle({ url: s, request: e, event: t, params: r });
+      h = i.handle({ url: s, request: e, event: t, params: r });
     } catch (u) {
-      l = Promise.reject(u);
+      h = Promise.reject(u);
     }
     const p = c && c.catchHandler;
-    return l instanceof Promise && (this._catchHandler || p) && (l = l.catch(async (u) => {
+    return h instanceof Promise && (this._catchHandler || p) && (h = h.catch(async (u) => {
       if (p)
         try {
           return await p.handle({ url: s, request: e, event: t, params: r });
@@ -1047,7 +1047,7 @@ class Y {
       if (this._catchHandler)
         return this._catchHandler.handle({ url: s, request: e, event: t });
       throw u;
-    })), l;
+    })), h;
   }
   /**
    * Checks a request and URL (and optionally an event) against the list of
@@ -1117,14 +1117,14 @@ class Y {
    */
   unregisterRoute(e) {
     if (!this._routes.has(e.method))
-      throw new h("unregister-route-but-not-found-with-method", {
+      throw new l("unregister-route-but-not-found-with-method", {
         method: e.method
       });
     const t = this._routes.get(e.method).indexOf(e);
     if (t > -1)
       this._routes.get(e.method).splice(t, 1);
     else
-      throw new h("unregister-route-route-not-registered");
+      throw new l("unregister-route-route-not-registered");
   }
 }
 let w;
@@ -1141,7 +1141,7 @@ function b(a, e, t) {
   else if (a instanceof m)
     s = a;
   else
-    throw new h("unsupported-route-type", {
+    throw new l("unsupported-route-type", {
       moduleName: "workbox-routing",
       funcName: "registerRoute",
       paramName: "capture"
@@ -1229,7 +1229,7 @@ class re extends L {
         r instanceof Error && (n = r);
       }
     if (!s)
-      throw new h("no-response", { url: e.url, error: n });
+      throw new l("no-response", { url: e.url, error: n });
     return s;
   }
 }
@@ -1282,7 +1282,7 @@ class O extends L {
         c instanceof Error && (r = c);
       }
     if (!n)
-      throw new h("no-response", { url: e.url, error: r });
+      throw new l("no-response", { url: e.url, error: r });
     return n;
   }
 }
@@ -1341,42 +1341,42 @@ class P {
     this.cacheWillUpdate = async ({ response: t }) => this._cacheableResponse.isResponseCacheable(t) ? t : null, this._cacheableResponse = new ie(e);
   }
 }
-E([{"revision":null,"url":"assets/all-products.component-ae03bbdf.js"},{"revision":null,"url":"assets/contact-us.component-b43cdcc8.js"},{"revision":null,"url":"assets/error.component-4581efb6.js"},{"revision":null,"url":"assets/footer.component-21242392.js"},{"revision":null,"url":"assets/home.component-ed3fa5ce.js"},{"revision":null,"url":"assets/index-79c316de.js"},{"revision":null,"url":"assets/index-7e9ed15e.css"},{"revision":null,"url":"assets/product-card.component-6902bb5e.js"},{"revision":null,"url":"assets/single-product.component-275324bd.js"},{"revision":null,"url":"assets/video.component-0c012bbe.js"},{"revision":"87c0ee4856aab0d248c0917de8860524","url":"index.html"},{"revision":"94d4d2145d29fd356e280eb5ec0e0a4a","url":"registerSW.js"},{"revision":"d5f8d8e2cd559ca3adb009856213ce35","url":"pwa-192x192.png"},{"revision":"1d809b42a4d8399ed3c3470aedfbc3e1","url":"pwa-512x512.png"},{"revision":"5fda83fb17aaf391b01b8885ce04f142","url":"manifest.webmanifest"}]);
-const oe = "1", he = [
-  "/shamedan/favicon.ico",
-  "/shamedan/images/background.webp",
-  "/shamedan/images/belt.webp",
-  "/shamedan/images/curtain-left.webp",
-  "/shamedan/images/curtain-right.webp",
-  "/shamedan/images/diva.webp",
-  "/shamedan/images/diva_.webp",
-  "/shamedan/images/face.webp",
-  "/shamedan/images/hero.webp",
-  "/shamedan/images/hero_.webp",
-  "/shamedan/images/joker.webp",
-  "/shamedan/images/joker_.webp",
-  "/shamedan/images/king.webp",
-  "/shamedan/images/king_.webp",
-  "/shamedan/images/logo.webp",
-  "/shamedan/images/mafia.webp",
-  "/shamedan/images/mafia_.webp",
-  "/shamedan/images/magician.webp",
-  "/shamedan/images/magician_.webp",
-  "/shamedan/images/secret.webp",
-  "/shamedan/images/stick-left-64.webp",
-  "/shamedan/images/thumbnail.webp",
-  "/shamedan/locales/ar/contact.json",
-  "/shamedan/locales/ar/footer.json",
-  "/shamedan/locales/ar/header.json",
-  "/shamedan/locales/ar/home.json",
-  "/shamedan/locales/ar/products.json",
-  "/shamedan/locales/en/contact.json",
-  "/shamedan/locales/en/footer.json",
-  "/shamedan/locales/en/header.json",
-  "/shamedan/locales/en/home.json",
-  "/shamedan/locales/en/products.json"
-], le = he.map((a) => ({ url: a, revision: oe }));
-E(le);
+E([{"revision":null,"url":"assets/all-products.component-21d5974a.js"},{"revision":null,"url":"assets/contact-us.component-c7926fa2.js"},{"revision":null,"url":"assets/error.component-746ba589.js"},{"revision":null,"url":"assets/footer.component-913854f7.js"},{"revision":null,"url":"assets/home.component-66d03bbe.js"},{"revision":null,"url":"assets/index-2a89c48d.css"},{"revision":null,"url":"assets/index-eb465e3d.js"},{"revision":null,"url":"assets/product-card.component-51657ca2.js"},{"revision":null,"url":"assets/single-product.component-e2e9c8ce.js"},{"revision":null,"url":"assets/video.component-f806d5f9.js"},{"revision":"4e178043fc97dd98fe4a82917630118b","url":"index.html"},{"revision":"2c93d11f7642b5d36adae98560bf6c7c","url":"registerSW.js"},{"revision":"d5f8d8e2cd559ca3adb009856213ce35","url":"pwa-192x192.png"},{"revision":"1d809b42a4d8399ed3c3470aedfbc3e1","url":"pwa-512x512.png"},{"revision":"e23a8f2baad0cb8da1c356770f7e541e","url":"manifest.webmanifest"}]);
+const oe = "1", le = [
+  "/el-shamedan/favicon.ico",
+  "/el-shamedan/images/background.webp",
+  "/el-shamedan/images/belt.webp",
+  "/el-shamedan/images/curtain-left.webp",
+  "/el-shamedan/images/curtain-right.webp",
+  "/el-shamedan/images/diva.webp",
+  "/el-shamedan/images/diva_.webp",
+  "/el-shamedan/images/face.webp",
+  "/el-shamedan/images/hero.webp",
+  "/el-shamedan/images/hero_.webp",
+  "/el-shamedan/images/joker.webp",
+  "/el-shamedan/images/joker_.webp",
+  "/el-shamedan/images/king.webp",
+  "/el-shamedan/images/king_.webp",
+  "/el-shamedan/images/logo.webp",
+  "/el-shamedan/images/mafia.webp",
+  "/el-shamedan/images/mafia_.webp",
+  "/el-shamedan/images/magician.webp",
+  "/el-shamedan/images/magician_.webp",
+  "/el-shamedan/images/secret.webp",
+  "/el-shamedan/images/stick-left-64.webp",
+  "/el-shamedan/images/thumbnail.webp",
+  "/el-shamedan/locales/ar/contact.json",
+  "/el-shamedan/locales/ar/footer.json",
+  "/el-shamedan/locales/ar/header.json",
+  "/el-shamedan/locales/ar/home.json",
+  "/el-shamedan/locales/ar/products.json",
+  "/el-shamedan/locales/en/contact.json",
+  "/el-shamedan/locales/en/footer.json",
+  "/el-shamedan/locales/en/header.json",
+  "/el-shamedan/locales/en/home.json",
+  "/el-shamedan/locales/en/products.json"
+], he = le.map((a) => ({ url: a, revision: oe }));
+E(he);
 b(
   ({ request: a }) => a.mode === "navigate",
   new O({

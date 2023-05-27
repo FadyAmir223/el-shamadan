@@ -46,7 +46,7 @@ export default defineConfig({
         name: 'el-shamedan',
         short_name: 'el-shamedan',
         description: 're-branding to el-shamedan wafer products',
-        start_url: '/shamedan/',
+        start_url: '/el-shamedan/',
         display: 'standalone',
         orientation: 'portrait',
         theme_color: '#181a1B',
@@ -73,5 +73,5 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['images/*.png', 'images/*.jpg'],
   },
-  base: '/shamedan/',
+  base: '/el-shamedan/',
 });
