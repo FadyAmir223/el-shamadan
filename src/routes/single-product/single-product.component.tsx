@@ -18,7 +18,7 @@ const SingleProduct = () => {
   useEffect(() => {
     if (selectedProduct) document.title = selectedProduct.id;
     return () => {
-      document.title = 'el-shamedan';
+      document.title = 'el-shamadan';
     };
   }, [selectedProduct]);
 

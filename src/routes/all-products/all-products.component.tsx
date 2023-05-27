@@ -7,7 +7,7 @@ const AllProducts = () => {
   useEffect(() => {
     document.title = 'products';
     return () => {
-      document.title = 'el-shamedan';
+      document.title = 'el-shamadan';
     };
   }, []);
 

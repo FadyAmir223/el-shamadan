@@ -47,7 +47,7 @@ const Home = () => {
   useEffect(() => {
     document.title = 'home';
     return () => {
-      document.title = 'el-shamedan';
+      document.title = 'el-shamadan';
     };
   }, []);
 

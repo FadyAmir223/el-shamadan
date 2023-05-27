@@ -43,10 +43,10 @@ export default defineConfig({
       registerType: 'autoUpdate',
       strategies: 'injectManifest',
       manifest: {
-        name: 'el-shamedan',
-        short_name: 'el-shamedan',
-        description: 're-branding to el-shamedan wafer products',
-        start_url: '/el-shamedan/',
+        name: 'el-shamadan',
+        short_name: 'el-shamadan',
+        description: 're-branding to el-shamadan wafer products',
+        start_url: '/el-shamadan/',
         display: 'standalone',
         orientation: 'portrait',
         theme_color: '#181a1B',
@@ -73,5 +73,5 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['images/*.png', 'images/*.jpg'],
   },
-  base: '/el-shamedan/',
+  base: '/el-shamadan/',
 });

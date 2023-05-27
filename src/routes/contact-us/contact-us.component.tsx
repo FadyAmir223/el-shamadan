@@ -10,7 +10,7 @@ const ContactUs = () => {
   useEffect(() => {
     document.title = 'contact us';
     return () => {
-      document.title = 'el-shamedan';
+      document.title = 'el-shamadan';
     };
   }, []);
 

@@ -7,7 +7,7 @@ const Video: React.FC = () => {
   useEffect(() => {
     document.title = 'video';
     return () => {
-      document.title = 'el-shamedan';
+      document.title = 'el-shamadan';
     };
   }, []);
 

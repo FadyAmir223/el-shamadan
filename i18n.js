@@ -18,7 +18,7 @@ i18n
     },
     ns: [],
     backend: {
-      loadPath: '/el-shamedan/locales/{{lng}}/{{ns}}.json',
+      loadPath: '/el-shamadan/locales/{{lng}}/{{ns}}.json',
     },
   });
 
