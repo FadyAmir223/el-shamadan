@@ -1,15 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import Img from '../../components/img/img.component';
+import { useTitle } from '../../hooks/useTitle';
 
 const Video: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  useEffect(() => {
-    document.title = 'video';
-    return () => {
-      document.title = 'el-shamadan';
-    };
-  }, []);
+  useTitle('video');
 
   return (
     <article className="relative min-h-[calc(100vh-66px)] py-6">

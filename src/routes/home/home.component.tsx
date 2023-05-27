@@ -4,6 +4,7 @@ import { StaticContext } from '../../context/static.context';
 import Footer from '../../components/footer/footer.component';
 import { useTranslation } from 'react-i18next';
 import Img from '../../components/img/img.component';
+import { useTitle } from '../../hooks/useTitle';
 
 const calculateCountdown = () => {
   const currentDate = new Date();
@@ -44,12 +45,7 @@ const Home = () => {
 
   const [countdown, setCountdown] = useState(calculateCountdown());
 
-  useEffect(() => {
-    document.title = 'home';
-    return () => {
-      document.title = 'el-shamadan';
-    };
-  }, []);
+  useTitle('home');
 
   useEffect(() => {
     const interval = setInterval(() => {

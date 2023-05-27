@@ -1,8 +1,9 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { StaticContext } from '../../context/static.context';
 import Img from '../../components/img/img.component';
+import { useTitle } from '../../hooks/useTitle';
 
 const SingleProduct = () => {
   const { productName } = useParams();
@@ -15,12 +16,7 @@ const SingleProduct = () => {
 
   const selectedProduct = waferProducts[selectedProductIdx];
 
-  useEffect(() => {
-    if (selectedProduct) document.title = selectedProduct.id;
-    return () => {
-      document.title = 'el-shamadan';
-    };
-  }, [selectedProduct]);
+  useTitle(selectedProduct.id);
 
   const handlePrevNext = (direction) => {
     const nextIdx =

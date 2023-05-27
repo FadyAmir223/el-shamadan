@@ -1,15 +1,11 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import ProductCard from '../../components/product-card/product-card.component';
 import { StaticContext } from '../../context/static.context';
 import Img from '../../components/img/img.component';
+import { useTitle } from '../../hooks/useTitle';
 
 const AllProducts = () => {
-  useEffect(() => {
-    document.title = 'products';
-    return () => {
-      document.title = 'el-shamadan';
-    };
-  }, []);
+  useTitle('products');
 
   const { waferProducts } = useContext(StaticContext);
 
