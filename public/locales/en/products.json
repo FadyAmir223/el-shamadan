@@ -1,27 +1,27 @@
 {
-  "productList": ["king", "mafia", "magician", "hero", "joker"],
+  "productList": ["King", "Mafia", "Magician", "Hero", "Joker"],
   "king": {
-    "name": "king",
-    "desc": "Candlestick King is the strong character of Candlestick, who succeeded in escaping from all enemies through her excessive intelligence and exaggeration."
+    "name": "King",
+    "desc": "The King Shamadan is a powerful character who has managed to escape from all enemies through his exaggerated and excessive intelligence"
   },
   "mafia": {
-    "name": "mafia",
-    "desc": "The candlestick mafia is a character trying to steal the candlestick, knowing its secret by following him and his assistants, and threatening the candlestick to find out the secret recipe"
+    "name": "Mafia",
+    "desc": "The Mafia Shamadan is a character who attempts to steal the Shamadan and discover its secret by following it and its accomplices, and by threatening the Shamadan to reveal the secret recipe"
   },
   "magician": {
-    "name": "magician",
-    "desc": "Candlestick Wizard is the character that makes the candlestick and he is the only one who knows the secret to cooking the magic recipe"
+    "name": "Magician",
+    "desc": "The Magician Shamadan is the character who creates the Shamadan and is the only one who knows the secret of its magical recipe"
   },
   "hero": {
-    "name": "hero",
-    "desc": "The candlestick hero is a character who tries to steal the candlestick and find out its secret through his strength and violence resulting from playing the sport of boxing to know the secret recipe"
+    "name": "Hero",
+    "desc": "The Hero Shamadan is a character who attempts to steal the Shamadan and discover its secret through his strength and violence resulting from his boxing sport to uncover the secret recipe"
   },
   "joker": {
-    "name": "joker",
-    "desc": "The joker candlestick is a character trying to steal the candlestick and find out its secret through tricks to find out the secret recipe"
+    "name": "Joker",
+    "desc": "The Joker Shamadan is a character who attempts to steal the Shamadan and discover its secret through tricks to reveal the secret recipe"
   },
   "diva": {
-    "name": "diva",
-    "desc": "Candlestick the diva is a character trying to steal and know the secret of the candlestick by seducing her and her followers who carry out her orders to find out the secret recipe"
+    "name": "Diva",
+    "desc": "The Diva Shamadan is a character who attempts to steal and discover the secret of the Shamadan through her charm and by commanding her followers to uncover the secret recipe"
   }
 }

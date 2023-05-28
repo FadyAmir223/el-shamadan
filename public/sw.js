@@ -2,9 +2,11 @@ import { precacheAndRoute } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
+import { ExpirationPlugin } from 'workbox-expiration';
 
 precacheAndRoute(self.__WB_MANIFEST);
 
+const cacehExpire = 60 * 60 * 24 * 30;
 const revision = '1';
 
 const assets = [
@@ -50,7 +52,13 @@ registerRoute(
   ({ request }) => request.mode === 'navigate',
   new StaleWhileRevalidate({
     cacheName: 'navigate',
-    plugins: [new CacheableResponsePlugin({ statuses: [200] })],
+    plugins: [
+      new CacheableResponsePlugin({ statuses: [200] }),
+      new ExpirationPlugin({
+        maxEntries: 50,
+        maxAgeSeconds: cacehExpire,
+      }),
+    ],
   })
 );
 
@@ -58,7 +66,13 @@ registerRoute(
   ({ request }) => request.destination === 'script',
   new StaleWhileRevalidate({
     cacheName: 'scripts',
-    plugins: [new CacheableResponsePlugin({ statuses: [200] })],
+    plugins: [
+      new CacheableResponsePlugin({ statuses: [200] }),
+      new ExpirationPlugin({
+        maxEntries: 50,
+        maxAgeSeconds: cacehExpire,
+      }),
+    ],
   })
 );
 
@@ -66,6 +80,26 @@ registerRoute(
   ({ request }) => request.destination === 'font',
   new CacheFirst({
     cacheName: 'fonts',
-    plugins: [new CacheableResponsePlugin({ statuses: [200] })],
+    plugins: [
+      new CacheableResponsePlugin({ statuses: [200] }),
+      new ExpirationPlugin({
+        maxEntries: 50,
+        maxAgeSeconds: cacehExpire,
+      }),
+    ],
   })
 );
+
+// registerRoute(
+//   ({ request }) => request.destination === 'image',
+//   new CacheFirst({
+//     cacheName: 'image',
+//     plugins: [
+//       new CacheableResponsePlugin({ statuses: [200] }),
+//       new ExpirationPlugin({
+//         maxEntries: 50,
+//         maxAgeSeconds: cacehExpire,
+//       }),
+//     ],
+//   })
+// );

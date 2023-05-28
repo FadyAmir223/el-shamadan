@@ -31,7 +31,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
           <div className="contain flex justify-between items-center">
             <div className="flex justify-between w-[calc(50%+40px)] md:w-1/2">
               <Link to="/">
-                <Img src="images/logo.png" alt="logo" className="w-10" />
+                <Img src="images/logo.png" alt="logo" className="w-8" />
               </Link>
               <div className="flex items-center gap-x-3">
                 <button
