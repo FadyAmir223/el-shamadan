@@ -68,7 +68,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
                     </button>
                     <div
                       className={`absolute z-50 mt-4 rounded-md shadow-2xl bg-red text-center duration-300 overflow-hidden text-white border-red ${
-                        isOpen ? 'h-[200px] border  ' : 'h-0'
+                        isOpen ? 'h-[240px] border  ' : 'h-0'
                       }`}
                     >
                       {waferProducts.map((product) => (

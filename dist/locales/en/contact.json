@@ -1,8 +1,0 @@
-{
-  "name": "name",
-  "email": "email",
-  "message": "message",
-  "submit": "send message",
-  "errorMsg": "please fill up the fields",
-  "successMsg": "message sent successfully"
-}

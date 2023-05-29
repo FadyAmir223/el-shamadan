@@ -6,7 +6,7 @@
   "homepage": "https://FadyAmir223.github.io/el-shamadan",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && rm dist/images/*.{jpg,png}",
+    "build": "tsc && vite build && rm dist/images/**/*.{jpg,png}",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist --branch gh-pages",
     "deploy-2": "gh-pages -d dist",

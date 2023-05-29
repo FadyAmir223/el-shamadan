@@ -74,19 +74,19 @@ const Home = () => {
         <section className="py-6 relative">
           <div className="contain">
             <Img
-              src="images/curtain-left.png"
+              src="images/item/curtain-left.png"
               alt="curtain-left"
               className="absolute left-0 top-0 h-4/5 opacity-50"
             />
             <Img
-              src="images/curtain-right.png"
+              src="images/item/curtain-right.png"
               alt="curtain-left"
               className="absolute right-0 top-0 h-4/5 opacity-50"
             />
 
             <div className="w-fit relative mx-auto">
               <Img
-                src="images/secret.png"
+                src="images/item/secret.png"
                 alt="secret"
                 className="max-w-xs mb-4 w-full"
               />

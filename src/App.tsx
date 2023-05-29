@@ -16,6 +16,7 @@ const Video = lazy(() => import('./routes/video/video.component'));
 const ContactUs = lazy(
   () => import('./routes/contact-us/contact-us.component')
 );
+const Giveaway = lazy(() => import('./routes/giveaway/giveaway.component'));
 const Error = lazy(() => import('./routes/error/error.component'));
 
 const App = () => {
@@ -76,7 +77,7 @@ const App = () => {
       <div className="rtl:font-[abdo] ltr:font-[roboto]">
         {stickPosition && (
           <Img
-            src="images/stick-left-64.png"
+            src="images/item/stick-left-64.png"
             alt="stick"
             className="absolute z-30 will-change-transform animate-[stickRotation_ease-out_0.6s]"
             style={{
@@ -89,7 +90,7 @@ const App = () => {
         <div
           className="absolute top-0 left-0 w-full h-full opacity-[15%]"
           style={{
-            backgroundImage: 'url("images/background.webp")',
+            backgroundImage: 'url("images/item/background.webp")',
             backgroundSize: '100px',
           }}
         ></div>
@@ -108,6 +109,7 @@ const App = () => {
             <Route path="/products/:productName" element={<SingleProduct />} />
             <Route path="/video" element={<Video />} />
             <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/giveaway" element={<Giveaway />} />
             <Route path="/*" element={<Error />} />
           </Routes>
         </div>
