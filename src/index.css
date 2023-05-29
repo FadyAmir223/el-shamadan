@@ -25,7 +25,6 @@
   }
 }
 
-/* @font-face {
-  font-family: 'abdo';
-  src: url('./assets/fonts/abdo.ttf') format('truetype');
-} */
+.time-curve {
+  transition: transform 800ms cubic-bezier(0.05, 0.43, 0.25, 0.95);
+}
