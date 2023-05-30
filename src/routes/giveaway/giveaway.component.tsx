@@ -19,6 +19,13 @@ const imgPath = (category = '', name = '') => {
   return `images/${category}/${name}.png`;
 };
 
+const getCat_Char = (path) => {
+  const x = path.split('/');
+  const category = x[1];
+  const character = x[2].split('.')[0];
+  return { category, character };
+};
+
 const Giveaway = () => {
   const [rotation, setRotation] = useState(0);
   const [src, setSrc] = useState(imgPath);
@@ -29,8 +36,9 @@ const Giveaway = () => {
     error: false,
     win: false,
   });
+  const [isDisabled, setIsDisabled] = useState(false);
   const formRef = useRef(null);
-  const [t] = useTranslation('giveaway');
+  const [t] = useTranslation(['giveaway', 'products']);
 
   useTitle('giveaway');
 
@@ -41,10 +49,10 @@ const Giveaway = () => {
     }));
   };
 
-  // useEffect(() => {
-  //   for (const category of categories)
-  //     for (const name of imgs) new Image().src = imgPath(category, name);
-  // }, []);
+  useEffect(() => {
+    for (const category of categories)
+      for (const name of imgs) new Image().src = imgPath(category, name);
+  }, []);
 
   const prizeSelect = () => {
     const loops = 10,
@@ -97,6 +105,11 @@ const Giveaway = () => {
   };
 
   const handlePrevNext = (direction) => {
+    setIsDisabled(true);
+    setTimeout(() => {
+      setIsDisabled(false);
+    }, 300);
+
     const nextIdx =
       direction === 'next'
         ? (activeCard + 1) % categories.length
@@ -113,19 +126,36 @@ const Giveaway = () => {
       <div className="max-w-xs mx-auto">
         <div className="flex justify-center">
           {categories.map((i, idx) => (
-            <span key={i} className={`${idx !== activeCard ? 'scale-0' : ''}`}>
+            <span
+              key={i}
+              className={`will-change-transform transition-transform ease-linear duration-[400ms] ${
+                idx !== activeCard ? 'scale-0' : ''
+              } ${
+                idx === (activeCard + 1) % categories.length
+                  ? '-translate-x-16 translate-y-24 scale-0'
+                  : ''
+              } ${
+                idx === (activeCard - 1 + categories.length) % categories.length
+                  ? 'translate-x-16 translate-y-24 scale-0'
+                  : ''
+              }`}
+            >
               <CardGroup category={i} />
             </span>
           ))}
         </div>
-        <div className="mt-52 mb-8 flex justify-around px-10">
-          <FaChevronCircleLeft
-            className="text-3xl text-yellow hover:text-yellow/80 cursor-pointer"
-            onClick={() => handlePrevNext('prev')}
-          />
+        <div className="mt-48 mb-8 flex justify-around px-10">
           <FaChevronCircleRight
-            className="text-3xl text-yellow hover:text-yellow/80 cursor-pointer"
+            className={`text-3xl text-yellow hover:text-yellow/80 cursor-pointer ${
+              isDisabled ? 'pointer-events-none' : ''
+            }`}
             onClick={() => handlePrevNext('next')}
+          />
+          <FaChevronCircleLeft
+            className={`text-3xl text-yellow hover:text-yellow/80 cursor-pointer ${
+              isDisabled ? 'pointer-events-none' : ''
+            }`}
+            onClick={() => handlePrevNext('prev')}
           />
         </div>
       </div>
@@ -136,13 +166,13 @@ const Giveaway = () => {
             key={i}
             type={i === 'email' ? 'email' : 'text'}
             name={i}
-            placeholder={t(i)}
+            placeholder={t(`form.${i}`)}
             className="form-input mb-4"
           />
         ))}
 
         <button className="form-button w-full cursor-pointer">
-          {t('submit')}
+          {t(t('form.submit'))}
         </button>
       </form>
 
@@ -175,14 +205,25 @@ const Giveaway = () => {
               </div>
             </div>
           </div>
-          <button
-            className={`form-button absolute bottom-[13%] text-xl ${
-              !confetti ? 'hidden' : ''
-            }`}
-            onClick={handleBack}
-          >
-            {t('back')}
-          </button>
+          {confetti && (
+            <>
+              <span className="absolute top-[20%] text-yellow ltr:text-xl rtl:text-2xl">
+                {`${t(`prize.${getCat_Char(src).category}`)} ${t(
+                  `${getCat_Char(src).character}.name`,
+                  {
+                    ns: 'products',
+                  }
+                )}`}
+              </span>
+
+              <button
+                className={`form-button absolute bottom-[13%] text-xl`}
+                onClick={handleBack}
+              >
+                {t('back')}
+              </button>
+            </>
+          )}
           {confetti && <Confetti />}
         </div>
       )}

@@ -6,7 +6,6 @@ import { useTitle } from '../../hooks/useTitle';
 
 const AllProducts = () => {
   useTitle('products');
-
   const { waferProducts } = useContext(StaticContext);
 
   return (

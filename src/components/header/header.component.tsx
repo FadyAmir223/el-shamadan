@@ -9,7 +9,7 @@ import Img from '../img/img.component';
 
 const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
   const { waferProducts } = useContext(StaticContext);
-  const [t, i18n] = useTranslation(['header', 'products']);
+  const [t, i18n] = useTranslation('header');
   const nav = t('nav', {
     returnObjects: true,
   }) as { name: string; link: string }[];
