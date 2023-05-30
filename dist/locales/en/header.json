@@ -1,0 +1,24 @@
+{
+  "nav": [
+    {
+      "name": "home",
+      "link": "home"
+    },
+    {
+      "name": "products",
+      "link": "products"
+    },
+    {
+      "name": "video",
+      "link": "video"
+    },
+    {
+      "name": "contact",
+      "link": "contact"
+    },
+    {
+      "name": "giveaway",
+      "link": "giveaway"
+    }
+  ]
+}

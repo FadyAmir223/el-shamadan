@@ -1,0 +1,27 @@
+{
+  "productList": ["king", "mafia", "magician", "hero", "joker", "diva"],
+  "king": {
+    "name": "king",
+    "desc": "The King Shamadan is a powerful character who has managed to escape from all enemies through his exaggerated and excessive intelligence"
+  },
+  "mafia": {
+    "name": "mafia",
+    "desc": "The Mafia Shamadan is a character who attempts to steal the Shamadan and discover its secret by following it and its accomplices, and by threatening the Shamadan to reveal the secret recipe"
+  },
+  "magician": {
+    "name": "magician",
+    "desc": "The Magician Shamadan is the character who creates the Shamadan and is the only one who knows the secret of its magical recipe"
+  },
+  "hero": {
+    "name": "hero",
+    "desc": "The Hero Shamadan is a character who attempts to steal the Shamadan and discover its secret through his strength and violence resulting from his boxing sport to uncover the secret recipe"
+  },
+  "joker": {
+    "name": "joker",
+    "desc": "The Joker Shamadan is a character who attempts to steal the Shamadan and discover its secret through tricks to reveal the secret recipe"
+  },
+  "diva": {
+    "name": "diva",
+    "desc": "The Diva Shamadan is a character who attempts to steal and discover the secret of the Shamadan through her charm and by commanding her followers to uncover the secret recipe"
+  }
+}

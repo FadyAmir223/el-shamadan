@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTitle } from '../../hooks/useTitle';
-import style from './giveaway.module.css';
 import Confetti from 'react-confetti';
+import ReactHowler from 'react-howler';
+import style from './giveaway.module.css';
 
 const categories = ['mug', 'bag', 'notebook'];
 const imgs = ['king', 'mafia', 'diva', 'hero', 'magician'];
@@ -20,6 +21,17 @@ const Giveaway = () => {
   const [src, setSrc] = useState(img);
   const [confetti, setConfetti] = useState(false);
   const [overlay, setOverlay] = useState(false);
+  const [sound, setSound] = useState({
+    error: false,
+    win: false,
+  });
+
+  const handleSound = (error = false, win = false) => {
+    setSound(() => ({
+      error,
+      win,
+    }));
+  };
 
   const formRef = useRef(null);
   const [t] = useTranslation('giveaway');
@@ -39,6 +51,7 @@ const Giveaway = () => {
         if (i === loops - 1) {
           setTimeout(() => {
             setConfetti(true);
+            handleSound(undefined, true);
           }, 500);
         }
       }, (i + 1) * 1000);
@@ -52,19 +65,23 @@ const Giveaway = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const form = formRef.current;
 
-    const name = form.name.value;
-    const email = form.email.value;
-    const phone = form.phone.value;
+    // const name = form.name.value;
+    // const email = form.email.value;
+    // const phone = form.phone.value;
     const secret = form.secret.value;
 
     // if (!(name && email && phone && secret))
-    if (secret === '9999') setOverlay(true);
-
-    prizeSelect();
-    form.reset();
+    if (secret === '9999') {
+      setOverlay(true);
+      prizeSelect();
+      form.reset();
+    } else
+      setSound((prevSound) => ({
+        ...prevSound,
+        error: true,
+      }));
   };
 
   return (
@@ -145,6 +162,16 @@ const Giveaway = () => {
           {confetti && <Confetti />}
         </div>
       )}
+      <ReactHowler
+        src="sounds/error.mp3"
+        playing={sound.error}
+        onEnd={() => handleSound(false)}
+      />
+      <ReactHowler
+        src="sounds/win.mp3"
+        playing={sound.win}
+        onEnd={() => handleSound(undefined, false)}
+      />
     </article>
   );
 };

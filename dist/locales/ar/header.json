@@ -1,0 +1,24 @@
+{
+  "nav": [
+    {
+      "name": "الرئيسية",
+      "link": "home"
+    },
+    {
+      "name": "منتجاتنا",
+      "link": "products"
+    },
+    {
+      "name": "فيديو",
+      "link": "video"
+    },
+    {
+      "name": "اتصل بنا",
+      "link": "contact us"
+    },
+    {
+      "name": "جوائز",
+      "link": "giveaway"
+    }
+  ]
+}

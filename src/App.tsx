@@ -1,5 +1,6 @@
 import { lazy, useRef, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import ReactHowler from 'react-howler';
 
 import Header from './components/header/header.component';
 import { useTranslation } from 'react-i18next';
@@ -29,24 +30,15 @@ const App = () => {
   const [isOpen, setOpen] = useState(false);
   const refHeader = useRef(null);
 
-  const runAudio = () => {
-    new Audio('sounds/magic.mp3').play();
-    setSoundPlaying(true);
-  };
-
-  const handleSoundPlaying = () => {
-    setSoundPlaying(false);
-  };
-
   const handleClick = async (e) => {
     // mute toggle
     if (refHeader.current && refHeader.current.contains(e.target)) {
-      if (isMuted) runAudio();
+      if (isMuted) setSoundPlaying(true);
       setMuted((prevMuted) => {
         localStorage.isMuted = !prevMuted;
         return !prevMuted;
       });
-    } else if (!isMuted) runAudio();
+    } else if (!isMuted) setSoundPlaying(true);
 
     // stick position
     const { clientX, clientY } = e;
@@ -70,9 +62,10 @@ const App = () => {
       className="relative bg-black/90 min-h-screen overflow-hidden"
       onClick={handleClick}
     >
-      {isSoundPlaying && !isMuted && (
-        <audio autoPlay onEnded={handleSoundPlaying} />
-      )}
+      <ReactHowler
+        src="sounds/magic.mp3"
+        playing={isSoundPlaying && !isMuted}
+      />
 
       <div className="rtl:font-[abdo] ltr:font-[roboto]">
         {stickPosition && (
