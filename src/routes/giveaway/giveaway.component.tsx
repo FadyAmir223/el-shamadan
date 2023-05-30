@@ -5,8 +5,10 @@ import Confetti from 'react-confetti';
 import ReactHowler from 'react-howler';
 import style from './giveaway.module.css';
 import Img from '../../components/img/img.component';
+import CardGroup from '../../components/card-group/card-group.component';
+import { FaChevronCircleLeft, FaChevronCircleRight } from 'react-icons/fa';
 
-const categories = ['mug', 'bag', 'notebook'];
+const categories = ['bag', 'notebook', 'mug'];
 const imgs = ['king', 'mafia', 'diva', 'hero', 'magician'];
 
 const randELement = (list) => list[Math.floor(Math.random() * list.length)];
@@ -22,6 +24,7 @@ const Giveaway = () => {
   const [src, setSrc] = useState(imgPath);
   const [confetti, setConfetti] = useState(false);
   const [overlay, setOverlay] = useState(false);
+  const [activeCard, setActiveCard] = useState(0);
   const [sound, setSound] = useState({
     error: false,
     win: false,
@@ -38,24 +41,14 @@ const Giveaway = () => {
     }));
   };
 
-  useEffect(() => {
-    (async () => {
-      for (const category of categories)
-        for (const name of imgs) {
-          const imgSrc = imgPath(category, name);
-          const img = new Image();
-          img.src = imgSrc;
-          await new Promise((resolve, reject) => {
-            img.onload = resolve;
-            img.onerror = reject;
-          });
-        }
-    })();
-  }, []);
+  // useEffect(() => {
+  //   for (const category of categories)
+  //     for (const name of imgs) new Image().src = imgPath(category, name);
+  // }, []);
 
   const prizeSelect = () => {
     const loops = 10,
-      time_ms = 700;
+      time_ms = 500;
     for (let i = 0; i < loops; i++) {
       setTimeout(function () {
         const imagePath = imgPath();
@@ -103,42 +96,41 @@ const Giveaway = () => {
       }));
   };
 
+  const handlePrevNext = (direction) => {
+    const nextIdx =
+      direction === 'next'
+        ? (activeCard + 1) % categories.length
+        : (activeCard - 1 + categories.length) % categories.length;
+    setActiveCard(nextIdx);
+  };
+
   return (
     <article className="contain py-6 mx-auto relative">
       <h1 className="text-yellow text-center mx-auto ltr:font-bold ltr:text-lg rtl:text-2xl center mb-6 max-w-md">
         {t('title')}
       </h1>
-      <div className="flex justify-center group">
-        <div className="w-28 aspect-[5/7] bg-yellow rounded-lg absolute -translate-x-[10%] -rotate-1 group-hover:-translate-x-[75%] group-hover:translate-y-[16%] group-hover:-rotate-[24deg] time-curve grid place-items-center select-none will-change-transform">
-          <Img src="images/bag/king.png" alt="king bag" className="p-3" />
-        </div>
 
-        <div className="w-28 aspect-[5/7] bg-purple rounded-lg absolute rotate-2 group-hover:-translate-x-[25%] group-hover:translate-y-[8%] group-hover:-rotate-[8deg] time-curve grid place-items-center select-none will-change-transform">
-          <Img
-            src="images/notebook/hero.png"
-            alt="hero notebook"
-            className="p-3"
+      <div className="max-w-xs mx-auto">
+        <div className="flex justify-center">
+          {categories.map((i, idx) => (
+            <span key={i} className={`${idx !== activeCard ? 'scale-0' : ''}`}>
+              <CardGroup category={i} />
+            </span>
+          ))}
+        </div>
+        <div className="mt-52 mb-8 flex justify-around px-10">
+          <FaChevronCircleLeft
+            className="text-3xl text-yellow hover:text-yellow/80 cursor-pointer"
+            onClick={() => handlePrevNext('prev')}
           />
-        </div>
-
-        <div className="w-28 aspect-[5/7] bg-yellow rounded-lg absolute -translate-x-[6%] -rotate-3 group-hover:translate-x-[25%] group-hover:translate-y-[8%] group-hover:rotate-[8deg] time-curve grid place-items-center select-none will-change-transform">
-          <Img src="images/mug/hero.png" alt="hero mug" className="p-3" />
-        </div>
-
-        <div className="w-28 aspect-[5/7] bg-purple rounded-lg absolute translate-x-[10%] translate-y-[3%] rotate-[5deg] group-hover:translate-x-[75%] group-hover:translate-y-[16%] group-hover:rotate-[24deg] time-curve grid place-items-center overflow-hidden select-none will-change-transform">
-          <Img
-            src="images/giveaway/stick-real.png"
-            alt="real stick"
-            className="p-3 h-full"
+          <FaChevronCircleRight
+            className="text-3xl text-yellow hover:text-yellow/80 cursor-pointer"
+            onClick={() => handlePrevNext('next')}
           />
         </div>
       </div>
 
-      <form
-        ref={formRef}
-        onSubmit={handleSubmit}
-        className="max-w-md mx-auto mt-64"
-      >
+      <form ref={formRef} onSubmit={handleSubmit} className="max-w-md mx-auto">
         {['name', 'email', 'phone', 'secret'].map((i) => (
           <input
             key={i}
@@ -168,17 +160,17 @@ const Giveaway = () => {
             className={`${style.card} w-52 aspect-[5/7] float-left select-none`}
           >
             <div
-              className={`${style.content} absolute w-full h-full transition-transform ease-linear duration-700`}
+              className={`${style.content} absolute w-full h-full transition-transform ease-linear duration-500`}
               style={{
                 transform: `rotateY(${rotation}deg)`,
               }}
             >
-              <div className={`${style.front} bg-red grid place-items-center`}>
+              <div
+                className={`${style.front} bg-purple grid place-items-center`}
+              >
                 <Img src={src} alt="" />
               </div>
-              <div
-                className={`${style.back} bg-purple grid place-items-center`}
-              >
+              <div className={`${style.back} bg-red grid place-items-center`}>
                 <Img src={src} key={src} alt="" />
               </div>
             </div>
