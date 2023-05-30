@@ -28,3 +28,7 @@
 .time-curve {
   transition: transform 800ms cubic-bezier(0.05, 0.43, 0.25, 0.95);
 }
+
+.form-button {
+  @apply bg-purple text-white py-2 px-4 rounded hover:bg-purple/80;
+}

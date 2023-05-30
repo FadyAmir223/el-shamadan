@@ -21,13 +21,50 @@ export const StaticProvider: FC<{
     returnObjects: true,
   }) as string[];
 
-  const waferProducts = products.map((i) => ({
-    id: i,
-    name: t(`${i}.name`),
-    desc: t(`${i}.desc`),
-    coverUrl: `images/packet/${i}.png`,
-    characterUrl: `images/character/${i}.png`,
-  }));
+  const waferProducts = [
+    {
+      id: 'king',
+      name: t('king.name'),
+      desc: t('king.desc'),
+      coverUrl: 'images/packet/king.png',
+      characterUrl: 'images/character/king.png',
+    },
+    {
+      id: 'mafia',
+      name: t('mafia.name'),
+      desc: t('mafia.desc'),
+      coverUrl: 'images/packet/mafia.png',
+      characterUrl: 'images/character/mafia.png',
+    },
+    {
+      id: 'magician',
+      name: t('magician.name'),
+      desc: t('magician.desc'),
+      coverUrl: 'images/packet/magician.png',
+      characterUrl: 'images/character/magician.png',
+    },
+    {
+      id: 'hero',
+      name: t('hero.name'),
+      desc: t('hero.desc'),
+      coverUrl: 'images/packet/hero.png',
+      characterUrl: 'images/character/hero.png',
+    },
+    {
+      id: 'joker',
+      name: t('joker.name'),
+      desc: t('joker.desc'),
+      coverUrl: 'images/packet/joker.png',
+      characterUrl: 'images/character/joker.png',
+    },
+    {
+      id: 'diva',
+      name: t('diva.name'),
+      desc: t('diva.desc'),
+      coverUrl: 'images/packet/diva.png',
+      characterUrl: 'images/character/diva.png',
+    },
+  ];
 
   return (
     <StaticContext.Provider value={{ products, waferProducts }}>

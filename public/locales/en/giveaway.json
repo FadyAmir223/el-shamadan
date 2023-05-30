@@ -1,3 +1,8 @@
 {
-  "title": "Unlock Your Chance to Win Incredible Surprises in Our Exciting Giveaway!"
+  "title": "Unlock Your Chance to Win Incredible Surprises in Our Exciting Giveaway!",
+  "name": "name",
+  "email": "email",
+  "phone": "phone",
+  "secret": "secret word",
+  "back": "back"
 }
