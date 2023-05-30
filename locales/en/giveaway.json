@@ -3,7 +3,7 @@
   "name": "name",
   "email": "email",
   "phone": "phone",
-  "secret": "secret word",
+  "secret": "secret word: 9999",
   "submit": "win",
   "back": "back"
 }
