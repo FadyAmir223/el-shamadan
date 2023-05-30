@@ -31,7 +31,11 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
           <div className="contain flex justify-between items-center">
             <div className="flex justify-between w-[calc(50%+40px)] md:w-1/2">
               <Link to="/">
-                <Img src="images/logo.png" alt="logo" className="w-8" />
+                <Img
+                  src="images/logo.png"
+                  alt="logo"
+                  className="w-8 select-none"
+                />
               </Link>
               <div className="flex items-center gap-x-3">
                 <button
@@ -56,7 +60,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
             >
               <FiMenu />
             </button>
-            <nav className="capitalize tracking-wider hidden md:flex">
+            <nav className="capitalize tracking-wider hidden md:flex ltr:text-sm">
               {nav.map((item) =>
                 ['products', 'منتجاتنا'].includes(item.name) ? (
                   <div className="relative" key={item.link}>

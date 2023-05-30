@@ -72,7 +72,7 @@ const App = () => {
           <Img
             src="images/item/stick-left-64.png"
             alt="stick"
-            className="absolute z-30 will-change-transform animate-[stickRotation_ease-out_0.6s]"
+            className="absolute z-30 will-change-transform animate-[stickRotation_ease-out_0.6s] select-none"
             style={{
               top: stickPosition.y - 50,
               left: stickPosition.x - 72,
