@@ -5,5 +5,17 @@
   "phone": "phone",
   "secret": "secret word: 9999",
   "submit": "win",
-  "back": "back"
+  "back": "back",
+  "form": {
+    "name": "name",
+    "email": "email",
+    "phone": "phone",
+    "secret": "secret word: 9999",
+    "submit": "win"
+  },
+  "prize": {
+    "bag": "bag",
+    "notebook": "notebook",
+    "mug": "mug"
+  }
 }
