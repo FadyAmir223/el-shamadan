@@ -4,5 +4,6 @@
   "email": "email",
   "phone": "phone",
   "secret": "secret word",
+  "submit": "win",
   "back": "back"
 }
