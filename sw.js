@@ -29,7 +29,7 @@ const f = {
 }, C = (a) => [f.prefix, a, f.suffix].filter((e) => e && e.length > 0).join("-"), I = (a) => {
   for (const e of Object.keys(f))
     a(e);
-}, k = {
+}, U = {
   updateDetails: (a) => {
     I((e) => {
       typeof a[e] == "string" && (f[e] = a[e]);
@@ -495,7 +495,7 @@ class L {
    * for any `cache.match()` or `cache.put()` calls made by this strategy.
    */
   constructor(e = {}) {
-    this.cacheName = k.getRuntimeName(e.cacheName), this.plugins = e.plugins || [], this.fetchOptions = e.fetchOptions, this.matchOptions = e.matchOptions;
+    this.cacheName = U.getRuntimeName(e.cacheName), this.plugins = e.plugins || [], this.fetchOptions = e.fetchOptions, this.matchOptions = e.matchOptions;
   }
   /**
    * Perform a request strategy and returns a `Promise` that will resolve with
@@ -612,7 +612,7 @@ class d extends L {
    * get the response from the network if there's a precache miss.
    */
   constructor(e = {}) {
-    e.cacheName = k.getPrecacheName(e.cacheName), super(e), this._fallbackToNetwork = e.fallbackToNetwork !== !1, this.plugins.push(d.copyRedirectedCacheableResponsesPlugin);
+    e.cacheName = U.getPrecacheName(e.cacheName), super(e), this._fallbackToNetwork = e.fallbackToNetwork !== !1, this.plugins.push(d.copyRedirectedCacheableResponsesPlugin);
   }
   /**
    * @private
@@ -707,7 +707,7 @@ class J {
    */
   constructor({ cacheName: e, plugins: t = [], fallbackToNetwork: s = !0 } = {}) {
     this._urlsToCacheKeys = /* @__PURE__ */ new Map(), this._urlsToCacheModes = /* @__PURE__ */ new Map(), this._cacheKeysToIntegrities = /* @__PURE__ */ new Map(), this._strategy = new d({
-      cacheName: k.getPrecacheName(e),
+      cacheName: U.getPrecacheName(e),
       plugins: [
         ...t,
         new S({ precacheController: this })
@@ -891,14 +891,14 @@ This is generally NOT safe. Learn more at https://bit.ly/wb-precache`;
     return (s) => (s.request = new Request(e), s.params = Object.assign({ cacheKey: t }, s.params), this.strategy.handle(s));
   }
 }
-let U;
-const v = () => (U || (U = new J()), U);
+let k;
+const v = () => (k || (k = new J()), k);
 try {
   self["workbox:routing:6.5.3"] && _();
 } catch {
 }
 const N = "GET", R = (a) => a && typeof a == "object" ? a : { handle: a };
-class m {
+class w {
   /**
    * Constructor for Route class.
    *
@@ -922,7 +922,7 @@ class m {
     this.catchHandler = R(e);
   }
 }
-class X extends m {
+class X extends w {
   /**
    * If the regular expression contains
    * [capture groups]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp#grouping-back-references},
@@ -1127,18 +1127,18 @@ class Y {
       throw new l("unregister-route-route-not-registered");
   }
 }
-let w;
-const Z = () => (w || (w = new Y(), w.addFetchListener(), w.addCacheListener()), w);
+let m;
+const Z = () => (m || (m = new Y(), m.addFetchListener(), m.addCacheListener()), m);
 function b(a, e, t) {
   let s;
   if (typeof a == "string") {
     const r = new URL(a, location.href), c = ({ url: i }) => i.href === r.href;
-    s = new m(c, e, t);
+    s = new w(c, e, t);
   } else if (a instanceof RegExp)
     s = new X(a, e, t);
   else if (typeof a == "function")
-    s = new m(a, e, t);
-  else if (a instanceof m)
+    s = new w(a, e, t);
+  else if (a instanceof w)
     s = a;
   else
     throw new l("unsupported-route-type", {
@@ -1171,7 +1171,7 @@ function* te(a, { ignoreURLParametersMatching: e = [/^utm_/, /^fbclid$/], direct
       yield o.href;
   }
 }
-class se extends m {
+class se extends w {
   /**
    * @param {PrecacheController} precacheController A `PrecacheController`
    * instance used to both match requests and respond to fetch events.
@@ -1341,30 +1341,30 @@ class P {
     this.cacheWillUpdate = async ({ response: t }) => this._cacheableResponse.isResponseCacheable(t) ? t : null, this._cacheableResponse = new ie(e);
   }
 }
-E([{"revision":null,"url":"assets/all-products.component-ae763860.js"},{"revision":null,"url":"assets/contact-us.component-f903452b.js"},{"revision":null,"url":"assets/error.component-c39e3883.js"},{"revision":null,"url":"assets/footer.component-5a3ed942.js"},{"revision":null,"url":"assets/home.component-37f66efa.js"},{"revision":null,"url":"assets/index-2e42d587.js"},{"revision":null,"url":"assets/index-88e7764e.css"},{"revision":null,"url":"assets/product-card.component-beb4449e.js"},{"revision":null,"url":"assets/single-product.component-5492e210.js"},{"revision":null,"url":"assets/useTitle-e00201e8.js"},{"revision":null,"url":"assets/video.component-ce22d470.js"},{"revision":"c6b076f4067625d908c36cd95bb82873","url":"index.html"},{"revision":"ef31508ea54c9805220261c6bd8628a1","url":"registerSW.js"},{"revision":"d5f8d8e2cd559ca3adb009856213ce35","url":"pwa-192x192.png"},{"revision":"1d809b42a4d8399ed3c3470aedfbc3e1","url":"pwa-512x512.png"},{"revision":"1e0059c966448a9cec3e100a31e57ce9","url":"manifest.webmanifest"}]);
-const oe = "3", le = [
+E([{"revision":null,"url":"assets/all-products.component-31c1b0c3.js"},{"revision":null,"url":"assets/contact-us.component-91784e69.js"},{"revision":null,"url":"assets/error.component-cc254786.js"},{"revision":null,"url":"assets/footer.component-0ed4a613.js"},{"revision":null,"url":"assets/giveaway.component-c8d6d793.js"},{"revision":null,"url":"assets/giveaway.component-fde616f4.css"},{"revision":null,"url":"assets/home.component-662414a1.js"},{"revision":null,"url":"assets/index-7445d364.css"},{"revision":null,"url":"assets/index-a8ee8103.js"},{"revision":null,"url":"assets/product-card.component-8568518c.js"},{"revision":null,"url":"assets/single-product.component-c9e3e0fc.js"},{"revision":null,"url":"assets/useTitle-937678ba.js"},{"revision":null,"url":"assets/video.component-dd5d06c1.js"},{"revision":"42f472df65891de90a01c08490c3bb6d","url":"index.html"},{"revision":"ef31508ea54c9805220261c6bd8628a1","url":"registerSW.js"},{"revision":"d5f8d8e2cd559ca3adb009856213ce35","url":"pwa-192x192.png"},{"revision":"1d809b42a4d8399ed3c3470aedfbc3e1","url":"pwa-512x512.png"},{"revision":"1e0059c966448a9cec3e100a31e57ce9","url":"manifest.webmanifest"}]);
+const oe = "1", le = [
   "/el-shamadan/favicon.ico",
-  "/el-shamadan/images/background.webp",
-  "/el-shamadan/images/belt.webp",
-  "/el-shamadan/images/curtain-left.webp",
-  "/el-shamadan/images/curtain-right.webp",
-  "/el-shamadan/images/diva.webp",
-  "/el-shamadan/images/diva_.webp",
-  "/el-shamadan/images/face.webp",
-  "/el-shamadan/images/hero.webp",
-  "/el-shamadan/images/hero_.webp",
-  "/el-shamadan/images/joker.webp",
-  "/el-shamadan/images/joker_.webp",
-  "/el-shamadan/images/king.webp",
-  "/el-shamadan/images/king_.webp",
   "/el-shamadan/images/logo.webp",
-  "/el-shamadan/images/mafia.webp",
-  "/el-shamadan/images/mafia_.webp",
-  "/el-shamadan/images/magician.webp",
-  "/el-shamadan/images/magician_.webp",
-  "/el-shamadan/images/secret.webp",
-  "/el-shamadan/images/stick-left-64.webp",
-  "/el-shamadan/images/thumbnail.webp",
+  "/el-shamadan/images/item/background.webp",
+  "/el-shamadan/images/item/secret.webp",
+  "/el-shamadan/images/item/face.webp",
+  "/el-shamadan/images/item/belt.webp",
+  "/el-shamadan/images/item/curtain-left.webp",
+  "/el-shamadan/images/item/curtain-right.webp",
+  "/el-shamadan/images/item/stick-left-64.webp",
+  "/el-shamadan/images/item/thumbnail.webp",
+  "/el-shamadan/images/character/king.webp",
+  "/el-shamadan/images/character/magician.webp",
+  "/el-shamadan/images/character/hero.webp",
+  "/el-shamadan/images/character/joker.webp",
+  "/el-shamadan/images/character/mafia.webp",
+  "/el-shamadan/images/character/diva.webp",
+  "/el-shamadan/images/packet/king.webp",
+  "/el-shamadan/images/packet/magician.webp",
+  "/el-shamadan/images/packet/hero.webp",
+  "/el-shamadan/images/packet/joker.webp",
+  "/el-shamadan/images/packet/mafia.webp",
+  "/el-shamadan/images/packet/diva.webp",
   "/el-shamadan/locales/ar/contact.json",
   "/el-shamadan/locales/ar/footer.json",
   "/el-shamadan/locales/ar/header.json",
