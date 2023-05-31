@@ -38,11 +38,33 @@ const assets = [
   '/el-shamadan/images/packet/mafia.webp',
   '/el-shamadan/images/packet/diva.webp',
 
+  '/el-shamadan/images/bag/king.webp',
+  '/el-shamadan/images/bag/magician.webp',
+  '/el-shamadan/images/bag/hero.webp',
+  '/el-shamadan/images/bag/joker.webp',
+  '/el-shamadan/images/bag/mafia.webp',
+  '/el-shamadan/images/bag/diva.webp',
+
+  '/el-shamadan/images/notebook/king.webp',
+  '/el-shamadan/images/notebook/magician.webp',
+  '/el-shamadan/images/notebook/hero.webp',
+  '/el-shamadan/images/notebook/joker.webp',
+  '/el-shamadan/images/notebook/mafia.webp',
+  '/el-shamadan/images/notebook/diva.webp',
+
+  '/el-shamadan/images/mug/king.webp',
+  '/el-shamadan/images/mug/magician.webp',
+  '/el-shamadan/images/mug/hero.webp',
+  '/el-shamadan/images/mug/joker.webp',
+  '/el-shamadan/images/mug/mafia.webp',
+  '/el-shamadan/images/mug/diva.webp',
+
   '/el-shamadan/locales/ar/contact.json',
   '/el-shamadan/locales/ar/footer.json',
   '/el-shamadan/locales/ar/header.json',
   '/el-shamadan/locales/ar/home.json',
   '/el-shamadan/locales/ar/products.json',
+
   '/el-shamadan/locales/en/contact.json',
   '/el-shamadan/locales/en/footer.json',
   '/el-shamadan/locales/en/header.json',
