@@ -11,7 +11,7 @@
 }
 
 .form-input {
-  @apply w-full px-4 py-2 border rounded outline-none focus:ring-purple bg-stone-900 text-white focus:placeholder:opacity-0 placeholder:duration-300 placeholder:opacity-100;
+  @apply w-full px-4 py-2 border rounded outline-none focus:ring-purple bg-stone-900 text-white focus:placeholder:opacity-0 placeholder:duration-300 placeholder:opacity-100 focus:outline-none;
 }
 
 @keyframes stickRotation {
@@ -31,4 +31,8 @@
 
 .form-button {
   @apply bg-purple text-white py-2 px-4 rounded hover:bg-purple/80;
+}
+
+*:focus-visible {
+  outline: 2px solid #eda521;
 }

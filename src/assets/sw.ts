@@ -14,21 +14,10 @@ const revision = 'el-shamadan-static-v8';
 self.addEventListener('install', () => {
   // Forces the waiting service worker to become the active service worker
   self.skipWaiting();
+
   // Unregisters any previous service worker
   self.registration.unregister();
 });
-
-// self.addEventListener('activate', (e) => {
-//   e.waitUntil(
-//     caches.keys().then((cacheNames) =>
-//       Promise.all(
-//         cacheNames.map((cacheName) => {
-//           if (cacheName !== revision) return caches.delete(cacheName);
-//         })
-//       )
-//     )
-//   );
-// });
 
 const repoName = '/el-shamadan';
 // const cacehExpire = 60 * 60 * 24 * 30;
@@ -42,7 +31,7 @@ const path_locale = (locale, file) =>
 const assets_ = {
   pages: ['contact', 'footer', 'header', 'home', 'products', 'giveaway'],
   chars: ['king', 'magician', 'hero', 'joker', 'mafia', 'diva'],
-  folders: ['character', 'packet', 'bag', 'notebook', 'mug'],
+  folders: ['character', 'packet', 'bag', 'notebook', 'mug', 't-shirt'],
   locales: ['en', 'ar'],
   items: [
     'background',

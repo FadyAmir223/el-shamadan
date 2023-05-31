@@ -9,7 +9,7 @@ import { useTitle } from '../../hooks/useTitle';
 import Img from '../../components/img/img.component';
 import CardGroup from '../../components/card-group/card-group.component';
 
-const categories = ['bag', 'notebook', 'mug'];
+const categories = ['t-shirt', 'bag', 'notebook', 'mug'];
 const imgs = ['king', 'mafia', 'diva', 'hero', 'magician'];
 
 const randELement = (list) => list[Math.floor(Math.random() * list.length)];
@@ -34,10 +34,7 @@ const Giveaway = () => {
   const [confetti, setConfetti] = useState(false);
   const [overlay, setOverlay] = useState(false);
   const [activeCard, setActiveCard] = useState(0);
-  const [sound, setSound] = useState({
-    error: false,
-    win: false,
-  });
+  const [sound, setSound] = useState({ error: false, win: false });
   const [isDisabled, setIsDisabled] = useState(false);
   const formRef = useRef(null);
   const [t, i18n] = useTranslation(['giveaway', 'products']);
@@ -150,11 +147,11 @@ const Giveaway = () => {
                 idx !== activeCard ? 'scale-0' : ''
               } ${
                 idx === (activeCard + 1) % categories.length
-                  ? '-translate-x-16 translate-y-24 scale-0'
+                  ? '-translate-x-20 translate-y-24 scale-0'
                   : ''
               } ${
                 idx === (activeCard - 1 + categories.length) % categories.length
-                  ? 'translate-x-16 translate-y-24 scale-0'
+                  ? 'translate-x-20 translate-y-24 scale-0'
                   : ''
               }`}
             >
