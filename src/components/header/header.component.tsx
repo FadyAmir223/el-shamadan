@@ -27,7 +27,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
   return (
     <>
       <main className="relative">
-        <header className="bg-red py-2">
+        <header className="bg-red py-2 h-[60px]">
           <div className="contain flex justify-between items-center">
             <div className="flex justify-between w-[calc(50%+40px)] md:w-1/2">
               <Link to="/">
@@ -72,7 +72,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
                     </button>
                     <div
                       className={`absolute z-50 mt-4 rounded-md shadow-2xl bg-red text-center duration-300 overflow-hidden text-white border-red ${
-                        isOpen ? 'h-[240px] border  ' : 'h-0'
+                        isOpen ? 'rtl:h-[240px] ltr:h-[218px] border  ' : 'h-0'
                       }`}
                     >
                       {waferProducts.map((product) => (

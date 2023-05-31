@@ -1,12 +1,13 @@
 import { useRef, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useTitle } from '../../hooks/useTitle';
 import Confetti from 'react-confetti';
 import ReactHowler from 'react-howler';
+import { FaChevronCircleLeft, FaChevronCircleRight } from 'react-icons/fa';
+
 import style from './giveaway.module.css';
+import { useTitle } from '../../hooks/useTitle';
 import Img from '../../components/img/img.component';
 import CardGroup from '../../components/card-group/card-group.component';
-import { FaChevronCircleLeft, FaChevronCircleRight } from 'react-icons/fa';
 
 const categories = ['bag', 'notebook', 'mug'];
 const imgs = ['king', 'mafia', 'diva', 'hero', 'magician'];
@@ -16,7 +17,8 @@ const randELement = (list) => list[Math.floor(Math.random() * list.length)];
 const imgPath = (category = '', name = '') => {
   if (!(categories && name))
     (category = randELement(categories)), (name = randELement(imgs));
-  return `images/${category}/${name}.png`;
+
+  return `images/${category}/${name}.webp`;
 };
 
 const getCat_Char = (path) => {
@@ -38,9 +40,25 @@ const Giveaway = () => {
   });
   const [isDisabled, setIsDisabled] = useState(false);
   const formRef = useRef(null);
-  const [t] = useTranslation(['giveaway', 'products']);
+  const [t, i18n] = useTranslation(['giveaway', 'products']);
 
   useTitle('giveaway');
+
+  const getPrizeName = () => {
+    const { category, character } = getCat_Char(src);
+
+    const categoryLocale = t(`prize.${category}`);
+    const characterLocale = t(`${character}.name`, {
+      ns: 'products',
+    });
+
+    const str =
+      i18n.dir() === 'ltr'
+        ? `${characterLocale} ${categoryLocale}`
+        : `${categoryLocale} ${characterLocale}`;
+
+    return str;
+  };
 
   const handleSound = (error = false, win = false) => {
     setSound(() => ({
@@ -50,28 +68,30 @@ const Giveaway = () => {
   };
 
   useEffect(() => {
-    for (const category of categories)
-      for (const name of imgs) new Image().src = imgPath(category, name);
+    const isProduction = import.meta.env.PROD;
+
+    if (isProduction)
+      for (const category of categories)
+        for (const name of imgs) new Image().src = imgPath(category, name);
   }, []);
 
   const prizeSelect = () => {
     const loops = 10,
       time_ms = 500;
+
     for (let i = 0; i < loops; i++) {
       setTimeout(function () {
-        const imagePath = imgPath();
         setRotation((prevRotation) => prevRotation + 180);
 
         setTimeout(function () {
-          setSrc(imagePath);
+          setSrc(imgPath());
         }, time_ms / 2);
 
-        if (i === loops - 1) {
+        if (i === loops - 1)
           setTimeout(() => {
             setConfetti(true);
             handleSound(undefined, true);
           }, time_ms);
-        }
       }, (i + 1) * time_ms);
     }
   };
@@ -90,10 +110,8 @@ const Giveaway = () => {
     // const phone = form.phone.value;
     const secret = form.secret.value;
 
-    if (
-      // !(name && email && phone && secret) &&
-      secret === '9999'
-    ) {
+    // !(name && email && phone && secret) &&
+    if (secret === '9999') {
       setOverlay(true);
       prizeSelect();
       form.reset();
@@ -119,7 +137,7 @@ const Giveaway = () => {
 
   return (
     <article className="contain py-6 mx-auto relative">
-      <h1 className="text-yellow text-center mx-auto ltr:font-bold ltr:text-lg rtl:text-2xl center mb-6 max-w-md">
+      <h1 className="text-yellow text-center mx-auto ltr:font-bold ltr:text-lg rtl:text-2xl center mb-6 max-w-md h-7">
         {t('title')}
       </h1>
 
@@ -144,18 +162,18 @@ const Giveaway = () => {
             </span>
           ))}
         </div>
-        <div className="mt-48 mb-8 flex justify-around px-10">
-          <FaChevronCircleRight
-            className={`text-3xl text-yellow hover:text-yellow/80 cursor-pointer ${
-              isDisabled ? 'pointer-events-none' : ''
-            }`}
-            onClick={() => handlePrevNext('next')}
-          />
+        <div className="mt-48 mb-8 flex justify-around rtl:flex-row-reverse px-10">
           <FaChevronCircleLeft
             className={`text-3xl text-yellow hover:text-yellow/80 cursor-pointer ${
               isDisabled ? 'pointer-events-none' : ''
             }`}
             onClick={() => handlePrevNext('prev')}
+          />
+          <FaChevronCircleRight
+            className={`text-3xl text-yellow hover:text-yellow/80 cursor-pointer ${
+              isDisabled ? 'pointer-events-none' : ''
+            }`}
+            onClick={() => handlePrevNext('next')}
           />
         </div>
       </div>
@@ -207,17 +225,12 @@ const Giveaway = () => {
           </div>
           {confetti && (
             <>
-              <span className="absolute top-[20%] text-yellow ltr:text-xl rtl:text-2xl">
-                {`${t(`prize.${getCat_Char(src).category}`)} ${t(
-                  `${getCat_Char(src).character}.name`,
-                  {
-                    ns: 'products',
-                  }
-                )}`}
+              <span className="absolute top-[15%] text-yellow ltr:text-xl rtl:text-2xl ltr:capitalize ltr:font-bold">
+                {getPrizeName()}
               </span>
 
               <button
-                className={`form-button absolute bottom-[13%] text-xl`}
+                className="form-button absolute bottom-[10%] text-xl ltr:capitalize"
                 onClick={handleBack}
               >
                 {t('back')}

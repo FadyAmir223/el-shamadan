@@ -41,9 +41,11 @@ export default defineConfig({
     }),
 
     VitePWA({
-      registerType: 'autoUpdate',
+      registerType: 'prompt',
       strategies: 'injectManifest',
+      srcDir: 'src/assets',
       filename: 'sw.ts',
+
       manifest: {
         name: 'el-shamadan',
         short_name: 'el-shamadan',
