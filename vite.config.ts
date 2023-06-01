@@ -6,11 +6,17 @@ import Unfonts from 'unplugin-fonts/vite';
 // import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import webp from 'vite-plugin-webp';
 import { join } from 'path';
+// import legacy from '@vitejs/plugin-legacy';
 
 export default defineConfig({
   plugins: [
     react(),
     createHtmlPlugin({ minify: true }),
+
+    // legacy({
+    // targets: ['defaults', 'not IE 11'],
+    // modernPolyfills: true,
+    // }),
 
     webp({
       onlyWebp: join(__dirname, 'public/images'),

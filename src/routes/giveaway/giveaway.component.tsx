@@ -1,4 +1,8 @@
-import { useRef, useState, useEffect } from 'react';
+import {
+  useRef,
+  useReducer,
+  // useEffect
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import Confetti from 'react-confetti';
 import ReactHowler from 'react-howler';
@@ -28,14 +32,68 @@ const getCat_Char = (path) => {
   return { category, character };
 };
 
+// reducer
+
+type State = {
+  rotation: number;
+  src: string;
+  confetti: boolean;
+  overlay: boolean;
+  activeCard: number;
+  sound: { error: boolean; win: boolean };
+  isDisabled: boolean;
+};
+
+type Action =
+  | { type: 'SET_ROTATION'; payload: number }
+  | { type: 'SET_SRC' }
+  | { type: 'SET_CONFETTI' }
+  | { type: 'SET_OVERLAY' }
+  | { type: 'SET_ACTIVE_CARD'; payload: number }
+  | { type: 'SET_SOUND'; payload: { error: boolean; win: boolean } }
+  | { type: 'SET_DISABLED'; payload: boolean };
+
+const initialState: State = {
+  rotation: 0,
+  src: imgPath(),
+  confetti: false,
+  overlay: false,
+  activeCard: 0,
+  sound: { error: false, win: false },
+  isDisabled: false,
+};
+
+const reducer = (state: State, action: Action): State => {
+  switch (action.type) {
+    case 'SET_ROTATION':
+      return { ...state, rotation: action.payload };
+    case 'SET_SRC': {
+      let newPath;
+      do {
+        newPath = imgPath();
+      } while (state.src === newPath);
+      return { ...state, src: newPath };
+    }
+    case 'SET_CONFETTI':
+      return { ...state, confetti: !state.confetti };
+    case 'SET_OVERLAY':
+      return { ...state, overlay: !state.overlay };
+    case 'SET_ACTIVE_CARD':
+      return { ...state, activeCard: action.payload };
+    case 'SET_SOUND':
+      return { ...state, sound: action.payload };
+    case 'SET_DISABLED':
+      return { ...state, isDisabled: action.payload };
+    default:
+      return state;
+  }
+};
+
 const Giveaway = () => {
-  const [rotation, setRotation] = useState(0);
-  const [src, setSrc] = useState(imgPath);
-  const [confetti, setConfetti] = useState(false);
-  const [overlay, setOverlay] = useState(false);
-  const [activeCard, setActiveCard] = useState(0);
-  const [sound, setSound] = useState({ error: false, win: false });
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { rotation, src, confetti, overlay, activeCard, sound, isDisabled } =
+    state;
+
   const formRef = useRef(null);
   const [t, i18n] = useTranslation(['giveaway', 'products']);
 
@@ -58,45 +116,33 @@ const Giveaway = () => {
   };
 
   const handleSound = (error = false, win = false) => {
-    setSound(() => ({
-      error,
-      win,
-    }));
+    dispatch({ type: 'SET_SOUND', payload: { error, win } });
   };
 
-  useEffect(() => {
-    const isProduction = import.meta.env.PROD;
-
-    if (isProduction)
-      for (const category of categories)
-        for (const name of imgs) new Image().src = imgPath(category, name);
-  }, []);
-
-  //////////////////////////////
+  // useEffect(() => {
+  //   const isProduction = import.meta.env.PROD;
+  //   if (isProduction)
+  //     for (const category of categories)
+  //       for (const name of imgs) new Image().src = imgPath(category, name);
+  // }, []);
 
   const prizeSelect = () => {
     const loops = 10,
       time_ms = 500;
 
     setTimeout(() => {
-      setRotation((prevRotation) => prevRotation + 180 * 10);
+      dispatch({ type: 'SET_ROTATION', payload: state.rotation + 180 * 10 });
     }, time_ms);
 
     for (let i = 0; i < loops; i++) {
       setTimeout(() => {
         setTimeout(() => {
-          setSrc((prevPath) => {
-            let newPath;
-            do {
-              newPath = imgPath();
-            } while (prevPath === newPath);
-            return newPath;
-          });
+          dispatch({ type: 'SET_SRC' });
         }, time_ms / 2);
 
         if (i === loops - 1)
           setTimeout(() => {
-            setConfetti(true);
+            dispatch({ type: 'SET_CONFETTI' });
             handleSound(undefined, true);
           }, time_ms);
       }, (i + 1) * time_ms);
@@ -104,8 +150,8 @@ const Giveaway = () => {
   };
 
   const handleBack = () => {
-    setConfetti(false);
-    setOverlay(false);
+    dispatch({ type: 'SET_CONFETTI' });
+    dispatch({ type: 'SET_OVERLAY' });
   };
 
   const handleSubmit = (e) => {
@@ -119,27 +165,24 @@ const Giveaway = () => {
 
     // !(name && email && phone && secret) &&
     if (secret === '9999') {
-      setOverlay(true);
+      dispatch({ type: 'SET_OVERLAY' });
       prizeSelect();
       form.reset();
     } else
-      setSound((prevSound) => ({
-        ...prevSound,
-        error: true,
-      }));
+      dispatch({ type: 'SET_SOUND', payload: { error: true, win: false } });
   };
 
-  const handlePrevNext = (direction) => {
-    setIsDisabled(true);
+  const handlePrevNext = (direction: 'prev' | 'next') => {
+    dispatch({ type: 'SET_DISABLED', payload: true });
     setTimeout(() => {
-      setIsDisabled(false);
+      dispatch({ type: 'SET_DISABLED', payload: false });
     }, 300);
 
     const nextIdx =
       direction === 'next'
-        ? (activeCard + 1) % categories.length
-        : (activeCard - 1 + categories.length) % categories.length;
-    setActiveCard(nextIdx);
+        ? (state.activeCard + 1) % categories.length
+        : (state.activeCard - 1 + categories.length) % categories.length;
+    dispatch({ type: 'SET_ACTIVE_CARD', payload: nextIdx });
   };
 
   return (
@@ -223,10 +266,10 @@ const Giveaway = () => {
               <div
                 className={`${style.front} bg-purple grid place-items-center`}
               >
-                <Img src={src} alt="" />
+                <Img key={src} src={src} alt="" />
               </div>
               <div className={`${style.back} bg-red grid place-items-center`}>
-                <Img src={src} key={src} alt="" />
+                <Img key={src} src={src} alt="" />
               </div>
             </div>
           </div>

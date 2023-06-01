@@ -20,4 +20,4 @@ const resizeImages = async (folderPath, targetWidth) => {
   }
 };
 
-resizeImages('./public/images/packet', 2000);
+resizeImages('./public/images/bag', 800);
