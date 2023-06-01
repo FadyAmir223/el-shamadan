@@ -13,11 +13,11 @@ export default defineConfig({
     react(),
     createHtmlPlugin({ minify: true }),
 
-    legacy({
-      targets: ['ie >= 11'], // 'defaults', 'not IE 11'
-      polyfills: ['es.promise', 'es.symbol'],
-      // modernPolyfills: true,
-    }),
+    // legacy({
+    //   targets: ['ie >= 11'], // 'defaults', 'not IE 11'
+    //   polyfills: ['es.promise', 'es.symbol'],
+    //   modernPolyfills: true,
+    // }),
 
     webp({
       onlyWebp: join(__dirname, 'public/images'),

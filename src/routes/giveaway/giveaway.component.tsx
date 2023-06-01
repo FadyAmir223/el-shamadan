@@ -1,37 +1,18 @@
-import { useRef, useReducer } from 'react';
+import { useRef, useReducer, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
 import ReactHowler from 'react-howler';
 import { FaChevronCircleLeft, FaChevronCircleRight } from 'react-icons/fa';
 
 import { useTitle } from '../../hooks/useTitle';
 import CardGroup from '../../components/card-group/card-group.component';
-import Lottery from '../../components/lottery/lottery.component';
+
+const Lottery = lazy(
+  () => import('../../components/lottery/lottery.component')
+);
 
 const categories = ['t-shirt', 'bag', 'notebook', 'mug'];
-const imgs = ['king', 'mafia', 'diva', 'hero', 'magician'];
-
-const randELement = (list) => list[Math.floor(Math.random() * list.length)];
-
-const imgPath = (category = '', name = '') => {
-  if (!(categories && name))
-    (category = randELement(categories)), (name = randELement(imgs));
-
-  return `images/${category}/${name}.webp`;
-};
-
-const getCat_Char = (path) => {
-  const x = path.split('/');
-  const category = x[1];
-  const character = x[2].split('.')[0];
-  return { category, character };
-};
-
-// reducer
 
 type State = {
-  rotation: number;
-  src: string;
-  confetti: boolean;
   overlay: boolean;
   activeCard: number;
   sound: { error: boolean; win: boolean };
@@ -40,7 +21,6 @@ type State = {
 
 type Action =
   | { type: 'SET_ROTATION'; payload: number }
-  | { type: 'SET_SRC' }
   | { type: 'SET_CONFETTI' }
   | { type: 'SET_OVERLAY' }
   | { type: 'SET_ACTIVE_CARD'; payload: number }
@@ -48,9 +28,6 @@ type Action =
   | { type: 'SET_DISABLED'; payload: boolean };
 
 const initialState: State = {
-  rotation: 0,
-  src: imgPath(),
-  confetti: false,
   overlay: false,
   activeCard: 0,
   sound: { error: false, win: false },
@@ -59,17 +36,6 @@ const initialState: State = {
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case 'SET_ROTATION':
-      return { ...state, rotation: action.payload };
-    case 'SET_SRC': {
-      let newPath;
-      do {
-        newPath = imgPath();
-      } while (state.src === newPath);
-      return { ...state, src: newPath };
-    }
-    case 'SET_CONFETTI':
-      return { ...state, confetti: !state.confetti };
     case 'SET_OVERLAY':
       return { ...state, overlay: !state.overlay };
     case 'SET_ACTIVE_CARD':
@@ -85,55 +51,18 @@ const reducer = (state: State, action: Action): State => {
 
 const Giveaway = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { rotation, src, confetti, overlay, activeCard, sound, isDisabled } =
-    state;
+  const { overlay, activeCard, sound, isDisabled } = state;
 
   const formRef = useRef(null);
-  const [t, i18n] = useTranslation(['giveaway', 'products']);
+  const [t] = useTranslation(['giveaway', 'products']);
 
   useTitle('giveaway');
-
-  const getPrizeName = () => {
-    const { category, character } = getCat_Char(src);
-
-    const categoryLocale = t(`prize.${category}`);
-    const characterLocale = t(`${character}.name`, {
-      ns: 'products',
-    });
-
-    const str =
-      i18n.dir() === 'ltr'
-        ? `${characterLocale} ${categoryLocale}`
-        : `${categoryLocale} ${characterLocale}`;
-
-    return str;
-  };
 
   const handleSound = (error = false, win = false) => {
     dispatch({ type: 'SET_SOUND', payload: { error, win } });
   };
 
-  const prizeSelect = () => {
-    const loops = 10,
-      time_ms = 500;
-
-    setTimeout(() => {
-      dispatch({ type: 'SET_ROTATION', payload: state.rotation + 180 * 10 });
-    }, time_ms);
-
-    for (let i = 0; i < loops; i++)
-      setTimeout(() => {
-        dispatch({ type: 'SET_SRC' });
-      }, (i + 1) * time_ms + time_ms / 2);
-
-    setTimeout(() => {
-      dispatch({ type: 'SET_CONFETTI' });
-      handleSound(undefined, true);
-    }, time_ms + loops * time_ms);
-  };
-
-  const handleBack = () => {
-    dispatch({ type: 'SET_CONFETTI' });
+  const setOverlay = () => {
     dispatch({ type: 'SET_OVERLAY' });
   };
 
@@ -147,9 +76,8 @@ const Giveaway = () => {
     const secret = form.secret.value;
 
     // !(name && email && phone && secret) &&
-    if (secret === '9999') {
+    if (secret === '9999' || secret === '٩٩٩٩') {
       dispatch({ type: 'SET_OVERLAY' });
-      prizeSelect();
       form.reset();
     } else
       dispatch({ type: 'SET_SOUND', payload: { error: true, win: false } });
@@ -229,12 +157,9 @@ const Giveaway = () => {
 
       {overlay && (
         <Lottery
-          rotation={rotation}
-          src={src}
-          confetti={confetti}
-          getPrizeName={getPrizeName}
-          handleBack={handleBack}
-          t={t}
+          categories={categories}
+          handleSound={handleSound}
+          setOverlay={setOverlay}
         />
       )}
 
