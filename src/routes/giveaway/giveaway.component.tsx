@@ -134,19 +134,15 @@ const Giveaway = () => {
       dispatch({ type: 'SET_ROTATION', payload: state.rotation + 180 * 10 });
     }, time_ms);
 
-    for (let i = 0; i < loops; i++) {
+    for (let i = 0; i < loops; i++)
       setTimeout(() => {
-        setTimeout(() => {
-          dispatch({ type: 'SET_SRC' });
-        }, time_ms / 2);
+        dispatch({ type: 'SET_SRC' });
+      }, (i + 1) * time_ms + time_ms / 2);
 
-        if (i === loops - 1)
-          setTimeout(() => {
-            dispatch({ type: 'SET_CONFETTI' });
-            handleSound(undefined, true);
-          }, time_ms);
-      }, (i + 1) * time_ms);
-    }
+    setTimeout(() => {
+      dispatch({ type: 'SET_CONFETTI' });
+      handleSound(undefined, true);
+    }, time_ms + loops * time_ms);
   };
 
   const handleBack = () => {
