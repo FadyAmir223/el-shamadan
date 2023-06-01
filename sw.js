@@ -1341,7 +1341,7 @@ class v {
     this.cacheWillUpdate = async ({ response: t }) => this._cacheableResponse.isResponseCacheable(t) ? t : null, this._cacheableResponse = new he(e);
   }
 }
-I([{"revision":null,"url":"assets/all-products.component-4b189b5b.js"},{"revision":null,"url":"assets/contact-us.component-324f34b4.js"},{"revision":null,"url":"assets/error.component-e45b1e17.js"},{"revision":null,"url":"assets/footer.component-10e82ce2.js"},{"revision":null,"url":"assets/giveaway.component-8656e9e0.js"},{"revision":null,"url":"assets/giveaway.component-afd6e19f.css"},{"revision":null,"url":"assets/home.component-2f95f98f.js"},{"revision":null,"url":"assets/index-9c87fa3e.js"},{"revision":null,"url":"assets/index-ff045282.css"},{"revision":null,"url":"assets/product-card.component-e623d44d.js"},{"revision":null,"url":"assets/single-product.component-bacb0635.js"},{"revision":null,"url":"assets/useTitle-19440635.js"},{"revision":null,"url":"assets/video.component-0b59ecf4.js"},{"revision":"59f6c1e0b262667099eae27d89c41ad1","url":"index.html"},{"revision":"ef31508ea54c9805220261c6bd8628a1","url":"registerSW.js"},{"revision":"d5f8d8e2cd559ca3adb009856213ce35","url":"pwa-192x192.png"},{"revision":"1d809b42a4d8399ed3c3470aedfbc3e1","url":"pwa-512x512.png"},{"revision":"1e0059c966448a9cec3e100a31e57ce9","url":"manifest.webmanifest"}]);
+I([{"revision":null,"url":"assets/all-products.component-6329fc67.js"},{"revision":null,"url":"assets/contact-us.component-3a989f7e.js"},{"revision":null,"url":"assets/error.component-fd2caee1.js"},{"revision":null,"url":"assets/footer.component-1dd9b307.js"},{"revision":null,"url":"assets/giveaway.component-2dea6eb7.js"},{"revision":null,"url":"assets/home.component-4f4a252d.js"},{"revision":null,"url":"assets/index-23e35f14.css"},{"revision":null,"url":"assets/index-fa2bfdc2.js"},{"revision":null,"url":"assets/lottery.component-747c40cd.js"},{"revision":null,"url":"assets/lottery.component-a8f29462.css"},{"revision":null,"url":"assets/product-card.component-f3e47f61.js"},{"revision":null,"url":"assets/single-product.component-54010fde.js"},{"revision":null,"url":"assets/useTitle-47fc9d34.js"},{"revision":null,"url":"assets/video.component-0ee7651a.js"},{"revision":"ac81bb1aafd56b919e16c75ba85735b3","url":"index.html"},{"revision":"ef31508ea54c9805220261c6bd8628a1","url":"registerSW.js"},{"revision":"d5f8d8e2cd559ca3adb009856213ce35","url":"pwa-192x192.png"},{"revision":"1d809b42a4d8399ed3c3470aedfbc3e1","url":"pwa-512x512.png"},{"revision":"1e0059c966448a9cec3e100a31e57ce9","url":"manifest.webmanifest"}]);
 const ue = "el-shamadan-static-v8";
 self.addEventListener("install", () => {
   self.skipWaiting(), self.registration.unregister();
@@ -1349,7 +1349,7 @@ self.addEventListener("install", () => {
 const C = "/el-shamadan", E = (a, e) => `${C}/images/${a}/${e}.webp`, fe = (a, e) => `${C}/locales/${a}/${e}.json`, w = {
   pages: ["contact", "footer", "header", "home", "products", "giveaway"],
   chars: ["king", "magician", "hero", "joker", "mafia", "diva"],
-  folders: ["character", "packet", "bag", "notebook", "mug"],
+  folders: ["character", "packet", "bag", "notebook", "mug", "t-shirt"],
   locales: ["en", "ar"],
   items: [
     "background",

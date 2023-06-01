@@ -1,5 +1,5 @@
 {
-  "title": "Your Chance to Win in Our Giveaway!!",
+  "title": "Your Chance to Win in Our Giveaway!",
   "name": "name",
   "email": "email",
   "phone": "phone",
@@ -16,6 +16,7 @@
   "prize": {
     "bag": "bag",
     "notebook": "notebook",
-    "mug": "mug"
+    "mug": "mug",
+    "t-shirt": "t-shirt"
   }
 }
