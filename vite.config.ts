@@ -3,14 +3,22 @@ import react from '@vitejs/plugin-react';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import { VitePWA } from 'vite-plugin-pwa';
 import Unfonts from 'unplugin-fonts/vite';
-// import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
-import webp from 'vite-plugin-webp';
 import { join } from 'path';
+import legacy from '@vitejs/plugin-legacy';
+import webp from 'vite-plugin-webp';
+// import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
 export default defineConfig({
   plugins: [
     react(),
+
     createHtmlPlugin({ minify: true }),
+
+    // ViteImageOptimizer({
+    //   png: {
+    //     quality: 10,
+    //   },
+    // }),
 
     webp({
       onlyWebp: join(__dirname, 'public/images'),
@@ -20,11 +28,9 @@ export default defineConfig({
       },
     }),
 
-    // ViteImageOptimizer({
-    //   png: {
-    //     quality: 10,
-    //   },
-    // }),
+    legacy({
+      targets: ['defaults', 'not IE 11'],
+    }),
 
     Unfonts({
       custom: {
@@ -41,8 +47,11 @@ export default defineConfig({
     }),
 
     VitePWA({
-      registerType: 'autoUpdate',
+      registerType: 'prompt',
       strategies: 'injectManifest',
+      srcDir: 'src/assets',
+      filename: 'sw.ts',
+
       manifest: {
         name: 'el-shamadan',
         short_name: 'el-shamadan',

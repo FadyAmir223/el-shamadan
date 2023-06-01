@@ -61,10 +61,7 @@ const ContactUs = () => {
               rows={5}
             ></textarea>
             <p className="h-8 text-red">{msg}</p>
-            <button
-              type="submit"
-              className="bg-purple text-white py-2 px-4 rounded hover:bg-purple/80"
-            >
+            <button type="submit" className="form-button">
               {t('submit')}
             </button>
           </form>

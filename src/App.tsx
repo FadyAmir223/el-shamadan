@@ -1,9 +1,10 @@
 import { lazy, useRef, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-
-import Header from './components/header/header.component';
+import ReactHowler from 'react-howler';
 import { useTranslation } from 'react-i18next';
 import Img from './components/img/img.component';
+
+import Header from './components/header/header.component';
 
 const Home = lazy(() => import('./routes/home/home.component'));
 const AllProducts = lazy(
@@ -16,36 +17,31 @@ const Video = lazy(() => import('./routes/video/video.component'));
 const ContactUs = lazy(
   () => import('./routes/contact-us/contact-us.component')
 );
+const Giveaway = lazy(() => import('./routes/giveaway/giveaway.component'));
 const Error = lazy(() => import('./routes/error/error.component'));
 
 const App = () => {
-  const [, i18n] = useTranslation('header');
   const [stickPosition, setStickPosition] = useState(null);
   const [isSoundPlaying, setSoundPlaying] = useState(false);
+  const [isOpen, setOpen] = useState(false);
   const [isMuted, setMuted] = useState(
     localStorage.isMuted === 'true' || false
   );
-  const [isOpen, setOpen] = useState(false);
+
   const refHeader = useRef(null);
+  const [, i18n] = useTranslation('header');
 
-  const runAudio = () => {
-    new Audio('sounds/magic.mp3').play();
-    setSoundPlaying(true);
-  };
-
-  const handleSoundPlaying = () => {
-    setSoundPlaying(false);
-  };
+  document.body.dir = i18n.dir();
 
   const handleClick = async (e) => {
     // mute toggle
     if (refHeader.current && refHeader.current.contains(e.target)) {
-      if (isMuted) runAudio();
+      if (isMuted) setSoundPlaying(true);
       setMuted((prevMuted) => {
         localStorage.isMuted = !prevMuted;
         return !prevMuted;
       });
-    } else if (!isMuted) runAudio();
+    } else if (!isMuted) setSoundPlaying(true);
 
     // stick position
     const { clientX, clientY } = e;
@@ -65,20 +61,20 @@ const App = () => {
 
   return (
     <div
-      dir={i18n.dir()}
       className="relative bg-black/90 min-h-screen overflow-hidden"
       onClick={handleClick}
     >
-      {isSoundPlaying && !isMuted && (
-        <audio autoPlay onEnded={handleSoundPlaying} />
-      )}
+      <ReactHowler
+        src="sounds/magic.mp3"
+        playing={isSoundPlaying && !isMuted}
+      />
 
       <div className="rtl:font-[abdo] ltr:font-[roboto]">
         {stickPosition && (
           <Img
-            src="images/stick-left-64.png"
+            src="images/item/stick-left-64.png"
             alt="stick"
-            className="absolute z-30 will-change-transform animate-[stickRotation_ease-out_0.6s]"
+            className="absolute z-30 will-change-transform animate-[stickRotation_ease-out_0.6s] select-none"
             style={{
               top: stickPosition.y - 50,
               left: stickPosition.x - 72,
@@ -89,7 +85,7 @@ const App = () => {
         <div
           className="absolute top-0 left-0 w-full h-full opacity-[15%]"
           style={{
-            backgroundImage: 'url("images/background.webp")',
+            backgroundImage: 'url("images/item/background.webp")',
             backgroundSize: '100px',
           }}
         ></div>
@@ -107,7 +103,8 @@ const App = () => {
             <Route path="/products" element={<AllProducts />} />
             <Route path="/products/:productName" element={<SingleProduct />} />
             <Route path="/video" element={<Video />} />
-            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/giveaway" element={<Giveaway />} />
             <Route path="/*" element={<Error />} />
           </Routes>
         </div>

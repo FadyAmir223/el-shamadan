@@ -1,0 +1,16 @@
+.card {
+  perspective: 500px;
+}
+
+.content {
+  transform-style: preserve-3d;
+}
+
+.front,
+.back {
+  backface-visibility: hidden;
+}
+
+.back {
+  transform: rotateY(180deg);
+}

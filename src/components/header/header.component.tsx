@@ -6,10 +6,11 @@ import { FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
 import { StaticContext } from '../../context/static.context';
 import { useTranslation } from 'react-i18next';
 import Img from '../img/img.component';
+import Modal from '../modal/modal';
 
 const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
   const { waferProducts } = useContext(StaticContext);
-  const [t, i18n] = useTranslation(['header', 'products']);
+  const [t, i18n] = useTranslation('header');
   const nav = t('nav', {
     returnObjects: true,
   }) as { name: string; link: string }[];
@@ -27,11 +28,15 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
   return (
     <>
       <main className="relative">
-        <header className="bg-red py-2">
+        <header className="bg-red py-2 h-[60px]">
           <div className="contain flex justify-between items-center">
             <div className="flex justify-between w-[calc(50%+40px)] md:w-1/2">
               <Link to="/">
-                <Img src="images/logo.png" alt="logo" className="w-8" />
+                <Img
+                  src="images/logo.png"
+                  alt="logo"
+                  className="w-8 select-none"
+                />
               </Link>
               <div className="flex items-center gap-x-3">
                 <button
@@ -56,7 +61,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
             >
               <FiMenu />
             </button>
-            <nav className="capitalize tracking-wider hidden md:flex">
+            <nav className="capitalize tracking-wider hidden md:flex ltr:lg:text-sm">
               {nav.map((item) =>
                 ['products', 'منتجاتنا'].includes(item.name) ? (
                   <div className="relative" key={item.link}>
@@ -68,7 +73,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
                     </button>
                     <div
                       className={`absolute z-50 mt-4 rounded-md shadow-2xl bg-red text-center duration-300 overflow-hidden text-white border-red ${
-                        isOpen ? 'h-[200px] border  ' : 'h-0'
+                        isOpen ? 'rtl:h-[240px] ltr:h-[218px] border  ' : 'h-0'
                       }`}
                     >
                       {waferProducts.map((product) => (
@@ -97,23 +102,25 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
           </div>
         </header>
         {isOpen && (
-          <div
-            className="fixed z-50 top-0 left-0 w-full h-screen bg-black py-14 overflow-hidden md:hidden"
-            onClick={() => setIsOpen(false)}
-          >
-            <FiX className="text-2xl cursor-pointer absolute top-5 left-5 text-white" />
-            <nav className="contain flex flex-col text-white">
-              {nav.map((item) => (
-                <Link
-                  key={item.link}
-                  to={`/${item.link.replace(' ', '-')}`}
-                  className="text-center uppercase hover:text-red border-b border-b-red last:border-b-0 py-4"
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </nav>
-          </div>
+          <Modal>
+            <div
+              className="fixed z-50 top-0 left-0 w-full h-screen bg-black py-14 overflow-hidden md:hidden"
+              onClick={() => setIsOpen(false)}
+            >
+              <FiX className="text-2xl cursor-pointer absolute top-5 left-5 text-white" />
+              <nav className="contain flex flex-col text-white">
+                {nav.map((item) => (
+                  <Link
+                    key={item.link}
+                    to={`/${item.link.replace(' ', '-')}`}
+                    className="text-center uppercase hover:text-red border-b border-b-red last:border-b-0 py-4"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+          </Modal>
         )}
       </main>
     </>
