@@ -9,7 +9,7 @@ declare const self: any;
 
 precacheAndRoute(self.__WB_MANIFEST);
 
-const revision = 'el-shamadan-static-v12';
+const revision = 'el-shamadan-static-v14';
 
 self.addEventListener('install', () => {
   // Forces the waiting service worker to become the active service worker
