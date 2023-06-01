@@ -72,16 +72,26 @@ const Giveaway = () => {
         for (const name of imgs) new Image().src = imgPath(category, name);
   }, []);
 
+  //////////////////////////////
+
   const prizeSelect = () => {
     const loops = 10,
       time_ms = 500;
 
-    for (let i = 0; i < loops; i++) {
-      setTimeout(function () {
-        setRotation((prevRotation) => prevRotation + 180);
+    setTimeout(() => {
+      setRotation((prevRotation) => prevRotation + 180 * 10);
+    }, time_ms);
 
-        setTimeout(function () {
-          setSrc(imgPath());
+    for (let i = 0; i < loops; i++) {
+      setTimeout(() => {
+        setTimeout(() => {
+          setSrc((prevPath) => {
+            let newPath;
+            do {
+              newPath = imgPath();
+            } while (prevPath === newPath);
+            return newPath;
+          });
         }, time_ms / 2);
 
         if (i === loops - 1)
@@ -205,7 +215,7 @@ const Giveaway = () => {
             className={`${style.card} w-52 aspect-[5/7] float-left select-none`}
           >
             <div
-              className={`${style.content} absolute w-full h-full transition-transform ease-linear duration-500`}
+              className={`${style.content} absolute w-full h-full transition-transform ease-linear duration-[5s]`}
               style={{
                 transform: `rotateY(${rotation}deg)`,
               }}
