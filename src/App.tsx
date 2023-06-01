@@ -24,11 +24,13 @@ const App = () => {
   const [, i18n] = useTranslation('header');
   const [stickPosition, setStickPosition] = useState(null);
   const [isSoundPlaying, setSoundPlaying] = useState(false);
+  const [isOpen, setOpen] = useState(false);
   const [isMuted, setMuted] = useState(
     localStorage.isMuted === 'true' || false
   );
-  const [isOpen, setOpen] = useState(false);
+
   const refHeader = useRef(null);
+  document.body.dir = i18n.dir();
 
   const handleClick = async (e) => {
     // mute toggle
@@ -58,7 +60,6 @@ const App = () => {
 
   return (
     <div
-      dir={i18n.dir()}
       className="relative bg-black/90 min-h-screen overflow-hidden"
       onClick={handleClick}
     >

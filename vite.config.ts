@@ -13,11 +13,12 @@ export default defineConfig({
     react(),
     createHtmlPlugin({ minify: true }),
 
-    // legacy({
-    //   targets: ['ie >= 11'], // 'defaults', 'not IE 11'
-    //   polyfills: ['es.promise', 'es.symbol'],
-    //   modernPolyfills: true,
-    // }),
+    legacy({
+      targets: ['Chrome >= 49', 'Firefox >= 78', 'Safari >= 14', 'Edge >= 88'],
+      // 'defaults', 'not IE 11'
+      // polyfills: ['es.promise', 'es.symbol'],
+      // modernPolyfills: true,
+    }),
 
     webp({
       onlyWebp: join(__dirname, 'public/images'),
@@ -79,6 +80,7 @@ export default defineConfig({
   ],
   build: {
     emptyOutDir: true,
+    target: 'es2022',
   },
   base: '/el-shamadan/',
 });
