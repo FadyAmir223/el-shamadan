@@ -96,10 +96,14 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
               transform: `rotateY(${rotation}deg)`,
             }}
           >
-            <div className={`${style.front} bg-purple grid place-items-center`}>
+            <div
+              className={`${style.front} card-side bg-purple grid place-items-center`}
+            >
               <Img key={src} src={src} alt="" />
             </div>
-            <div className={`${style.back} bg-red grid place-items-center`}>
+            <div
+              className={`${style.back} card-side bg-red grid place-items-center`}
+            >
               <Img key={src} src={src} alt="" />
             </div>
           </div>

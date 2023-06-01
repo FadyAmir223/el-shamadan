@@ -1,10 +1,10 @@
 import { lazy, useRef, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import ReactHowler from 'react-howler';
-
-import Header from './components/header/header.component';
 import { useTranslation } from 'react-i18next';
 import Img from './components/img/img.component';
+
+import Header from './components/header/header.component';
 
 const Home = lazy(() => import('./routes/home/home.component'));
 const AllProducts = lazy(
@@ -21,7 +21,6 @@ const Giveaway = lazy(() => import('./routes/giveaway/giveaway.component'));
 const Error = lazy(() => import('./routes/error/error.component'));
 
 const App = () => {
-  const [, i18n] = useTranslation('header');
   const [stickPosition, setStickPosition] = useState(null);
   const [isSoundPlaying, setSoundPlaying] = useState(false);
   const [isOpen, setOpen] = useState(false);
@@ -30,6 +29,8 @@ const App = () => {
   );
 
   const refHeader = useRef(null);
+  const [, i18n] = useTranslation('header');
+
   document.body.dir = i18n.dir();
 
   const handleClick = async (e) => {

@@ -6,6 +6,7 @@ import { FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
 import { StaticContext } from '../../context/static.context';
 import { useTranslation } from 'react-i18next';
 import Img from '../img/img.component';
+import Modal from '../modal/modal';
 
 const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
   const { waferProducts } = useContext(StaticContext);
@@ -60,7 +61,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
             >
               <FiMenu />
             </button>
-            <nav className="capitalize tracking-wider hidden md:flex ltr:text-sm">
+            <nav className="capitalize tracking-wider hidden md:flex ltr:lg:text-sm">
               {nav.map((item) =>
                 ['products', 'منتجاتنا'].includes(item.name) ? (
                   <div className="relative" key={item.link}>
@@ -101,23 +102,25 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
           </div>
         </header>
         {isOpen && (
-          <div
-            className="fixed z-50 top-0 left-0 w-full h-screen bg-black py-14 overflow-hidden md:hidden"
-            onClick={() => setIsOpen(false)}
-          >
-            <FiX className="text-2xl cursor-pointer absolute top-5 left-5 text-white" />
-            <nav className="contain flex flex-col text-white">
-              {nav.map((item) => (
-                <Link
-                  key={item.link}
-                  to={`/${item.link.replace(' ', '-')}`}
-                  className="text-center uppercase hover:text-red border-b border-b-red last:border-b-0 py-4"
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </nav>
-          </div>
+          <Modal>
+            <div
+              className="fixed z-50 top-0 left-0 w-full h-screen bg-black py-14 overflow-hidden md:hidden"
+              onClick={() => setIsOpen(false)}
+            >
+              <FiX className="text-2xl cursor-pointer absolute top-5 left-5 text-white" />
+              <nav className="contain flex flex-col text-white">
+                {nav.map((item) => (
+                  <Link
+                    key={item.link}
+                    to={`/${item.link.replace(' ', '-')}`}
+                    className="text-center uppercase hover:text-red border-b border-b-red last:border-b-0 py-4"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+          </Modal>
         )}
       </main>
     </>
