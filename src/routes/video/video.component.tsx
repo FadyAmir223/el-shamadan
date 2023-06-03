@@ -8,7 +8,7 @@ const Video: React.FC = () => {
 
   return (
     <article className="relative min-h-[calc(100vh-66px)] py-6">
-      <img src="images/logo.webp" alt="logo" className="pb-6 w-16 mx-auto" />
+      <img src="images/logo.webp" alt="logo" className="pb-6 h-24 mx-auto" />
       <div className="contain">
         <video
           ref={videoRef}
