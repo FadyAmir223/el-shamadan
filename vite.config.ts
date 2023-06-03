@@ -25,18 +25,17 @@ export default defineConfig({
     //   },
     // }),
 
+    // legacy({
+    //   targets: ['defaults', 'not IE 11'],
+    // }),
+
     webp({
       onlyWebp: join(__dirname, 'public/images'),
       sharpOptions: {
         quality: 70,
         force: true,
       },
-      // outputDir: join(__dirname, 'public/images'),
     }),
-
-    // legacy({
-    //   targets: ['defaults', 'not IE 11'],
-    // }),
 
     Unfonts({
       custom: {

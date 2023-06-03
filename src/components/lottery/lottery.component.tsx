@@ -22,10 +22,19 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
     return `images/${category}/${name}.webp`;
   };
 
-  const [src, setSrc] = useState(imgPath());
+  const randSrc = (prevSrc) => {
+    let newPath;
+    do {
+      newPath = imgPath();
+    } while (prevSrc === newPath);
+    return newPath;
+  };
+
+  const [srcFace, setSrcFace] = useState(imgPath());
+  const [srcBack, setSrcBack] = useState(randSrc(srcFace));
+
   const [rotation, setRotation] = useState(0);
   const [confetti, setConfetti] = useState(false);
-  const [visibleSrc, setVisibleSrc] = useState(src);
 
   const [t, i18n] = useTranslation(['giveaway', 'products']);
 
@@ -35,7 +44,7 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
   };
 
   const getPrizeName = () => {
-    const { category, character } = getCat_Char(visibleSrc);
+    const { category, character } = getCat_Char(srcBack);
 
     const categoryLocale = t(`prize.${category}`);
     const characterLocale = t(`${character}.name`, {
@@ -51,33 +60,25 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
   };
 
   useEffect(() => {
-    const loops = 10;
-    const time_ms = 500;
+    const loops = 5;
+    const init_ms = 1000;
+    const duration_ms = 500;
 
     setTimeout(() => {
       setRotation(180 * 10);
-    }, time_ms);
+    }, init_ms);
 
-    for (let i = 1; i < loops; i++)
+    for (let i = 0; i < loops; i++)
       setTimeout(() => {
-        setSrc(() => {
-          let newPath;
-          do {
-            newPath = imgPath();
-          } while (visibleSrc === newPath);
-          return newPath;
-        });
-      }, (i + 1) * time_ms + time_ms / 2);
+        setSrcFace(randSrc(srcBack));
+        setSrcBack(randSrc(srcFace));
+      }, init_ms + (i * 2 + 1) * duration_ms + duration_ms / 2);
 
     setTimeout(() => {
       setConfetti(true);
       handleSound(undefined, true);
-    }, time_ms + loops * time_ms);
+    }, init_ms + loops * 2 * duration_ms);
   }, []);
-
-  useEffect(() => {
-    setVisibleSrc(imgPath());
-  }, [src]);
 
   return (
     <Modal>
@@ -100,12 +101,12 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
             <div
               className={`${style.front} card-side bg-purple grid place-items-center`}
             >
-              <img key={visibleSrc} src={visibleSrc} alt="" />
+              <img key={srcBack} src={srcBack} alt="" />
             </div>
             <div
               className={`${style.back} card-side bg-red grid place-items-center`}
             >
-              <img key={src} src={src} alt="" />
+              <img key={srcFace} src={srcFace} alt="" />
             </div>
           </div>
         </div>
