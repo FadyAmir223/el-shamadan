@@ -75,30 +75,35 @@ const Home = () => {
             <img
               src="images/item/curtain-left.webp"
               alt="curtain-left"
-              className="absolute left-0 top-[-1px] h-4/5 md:h-[370px] opacity-50 select-none"
+              className="absolute left-0 top-[-1px] h-4/5 md:h-[370px] dark:opacity-50 opacity-[85%] select-none"
             />
             <img
               src="images/item/curtain-right.webp"
               alt="curtain-right"
-              className="absolute right-0 top-[-1px] h-4/5 md:h-[370px] opacity-50 select-none"
+              className="absolute right-0 top-[-1px] h-4/5 md:h-[370px] dark:opacity-50 opacity-[85%] select-none"
             />
 
             <div className="w-fit relative mx-auto">
               <img
                 src="images/item/secret.webp"
                 alt="secret"
-                className="max-w-xs mb-4 w-full sm:h-[326px] select-none"
+                className="max-w-xs mb-4 w-full sm:h-[326px] select-none hidden dark:block"
+              />
+              <img
+                src="images/item/secret-dark.webp"
+                alt="secret"
+                className="max-w-xs mb-4 w-full sm:h-[326px] select-none dark:hidden"
               />
 
               <div className="text-center grid grid-cols-4 gap-4">
                 {countdownBlocks.map((block) => (
                   <div key={block.label}>
-                    <div className="bg-yellow rounded-lg h-10 grid place-items-center">
-                      <span className="rtl:text-2xl ltr:text-xl font-bold text-grey">
+                    <div className="dark:bg-yellow bg-purple rounded-lg h-10 grid place-items-center">
+                      <span className="rtl:text-2xl ltr:text-xl font-bold dark:text-grey text-grey-light">
                         {block.value}
                       </span>
                     </div>
-                    <span className="block capitalize text-white rtl:text-2xl h-8">
+                    <span className="block capitalize dark:text-white text-black font-bold dark:font-normal rtl:text-2xl h-8">
                       {block.label}
                     </span>
                   </div>
@@ -108,8 +113,8 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="bg-black py-8">
-          <h2 className="text-center text-3xl md:text-4xl md:rtl:text-5xl pb-2 mb-6 md:mb-14 uppercase text-white relative before:absolute before:bottom-0 before:w-20 before:left-1/2 before:-translate-x-1/2 before:h-[2px] before:bg-purple">
+        <section className="dark:bg-black bg-white py-8">
+          <h2 className="text-center text-3xl md:text-4xl md:rtl:text-5xl pb-2 mb-6 md:mb-14 uppercase dark:text-white text-black relative before:absolute before:bottom-0 before:w-20 before:left-1/2 before:-translate-x-1/2 before:h-[2px] before:bg-purple">
             {t('products')}
           </h2>
           <div className="contain">

@@ -98,7 +98,7 @@ const Giveaway = () => {
 
   return (
     <article className="contain py-6 mx-auto relative">
-      <h1 className="text-yellow text-center mx-auto ltr:font-bold ltr:text-lg rtl:text-2xl center mb-6 max-w-md h-7">
+      <h1 className="dark:text-yellow text-purple text-center mx-auto ltr:font-bold ltr:text-lg rtl:text-2xl center mb-6 max-w-md h-7">
         {t('title')}
       </h1>
 
@@ -125,13 +125,13 @@ const Giveaway = () => {
         </div>
         <div className="mt-48 mb-8 flex justify-around rtl:flex-row-reverse px-10">
           <FaChevronCircleLeft
-            className={`text-3xl text-yellow hover:text-yellow/80 cursor-pointer ${
+            className={`text-3xl dark:text-yellow text-purple dark:hover:text-yellow/80 hover:text-purple/80 cursor-pointer ${
               isDisabled ? 'pointer-events-none' : ''
             }`}
             onClick={() => handlePrevNext('prev')}
           />
           <FaChevronCircleRight
-            className={`text-3xl text-yellow hover:text-yellow/80 cursor-pointer ${
+            className={`text-3xl dark:text-yellow text-purple dark:hover:text-yellow/80 hover:text-purple/80 cursor-pointer ${
               isDisabled ? 'pointer-events-none' : ''
             }`}
             onClick={() => handlePrevNext('next')}

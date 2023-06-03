@@ -22,12 +22,12 @@ const Video: React.FC = () => {
       <img
         src="images/item/curtain-left.webp"
         alt="curtain-left"
-        className="absolute top-0 left-0 opacity-50 h-4/5 object-contain sm:hidden"
+        className="absolute top-[-1px] left-0 dark:opacity-50 opacity-[85%] h-4/5 object-contain sm:hidden"
       />
       <img
         src="images/item/curtain-right.webp"
         alt="curtain-right"
-        className="absolute top-0 right-0 opacity-50 h-4/5 object-contain sm:hidden"
+        className="absolute top-[-1px] right-0 dark:opacity-50 opacity-[85%] h-4/5 object-contain sm:hidden"
       />
     </article>
   );

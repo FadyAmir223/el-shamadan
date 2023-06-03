@@ -1,4 +1,4 @@
-import { lazy, useState } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Header from './components/header/header.component';
@@ -25,14 +25,21 @@ const App = () => {
   const [isMuted, setMuted] = useState(
     localStorage.isMuted === 'true' || false
   );
+  const [isDark, setIsDark] = useState(localStorage.isDark === 'true' || false);
 
-  // console.log({ isMuted, isSoundPlaying });
+  useEffect(() => {
+    isDark
+      ? document.body.classList.add('dark')
+      : document.body.classList.remove('dark');
+  }, [isDark]);
 
   const [, i18n] = useTranslation('header');
   document.body.dir = i18n.dir();
 
   const handleClick = async (e) => {
     // mute toggle
+    console.log(e.target);
+
     if (e.target.id === 'mute-btn' || e.target.parentNode.id === 'mute-btn') {
       if (isMuted) setSoundPlaying(true);
       setMuted((prevMuted) => {
@@ -63,7 +70,7 @@ const App = () => {
 
   return (
     <div
-      className="relative bg-black/90 min-h-screen overflow-hidden"
+      className="relative dark:bg-black/90 bg-black/[23%] min-h-screen overflow-hidden"
       onClick={handleClick}
     >
       {isSoundPlaying && !isMuted && (
@@ -84,7 +91,7 @@ const App = () => {
         )}
 
         <div
-          className="absolute top-0 left-0 w-full h-full opacity-[15%]"
+          className="absolute top-0 left-0 w-full h-full dark:opacity-[15%] opacity-70"
           style={{
             backgroundImage: 'url("images/item/background.webp")',
             backgroundSize: '100px',
@@ -92,7 +99,13 @@ const App = () => {
         ></div>
 
         <div className="relative flex flex-col">
-          <Header isOpen={isOpen} setIsOpen={setOpen} isMuted={isMuted} />
+          <Header
+            isOpen={isOpen}
+            setIsOpen={setOpen}
+            isMuted={isMuted}
+            isDark={isDark}
+            setIsDark={setIsDark}
+          />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />

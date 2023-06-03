@@ -84,9 +84,9 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
 
   return (
     <Modal>
-      <div className="fixed z-50 top-0 left-0 w-full h-screen overflow-hidden grid place-items-center bg-grey">
+      <div className="fixed z-50 top-0 left-0 w-full h-screen overflow-hidden grid place-items-center dark:bg-grey bg-gray-300">
         <div
-          className="absolute top-0 left-0 w-full h-full opacity-[15%]"
+          className="absolute top-0 left-0 w-full h-full dark:opacity-[15%]"
           style={{
             backgroundImage: 'url("images/item/background.webp")',
             backgroundSize: '100px',
@@ -115,7 +115,7 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
 
         {confetti && (
           <>
-            <span className="absolute top-[15%] text-yellow ltr:text-xl rtl:text-2xl ltr:capitalize ltr:font-bold">
+            <span className="absolute top-[15%] dark:text-yellow text-purple ltr:text-xl rtl:text-2xl ltr:capitalize ltr:font-bold">
               {getPrizeName()}
             </span>
 
