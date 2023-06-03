@@ -25,7 +25,7 @@ const App = () => {
   const [isMuted, setMuted] = useState(
     localStorage.isMuted === 'true' || false
   );
-  const [isDark, setIsDark] = useState(localStorage.isDark === 'true' || false);
+  const [isDark, setIsDark] = useState(localStorage.isDark === 'false' || true);
 
   useEffect(() => {
     isDark
