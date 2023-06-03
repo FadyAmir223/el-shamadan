@@ -2,14 +2,13 @@ import { precacheAndRoute } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
-// import { ExpirationPlugin } from 'workbox-expiration';
+import { ExpirationPlugin } from 'workbox-expiration';
 
-// declare const self: ServiceWorkerGlobalScope;
-declare const self: any;
+declare const self: any; // ServiceWorkerGlobalScope
 
 precacheAndRoute(self.__WB_MANIFEST);
 
-const revision = 'el-shamadan-static-v14';
+const revision = 'el-shamadan-static-v16';
 
 self.addEventListener('install', () => {
   // Forces the waiting service worker to become the active service worker
@@ -20,7 +19,7 @@ self.addEventListener('install', () => {
 });
 
 const repoName = '/el-shamadan';
-// const cacehExpire = 60 * 60 * 24 * 30;
+const cacehExpire = 60 * 60 * 24 * 3;
 
 const path_img = (category, file) =>
   `${repoName}/images/${category}/${file}.webp`;
@@ -68,10 +67,10 @@ registerRoute(
     cacheName: 'navigate',
     plugins: [
       new CacheableResponsePlugin({ statuses: [200] }),
-      // new ExpirationPlugin({
-      //   maxEntries: 50,
-      //   maxAgeSeconds: cacehExpire,
-      // }),
+      new ExpirationPlugin({
+        maxEntries: 30,
+        maxAgeSeconds: cacehExpire,
+      }),
     ],
   })
 );
@@ -80,7 +79,13 @@ registerRoute(
   ({ request }) => request.destination === 'script',
   new StaleWhileRevalidate({
     cacheName: 'scripts',
-    plugins: [new CacheableResponsePlugin({ statuses: [200] })],
+    plugins: [
+      new CacheableResponsePlugin({ statuses: [200] }),
+      new ExpirationPlugin({
+        maxEntries: 30,
+        maxAgeSeconds: cacehExpire,
+      }),
+    ],
   })
 );
 
@@ -88,6 +93,12 @@ registerRoute(
   ({ request }) => request.destination === 'font',
   new CacheFirst({
     cacheName: 'fonts',
-    plugins: [new CacheableResponsePlugin({ statuses: [200] })],
+    plugins: [
+      new CacheableResponsePlugin({ statuses: [200] }),
+      new ExpirationPlugin({
+        maxEntries: 10,
+        maxAgeSeconds: cacehExpire,
+      }),
+    ],
   })
 );
