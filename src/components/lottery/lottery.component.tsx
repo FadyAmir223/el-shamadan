@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import ReactConfetti from 'react-confetti';
 import style from './lottery.module.css';
-import Img from '../../components/img/img.component';
 import { useTranslation } from 'react-i18next';
 import Modal from '../../components/modal/modal';
 
@@ -17,16 +16,16 @@ const getCat_Char = (path) => {
 };
 
 const Lottery = ({ categories, handleSound, setOverlay }) => {
-  const imgPath = (category = '', name = '') => {
-    if (!(categories && name))
-      (category = randELement(categories)), (name = randELement(imgs));
-
+  const imgPath = () => {
+    const category = randELement(categories);
+    const name = randELement(imgs);
     return `images/${category}/${name}.webp`;
   };
 
   const [src, setSrc] = useState(imgPath());
   const [rotation, setRotation] = useState(0);
   const [confetti, setConfetti] = useState(false);
+  const [visibleSrc, setVisibleSrc] = useState(src);
 
   const [t, i18n] = useTranslation(['giveaway', 'products']);
 
@@ -36,7 +35,7 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
   };
 
   const getPrizeName = () => {
-    const { category, character } = getCat_Char(src);
+    const { category, character } = getCat_Char(visibleSrc);
 
     const categoryLocale = t(`prize.${category}`);
     const characterLocale = t(`${character}.name`, {
@@ -52,20 +51,20 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
   };
 
   useEffect(() => {
-    const loops = 10,
-      time_ms = 500;
+    const loops = 10;
+    const time_ms = 500;
 
     setTimeout(() => {
       setRotation(180 * 10);
     }, time_ms);
 
-    for (let i = 0; i < loops; i++)
+    for (let i = 1; i < loops; i++)
       setTimeout(() => {
-        setSrc((prevPath) => {
+        setSrc(() => {
           let newPath;
           do {
             newPath = imgPath();
-          } while (prevPath === newPath);
+          } while (visibleSrc === newPath);
           return newPath;
         });
       }, (i + 1) * time_ms + time_ms / 2);
@@ -75,6 +74,10 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
       handleSound(undefined, true);
     }, time_ms + loops * time_ms);
   }, []);
+
+  useEffect(() => {
+    setVisibleSrc(imgPath());
+  }, [src]);
 
   return (
     <Modal>
@@ -87,9 +90,7 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
           }}
         ></div>
 
-        <div
-          className={`${style.card} w-52 aspect-[5/7] float-left select-none`}
-        >
+        <div className={`${style.card} w-52 aspect-[5/7] select-none`}>
           <div
             className={`${style.content} absolute w-full h-full transition-transform ease-linear duration-[5s]`}
             style={{
@@ -99,15 +100,16 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
             <div
               className={`${style.front} card-side bg-purple grid place-items-center`}
             >
-              <Img key={src} src={src} alt="" />
+              <img key={visibleSrc} src={visibleSrc} alt="" />
             </div>
             <div
               className={`${style.back} card-side bg-red grid place-items-center`}
             >
-              <Img key={src} src={src} alt="" />
+              <img key={src} src={src} alt="" />
             </div>
           </div>
         </div>
+
         {confetti && (
           <>
             <span className="absolute top-[15%] text-yellow ltr:text-xl rtl:text-2xl ltr:capitalize ltr:font-bold">
@@ -120,9 +122,9 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
             >
               {t('back')}
             </button>
+            <ReactConfetti />
           </>
         )}
-        {confetti && <ReactConfetti />}
       </div>
     </Modal>
   );

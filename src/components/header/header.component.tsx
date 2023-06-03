@@ -5,10 +5,9 @@ import { FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
 
 import { StaticContext } from '../../context/static.context';
 import { useTranslation } from 'react-i18next';
-import Img from '../img/img.component';
 import Modal from '../modal/modal';
 
-const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
+const Header = ({ isOpen, setIsOpen, isMuted }) => {
   const { waferProducts } = useContext(StaticContext);
   const [t, i18n] = useTranslation('header');
   const nav = t('nav', {
@@ -32,8 +31,8 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
           <div className="contain flex justify-between items-center">
             <div className="flex justify-between w-[calc(50%+40px)] md:w-1/2">
               <Link to="/">
-                <Img
-                  src="images/logo.png"
+                <img
+                  src="images/logo.webp"
                   alt="logo"
                   className="w-8 select-none"
                 />
@@ -47,7 +46,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
                 </button>
                 <button
                   className="select-none p-1 border border-white rounded-lg text-white scale-[114%]"
-                  ref={refHeader}
+                  id="mute-btn"
                   aria-label={isMuted ? 'Mute' : 'Unmute'}
                 >
                   {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
@@ -104,7 +103,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, refHeader }) => {
         {isOpen && (
           <Modal>
             <div
-              className="fixed z-50 top-0 left-0 w-full h-screen bg-black py-14 overflow-hidden md:hidden"
+              className="fixed z-50 top-0 left-0 w-full h-screen bg-black py-14 overflow-hidden md:hidden ltr:text-lg rtl:text-xl"
               onClick={() => setIsOpen(false)}
             >
               <FiX className="text-2xl cursor-pointer absolute top-5 left-5 text-white" />

@@ -1,10 +1,8 @@
-import { lazy, useRef, useState } from 'react';
+import { lazy, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import ReactHowler from 'react-howler';
-import { useTranslation } from 'react-i18next';
-import Img from './components/img/img.component';
 
 import Header from './components/header/header.component';
+import { useTranslation } from 'react-i18next';
 
 const Home = lazy(() => import('./routes/home/home.component'));
 const AllProducts = lazy(
@@ -28,14 +26,14 @@ const App = () => {
     localStorage.isMuted === 'true' || false
   );
 
-  const refHeader = useRef(null);
-  const [, i18n] = useTranslation('header');
+  // console.log({ isMuted, isSoundPlaying });
 
+  const [, i18n] = useTranslation('header');
   document.body.dir = i18n.dir();
 
   const handleClick = async (e) => {
     // mute toggle
-    if (refHeader.current && refHeader.current.contains(e.target)) {
+    if (e.target.id === 'mute-btn' || e.target.parentNode.id === 'mute-btn') {
       if (isMuted) setSoundPlaying(true);
       setMuted((prevMuted) => {
         localStorage.isMuted = !prevMuted;
@@ -55,8 +53,12 @@ const App = () => {
       setStickPosition(null);
     }, 500);
 
-    // dropdown menu
+    // overlay or dropdown menu
     if (isOpen) setOpen(false);
+  };
+
+  const handleAudioEnded = () => {
+    setSoundPlaying(false);
   };
 
   return (
@@ -64,15 +66,14 @@ const App = () => {
       className="relative bg-black/90 min-h-screen overflow-hidden"
       onClick={handleClick}
     >
-      <ReactHowler
-        src="sounds/magic.mp3"
-        playing={isSoundPlaying && !isMuted}
-      />
+      {isSoundPlaying && !isMuted && (
+        <audio src="sounds/magic.mp3" onEnded={handleAudioEnded} autoPlay />
+      )}
 
       <div className="rtl:font-[abdo] ltr:font-[roboto]">
         {stickPosition && (
-          <Img
-            src="images/item/stick-left-64.png"
+          <img
+            src="images/item/stick-left-64.webp"
             alt="stick"
             className="absolute z-30 will-change-transform animate-[stickRotation_ease-out_0.6s] select-none"
             style={{
@@ -91,12 +92,7 @@ const App = () => {
         ></div>
 
         <div className="relative flex flex-col">
-          <Header
-            isOpen={isOpen}
-            setIsOpen={setOpen}
-            isMuted={isMuted}
-            refHeader={refHeader}
-          />
+          <Header isOpen={isOpen} setIsOpen={setOpen} isMuted={isMuted} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />

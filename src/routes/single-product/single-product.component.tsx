@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { StaticContext } from '../../context/static.context';
-import Img from '../../components/img/img.component';
 import { useTitle } from '../../hooks/useTitle';
 
 const SingleProduct = () => {
@@ -40,7 +39,7 @@ const SingleProduct = () => {
           onClick={() => handlePrevNext('next')}
         />
         <section className="relative z-10 contain">
-          <Img
+          <img
             src={selectedProduct.coverUrl}
             alt={`${selectedProduct.name} box`}
             className="select-none h-28 sm:h-36 md:h-48 rotate-6 mx-auto my-10 hover:scale-110 hover:rotate-3 will-change-transform duration-500 shadow-md"
@@ -50,7 +49,7 @@ const SingleProduct = () => {
             {selectedProduct.desc}
           </p>
         </section>
-        <Img
+        <img
           src={selectedProduct.characterUrl}
           alt={`${selectedProduct.name} character`}
           className="absolute bottom-0  ltr:right-0 rtl:left-0 ltr:translate-x-[40%] rtl:-translate-x-[40%] opacity-20 h-[80%] sm:h-[90%] object-contain"

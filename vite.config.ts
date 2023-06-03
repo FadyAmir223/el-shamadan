@@ -9,6 +9,11 @@ import webp from 'vite-plugin-webp';
 // import legacy from '@vitejs/plugin-legacy';
 
 export default defineConfig({
+  base: '/el-shamadan/',
+  build: {
+    emptyOutDir: true,
+  },
+
   plugins: [
     react(),
 
@@ -22,10 +27,11 @@ export default defineConfig({
 
     webp({
       onlyWebp: join(__dirname, 'public/images'),
-      imageType: ['.png', '.jpg'],
-      shartOptions: {
+      sharpOptions: {
         quality: 70,
+        force: true,
       },
+      // outputDir: join(__dirname, 'public/images'),
     }),
 
     // legacy({
@@ -76,8 +82,4 @@ export default defineConfig({
       },
     }),
   ],
-  build: {
-    emptyOutDir: true,
-  },
-  base: '/el-shamadan/',
 });

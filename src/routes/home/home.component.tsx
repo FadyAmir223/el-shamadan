@@ -1,9 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import ProductCard from '../../components/product-card/product-card.component';
 import { StaticContext } from '../../context/static.context';
 import Footer from '../../components/footer/footer.component';
-import { useTranslation } from 'react-i18next';
-import Img from '../../components/img/img.component';
 import { useTitle } from '../../hooks/useTitle';
 
 const calculateCountdown = () => {
@@ -73,22 +72,22 @@ const Home = () => {
       <article>
         <section className="py-6 relative">
           <div className="contain">
-            <Img
-              src="images/item/curtain-left.png"
+            <img
+              src="images/item/curtain-left.webp"
               alt="curtain-left"
-              className="absolute left-0 top-0 h-4/5 opacity-50"
+              className="absolute left-0 top-[-1px] h-4/5 opacity-50 select-none"
             />
-            <Img
-              src="images/item/curtain-right.png"
+            <img
+              src="images/item/curtain-right.webp"
               alt="curtain-left"
-              className="absolute right-0 top-0 h-4/5 opacity-50"
+              className="absolute right-0 top-[-1px] h-4/5 opacity-50 select-none"
             />
 
             <div className="w-fit relative mx-auto">
-              <Img
-                src="images/item/secret.png"
+              <img
+                src="images/item/secret.webp"
                 alt="secret"
-                className="max-w-xs mb-4 w-full"
+                className="max-w-xs mb-4 w-full sm:h-[326px] select-none"
               />
 
               <div className="text-center grid grid-cols-4 gap-4">
@@ -99,7 +98,7 @@ const Home = () => {
                         {block.value}
                       </span>
                     </div>
-                    <span className="block capitalize text-white rtl:text-2xl h-5">
+                    <span className="block capitalize text-white rtl:text-2xl h-8">
                       {block.label}
                     </span>
                   </div>

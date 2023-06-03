@@ -1,6 +1,5 @@
 import { useRef, useReducer, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
-import ReactHowler from 'react-howler';
 import { FaChevronCircleLeft, FaChevronCircleRight } from 'react-icons/fa';
 
 import { useTitle } from '../../hooks/useTitle';
@@ -9,8 +8,6 @@ import CardGroup from '../../components/card-group/card-group.component';
 const Lottery = lazy(
   () => import('../../components/lottery/lottery.component')
 );
-
-const categories = ['t-shirt', 'bag', 'notebook', 'mug'];
 
 type State = {
   overlay: boolean;
@@ -49,6 +46,8 @@ const reducer = (state: State, action: Action): State => {
   }
 };
 
+const categories = ['t-shirt', 'bag', 'notebook', 'mug'];
+
 const Giveaway = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { overlay, activeCard, sound, isDisabled } = state;
@@ -70,12 +69,13 @@ const Giveaway = () => {
     e.preventDefault();
     const form = formRef.current;
 
+    const secret = form.secret.value;
+
     // const name = form.name.value;
     // const email = form.email.value;
     // const phone = form.phone.value;
-    const secret = form.secret.value;
-
     // !(name && email && phone && secret) &&
+
     if (secret === '9999' || secret === '٩٩٩٩') {
       dispatch({ type: 'SET_OVERLAY' });
       form.reset();
@@ -87,7 +87,7 @@ const Giveaway = () => {
     dispatch({ type: 'SET_DISABLED', payload: true });
     setTimeout(() => {
       dispatch({ type: 'SET_DISABLED', payload: false });
-    }, 300);
+    }, 320);
 
     const nextIdx =
       direction === 'next'
@@ -107,7 +107,7 @@ const Giveaway = () => {
           {categories.map((i, idx) => (
             <span
               key={i}
-              className={`will-change-transform transition-transform ease-linear duration-[400ms] ${
+              className={`will-change-transform ease-linear duration-[400ms] ${
                 idx !== activeCard ? 'scale-0' : ''
               } ${
                 idx === (activeCard + 1) % categories.length
@@ -150,7 +150,7 @@ const Giveaway = () => {
           />
         ))}
 
-        <button className="form-button w-full cursor-pointer">
+        <button id="win-btn" className="form-button w-full cursor-pointer">
           {t(t('form.submit'))}
         </button>
       </form>
@@ -163,16 +163,21 @@ const Giveaway = () => {
         />
       )}
 
-      <ReactHowler
-        src="sounds/error.mp3"
-        playing={sound.error}
-        onEnd={() => handleSound(false)}
-      />
-      <ReactHowler
-        src="sounds/win.mp3"
-        playing={sound.win}
-        onEnd={() => handleSound(undefined, false)}
-      />
+      {sound.error && (
+        <audio
+          src="sounds/error.mp3"
+          autoPlay
+          onEnded={() => handleSound(false)}
+        />
+      )}
+
+      {sound.win && (
+        <audio
+          src="sounds/win.mp3"
+          autoPlay
+          onEnded={() => handleSound(undefined, false)}
+        />
+      )}
     </article>
   );
 };
