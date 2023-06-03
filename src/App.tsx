@@ -22,18 +22,17 @@ const App = () => {
   const [stickPosition, setStickPosition] = useState(null);
   const [isSoundPlaying, setSoundPlaying] = useState(false);
   const [isOpen, setOpen] = useState(false);
-  const [isMuted, setMuted] = useState(
-    localStorage.isMuted === 'true' || false
-  );
-  const [isDark, setIsDark] = useState(localStorage.isDark === 'true' || false);
-
-  useEffect(() => {
-    isDark
-      ? document.body.classList.remove('dark')
-      : document.body.classList.add('dark');
-  }, [isDark]);
+  const [isMuted, setMuted] = useState(localStorage.muted === 'true' || false);
+  const [isLight, setLight] = useState(localStorage.dark === 'true' || false);
 
   const [, i18n] = useTranslation('header');
+
+  useEffect(() => {
+    isLight
+      ? document.body.classList.remove('dark')
+      : document.body.classList.add('dark');
+  }, [isLight]);
+
   document.body.dir = i18n.dir();
 
   const handleClick = async (e) => {
@@ -41,7 +40,7 @@ const App = () => {
     if (e.target.closest('[id]').id === 'mute-btn') {
       if (isMuted) setSoundPlaying(true);
       setMuted((prevMuted) => {
-        localStorage.isMuted = !prevMuted;
+        localStorage.muted = !prevMuted;
         return !prevMuted;
       });
     } else if (!isMuted) setSoundPlaying(true);
@@ -99,10 +98,10 @@ const App = () => {
         <div className="relative flex flex-col">
           <Header
             isOpen={isOpen}
-            setIsOpen={setOpen}
+            setOpen={setOpen}
             isMuted={isMuted}
-            isDark={isDark}
-            setIsDark={setIsDark}
+            isLight={isLight}
+            setLight={setLight}
           />
           <Routes>
             <Route path="/" element={<Home />} />

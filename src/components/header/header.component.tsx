@@ -2,14 +2,13 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { BsSunFill, BsMoonFill } from 'react-icons/bs';
-
 import { FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
 
 import { StaticContext } from '../../context/static.context';
 import { useTranslation } from 'react-i18next';
 import Modal from '../modal/modal';
 
-const Header = ({ isOpen, setIsOpen, isMuted, isDark, setIsDark }) => {
+const Header = ({ isOpen, setOpen, isMuted, isLight, setLight }) => {
   const { waferProducts } = useContext(StaticContext);
   const [t, i18n] = useTranslation('header');
   const nav = t('nav', {
@@ -17,12 +16,12 @@ const Header = ({ isOpen, setIsOpen, isMuted, isDark, setIsDark }) => {
   }) as { name: string; link: string }[];
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+    setOpen(!isOpen);
   };
 
   const toggleDarkMode = () => {
-    setIsDark((prevDark) => {
-      localStorage.isDark = !prevDark;
+    setLight((prevDark) => {
+      localStorage.dark = !prevDark;
       return !prevDark;
     });
   };
@@ -62,10 +61,10 @@ const Header = ({ isOpen, setIsOpen, isMuted, isDark, setIsDark }) => {
                 </button>
                 <button
                   className="select-none p-1 border dark:border-white border-black rounded-lg dark:text-white text-black scale-[114%]"
-                  aria-label={isDark ? 'Light Mode' : 'Dark Mode'}
+                  aria-label={isLight ? 'Light Mode' : 'Dark Mode'}
                   onClick={toggleDarkMode}
                 >
-                  {isDark ? <BsMoonFill /> : <BsSunFill />}
+                  {isLight ? <BsSunFill /> : <BsMoonFill />}
                 </button>
               </div>
             </div>
@@ -96,7 +95,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, isDark, setIsDark }) => {
                           key={product.id}
                           to={`/products/${product.id}`}
                           className="block p-2 dark:hover:bg-grey hover:bg-grey-light transition-colors duration-300"
-                          onClick={() => setIsOpen(false)}
+                          onClick={() => setOpen(false)}
                         >
                           {product.name}
                         </Link>
@@ -120,7 +119,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, isDark, setIsDark }) => {
           <Modal>
             <div
               className="fixed z-50 top-0 left-0 w-full h-screen dark:bg-black bg-white py-14 overflow-hidden md:hidden ltr:text-lg rtl:text-xl ltr:font-bold ltr:dark:font-normal"
-              onClick={() => setIsOpen(false)}
+              onClick={() => setOpen(false)}
             >
               <FiX className="text-3xl cursor-pointer absolute top-5 left-5 dark:text-white text-black" />
               <nav className="contain flex flex-col dark:text-white text-black">
