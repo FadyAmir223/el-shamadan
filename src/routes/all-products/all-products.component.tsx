@@ -14,7 +14,7 @@ const AllProducts = () => {
           <img
             src="images/item/face.webp"
             alt="face"
-            className="object-cover w-full h-full"
+            className="object-cover w-full h-[144px]"
           />
         </div>
         <div className="contain">
@@ -28,7 +28,7 @@ const AllProducts = () => {
           <img
             src="images/item/belt.webp"
             alt="belt"
-            className="object-cover w-full h-full"
+            className="object-cover w-full h-[89px]"
           />
         </div>
       </section>

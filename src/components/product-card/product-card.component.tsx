@@ -14,7 +14,7 @@ const ProductCard = ({ product }: { product: waferProduct }) => {
           <img
             src={product.coverUrl}
             alt={product.name}
-            className="object-contain aspect-[2/1] mb-4 group-hover:scale-110 will-change-transform duration-500 mx-auto sm:h-[88px] md:h-[150px] lg:h-[184px] shadow-lg"
+            className="object-contain aspect-[2/1] mb-4 group-hover:scale-110 will-change-transform duration-500 mx-auto sm:h-[88px] md:h-[150px] lg:h-[184px]"
           />
           <p className="text-xl md:text-xl lg:text-2xl mb-2 capitalize text-white">
             {product.name}

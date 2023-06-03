@@ -30,9 +30,9 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
     return newPath;
   };
 
-  const [srcFace, setSrcFace] = useState(imgPath());
-  const [srcBack, setSrcBack] = useState(randSrc(srcFace));
+  const srcFace = imgPath();
 
+  const [src, setSrc] = useState({ face: srcFace, back: randSrc(srcFace) });
   const [rotation, setRotation] = useState(0);
   const [confetti, setConfetti] = useState(false);
 
@@ -44,7 +44,7 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
   };
 
   const getPrizeName = () => {
-    const { category, character } = getCat_Char(srcBack);
+    const { category, character } = getCat_Char(src.back);
 
     const categoryLocale = t(`prize.${category}`);
     const characterLocale = t(`${character}.name`, {
@@ -70,8 +70,10 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
 
     for (let i = 0; i < loops; i++)
       setTimeout(() => {
-        setSrcFace(randSrc(srcBack));
-        setSrcBack(randSrc(srcFace));
+        setSrc(({ face, back }) => ({
+          face: randSrc(back),
+          back: randSrc(face),
+        }));
       }, init_ms + (i * 2 + 1) * duration_ms + duration_ms / 2);
 
     setTimeout(() => {
@@ -101,12 +103,12 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
             <div
               className={`${style.front} card-side bg-purple grid place-items-center`}
             >
-              <img key={srcBack} src={srcBack} alt="" />
+              <img key={src.back} src={src.back} alt="" />
             </div>
             <div
               className={`${style.back} card-side bg-red grid place-items-center`}
             >
-              <img key={srcFace} src={srcFace} alt="" />
+              <img key={src.face} src={src.face} alt="" />
             </div>
           </div>
         </div>

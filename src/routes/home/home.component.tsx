@@ -75,12 +75,12 @@ const Home = () => {
             <img
               src="images/item/curtain-left.webp"
               alt="curtain-left"
-              className="absolute left-0 top-[-1px] h-4/5 opacity-50 select-none"
+              className="absolute left-0 top-[-1px] h-4/5 md:h-[370px] opacity-50 select-none"
             />
             <img
               src="images/item/curtain-right.webp"
-              alt="curtain-left"
-              className="absolute right-0 top-[-1px] h-4/5 opacity-50 select-none"
+              alt="curtain-right"
+              className="absolute right-0 top-[-1px] h-4/5 md:h-[370px] opacity-50 select-none"
             />
 
             <div className="w-fit relative mx-auto">
