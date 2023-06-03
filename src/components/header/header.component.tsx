@@ -52,11 +52,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, isDark, setIsDark }) => {
                   id="mute-btn"
                   aria-label={isMuted ? 'Mute' : 'Unmute'}
                 >
-                  {isMuted ? (
-                    <FaVolumeMute id="mute" />
-                  ) : (
-                    <FaVolumeUp id="unmute" />
-                  )}
+                  {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
                 </button>
                 <button
                   className="select-none py-[2px] px-1 border dark:border-white border-black rounded-lg dark:text-white text-black uppercase dark:font-normal font-[500] text-[15px] rtl:font-[roboto]"

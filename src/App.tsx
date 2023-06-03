@@ -38,9 +38,7 @@ const App = () => {
 
   const handleClick = async (e) => {
     // mute toggle
-    console.log(e.target);
-
-    if (e.target.id === 'mute-btn' || e.target.parentNode.id === 'mute-btn') {
+    if (e.target.closest('[id]').id === 'mute-btn') {
       if (isMuted) setSoundPlaying(true);
       setMuted((prevMuted) => {
         localStorage.isMuted = !prevMuted;
