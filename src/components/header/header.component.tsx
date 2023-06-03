@@ -81,7 +81,7 @@ const Header = ({ isOpen, setIsOpen, isMuted, isDark, setIsDark }) => {
                 ['products', 'منتجاتنا'].includes(item.name) ? (
                   <div className="relative" key={item.link}>
                     <button
-                      className="border-2 border-yellow border-b-transparent p-2 bottom-up-animation dark:text-white text-black"
+                      className="border-2 border-b-transparent border-yellow p-2 bottom-up-animation dark:text-white text-black"
                       onClick={toggleDropdown}
                     >
                       {item.name}

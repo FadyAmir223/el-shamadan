@@ -25,12 +25,12 @@ const App = () => {
   const [isMuted, setMuted] = useState(
     localStorage.isMuted === 'true' || false
   );
-  const [isDark, setIsDark] = useState(localStorage.isDark === 'false' || true);
+  const [isDark, setIsDark] = useState(localStorage.isDark === 'true' || false);
 
   useEffect(() => {
     isDark
-      ? document.body.classList.add('dark')
-      : document.body.classList.remove('dark');
+      ? document.body.classList.remove('dark')
+      : document.body.classList.add('dark');
   }, [isDark]);
 
   const [, i18n] = useTranslation('header');
