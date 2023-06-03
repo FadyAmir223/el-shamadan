@@ -20,16 +20,7 @@ module.exports = {
         yellow: '#eda521',
         purple: '#422b7a',
         grey: '#181A1B',
-
-        // 'red-light': '#ff586c',
-        // 'yellow-light': '#ffd544',
-        // 'purple-light': '#9059ff',
-        // 'grey-light': '#f0f2f5',
-
-        // 'red-dark': '#841820',
-        // 'yellow-dark': '#c38410',
-        // 'purple-dark': '#32215d',
-        // 'grey-dark': '#747e83',
+        'grey-light': '#f5f5f5',
 
         facebook: '#1877f2',
         twitter: '#1da1f2',

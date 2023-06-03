@@ -60,7 +60,9 @@ const ContactUs = () => {
               className="form-input"
               rows={5}
             ></textarea>
-            <p className="h-8 text-red">{msg}</p>
+            <p className="h-8 text-red ltr:font-bold ltr:dark:font-normal">
+              {msg}
+            </p>
             <button type="submit" className="form-button">
               {t('submit')}
             </button>
