@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { waferProduct } from '../../utils/types';
+import { waferProduct } from '../utils/types';
 
 const ProductCard = ({ product }: { product: waferProduct }) => {
   return (

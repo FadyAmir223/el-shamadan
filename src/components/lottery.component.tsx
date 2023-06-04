@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import ReactConfetti from 'react-confetti';
-import style from './lottery.module.css';
+import style from '../styles/lottery.module.css';
 import { useTranslation } from 'react-i18next';
-import Modal from '../../components/modal/modal';
+import Modal from './modal';
 
 const imgs = ['king', 'mafia', 'diva', 'hero', 'magician'];
 
@@ -79,6 +79,7 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
     setTimeout(() => {
       setConfetti(true);
       handleSound(undefined, true);
+      // sendNotification(getPrizeName(), src.back);
     }, init_ms + loops * 2 * duration_ms);
   }, []);
 

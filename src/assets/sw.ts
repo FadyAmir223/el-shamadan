@@ -1,25 +1,25 @@
 import { precacheAndRoute } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
-import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
+import { StaleWhileRevalidate } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
-import { ExpirationPlugin } from 'workbox-expiration';
+import { googleFontsCache } from 'workbox-recipes';
+
+const revision = 'el-shamadan-static-v1';
+const repoName = '/el-shamadan';
+const cacehExpire = 60 * 60 * 24 * 3;
 
 declare const self: any; // ServiceWorkerGlobalScope
 
 precacheAndRoute(self.__WB_MANIFEST);
 
-const revision = 'el-shamadan-static-v1';
-
+// Forces the waiting service worker to become the active service worker
+// Unregisters any previous service worker
 self.addEventListener('install', () => {
-  // Forces the waiting service worker to become the active service worker
   self.skipWaiting();
-
-  // Unregisters any previous service worker
   self.registration.unregister();
 });
 
-const repoName = '/el-shamadan';
-const cacehExpire = 60 * 60 * 24 * 3;
+self.addEventListener('activate', () => self.clients.claim());
 
 const path_img = (category, file) =>
   `${repoName}/images/${category}/${file}.webp`;
@@ -35,6 +35,7 @@ const assets_ = {
   items: [
     'background',
     'secret',
+    'secret-dark',
     'face',
     'belt',
     'curtain-left',
@@ -65,13 +66,7 @@ registerRoute(
   ({ request }) => request.mode === 'navigate',
   new StaleWhileRevalidate({
     cacheName: 'navigate',
-    plugins: [
-      new CacheableResponsePlugin({ statuses: [200] }),
-      new ExpirationPlugin({
-        maxEntries: 30,
-        maxAgeSeconds: cacehExpire,
-      }),
-    ],
+    plugins: [new CacheableResponsePlugin({ statuses: [200] })],
   })
 );
 
@@ -79,26 +74,8 @@ registerRoute(
   ({ request }) => request.destination === 'script',
   new StaleWhileRevalidate({
     cacheName: 'scripts',
-    plugins: [
-      new CacheableResponsePlugin({ statuses: [200] }),
-      new ExpirationPlugin({
-        maxEntries: 30,
-        maxAgeSeconds: cacehExpire,
-      }),
-    ],
+    plugins: [new CacheableResponsePlugin({ statuses: [200] })],
   })
 );
 
-registerRoute(
-  ({ request }) => request.destination === 'font',
-  new CacheFirst({
-    cacheName: 'fonts',
-    plugins: [
-      new CacheableResponsePlugin({ statuses: [200] }),
-      new ExpirationPlugin({
-        maxEntries: 10,
-        maxAgeSeconds: cacehExpire,
-      }),
-    ],
-  })
-);
+googleFontsCache({ maxAgeSeconds: cacehExpire });

@@ -66,6 +66,8 @@ export default defineConfig({
         orientation: 'portrait',
         theme_color: '#181a1B',
         background_color: '#181a1B',
+
+        // npx pwa-asset-generator ./logo.png icons
         icons: [
           {
             src: 'pwa-192x192.png',

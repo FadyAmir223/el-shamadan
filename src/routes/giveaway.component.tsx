@@ -2,12 +2,10 @@ import { useRef, useReducer, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaChevronCircleLeft, FaChevronCircleRight } from 'react-icons/fa';
 
-import { useTitle } from '../../hooks/useTitle';
-import CardGroup from '../../components/card-group/card-group.component';
+import { useTitle } from '../hooks/useTitle';
+import CardGroup from '../components/card-group.component';
 
-const Lottery = lazy(
-  () => import('../../components/lottery/lottery.component')
-);
+const Lottery = lazy(() => import('../components/lottery.component'));
 
 type State = {
   overlay: boolean;
@@ -101,7 +99,6 @@ const Giveaway = () => {
       <h1 className="dark:text-yellow text-purple text-center mx-auto ltr:font-bold ltr:text-lg rtl:text-2xl center mb-6 max-w-md h-7">
         {t('title')}
       </h1>
-
       <div className="max-w-xs mx-auto">
         <div className="flex justify-center">
           {categories.map((i, idx) => (
@@ -138,7 +135,6 @@ const Giveaway = () => {
           />
         </div>
       </div>
-
       <form ref={formRef} onSubmit={handleSubmit} className="max-w-md mx-auto">
         {['name', 'email', 'phone', 'secret'].map((i) => (
           <input
@@ -154,7 +150,6 @@ const Giveaway = () => {
           {t(t('form.submit'))}
         </button>
       </form>
-
       {overlay && (
         <Lottery
           categories={categories}
@@ -162,7 +157,6 @@ const Giveaway = () => {
           setOverlay={setOverlay}
         />
       )}
-
       {sound.error && (
         <audio
           src="sounds/error.mp3"
@@ -170,7 +164,6 @@ const Giveaway = () => {
           onEnded={() => handleSound(false)}
         />
       )}
-
       {sound.win && (
         <audio
           src="sounds/win.mp3"

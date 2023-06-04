@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import ProductCard from '../../components/product-card/product-card.component';
-import { StaticContext } from '../../context/static.context';
-import Footer from '../../components/footer/footer.component';
-import { useTitle } from '../../hooks/useTitle';
+import ProductCard from '../components/product-card.component';
+import { StaticContext } from '../context/static.context';
+import Footer from '../components/footer.component';
+import { useTitle } from '../hooks/useTitle';
 
 const calculateCountdown = () => {
   const currentDate = new Date();

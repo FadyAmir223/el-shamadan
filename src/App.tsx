@@ -1,22 +1,16 @@
 import { lazy, useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Header from './components/header/header.component';
+import Header from './components/header.component';
 import { useTranslation } from 'react-i18next';
 
-const Home = lazy(() => import('./routes/home/home.component'));
-const AllProducts = lazy(
-  () => import('./routes/all-products/all-products.component')
-);
-const SingleProduct = lazy(
-  () => import('./routes/single-product/single-product.component')
-);
-const Video = lazy(() => import('./routes/video/video.component'));
-const ContactUs = lazy(
-  () => import('./routes/contact-us/contact-us.component')
-);
-const Giveaway = lazy(() => import('./routes/giveaway/giveaway.component'));
-const Error = lazy(() => import('./routes/error/error.component'));
+const Home = lazy(() => import('./routes/home.component'));
+const AllProducts = lazy(() => import('./routes/all-products.component'));
+const SingleProduct = lazy(() => import('./routes/single-product.component'));
+const Video = lazy(() => import('./routes/video.component'));
+const ContactUs = lazy(() => import('./routes/contact-us.component'));
+const Giveaway = lazy(() => import('./routes/giveaway.component'));
+const Error = lazy(() => import('./routes/error.component'));
 
 const App = () => {
   const [stickPosition, setStickPosition] = useState(null);
@@ -27,13 +21,13 @@ const App = () => {
 
   const [, i18n] = useTranslation('header');
 
+  document.body.dir = i18n.dir();
+
   useEffect(() => {
     isLight
       ? document.body.classList.remove('dark')
       : document.body.classList.add('dark');
   }, [isLight]);
-
-  document.body.dir = i18n.dir();
 
   const handleClick = async (e) => {
     // mute toggle

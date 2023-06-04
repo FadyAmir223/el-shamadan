@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import ProductCard from '../../components/product-card/product-card.component';
-import { StaticContext } from '../../context/static.context';
-import { useTitle } from '../../hooks/useTitle';
+import ProductCard from '../components/product-card.component';
+import { StaticContext } from '../context/static.context';
+import { useTitle } from '../hooks/useTitle';
 
 const AllProducts = () => {
   useTitle('products');

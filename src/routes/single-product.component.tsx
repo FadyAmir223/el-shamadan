@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
-import { StaticContext } from '../../context/static.context';
-import { useTitle } from '../../hooks/useTitle';
+import { StaticContext } from '../context/static.context';
+import { useTitle } from '../hooks/useTitle';
 
 const SingleProduct = () => {
   const { productName } = useParams();

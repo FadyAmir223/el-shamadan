@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { FaFacebook, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { StaticContext } from '../../context/static.context';
+import { StaticContext } from '../context/static.context';
 import { useTranslation } from 'react-i18next';
 
 const Footer = () => {

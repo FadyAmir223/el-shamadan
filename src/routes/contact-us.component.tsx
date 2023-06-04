@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Footer from '../../components/footer/footer.component';
-import { useTitle } from '../../hooks/useTitle';
+import Footer from '../components/footer.component';
+import { useTitle } from '../hooks/useTitle';
 
 const ContactUs = () => {
   const [t] = useTranslation('contact');

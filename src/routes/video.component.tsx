@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useTitle } from '../../hooks/useTitle';
+import { useTitle } from '../hooks/useTitle';
 
 const Video: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);

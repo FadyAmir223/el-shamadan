@@ -4,9 +4,9 @@ import { FiMenu, FiX } from 'react-icons/fi';
 import { BsSunFill, BsMoonFill } from 'react-icons/bs';
 import { FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
 
-import { StaticContext } from '../../context/static.context';
+import { StaticContext } from '../context/static.context';
 import { useTranslation } from 'react-i18next';
-import Modal from '../modal/modal';
+import Modal from './modal';
 
 const Header = ({ isOpen, setOpen, isMuted, isLight, setLight }) => {
   const { waferProducts } = useContext(StaticContext);
