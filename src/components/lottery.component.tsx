@@ -79,7 +79,6 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
     setTimeout(() => {
       setConfetti(true);
       handleSound(undefined, true);
-      // sendNotification(getPrizeName(), src.back);
     }, init_ms + loops * 2 * duration_ms);
   }, []);
 

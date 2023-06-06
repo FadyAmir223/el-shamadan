@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
 import { waferProduct } from '../utils/types';
 
-const ProductCard = ({ product }: { product: waferProduct }) => {
+type ProductCardProps = {
+  product: waferProduct;
+};
+
+const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Link to={`/products/${product.id}`} className="relative group select-none">
       <img

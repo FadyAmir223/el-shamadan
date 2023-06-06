@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Footer from '../components/footer.component';
 import { useTitle } from '../hooks/useTitle';
@@ -22,20 +22,13 @@ const ContactUs = () => {
     if (!(name && email && message)) return setMsg(t('errorMsg'));
 
     setMsg(t('successMsg'));
-    form.reset();
-  };
 
-  useEffect(() => {
-    if (!msg) return;
-
-    const timeout = setTimeout(() => {
+    setTimeout(() => {
       setMsg('');
     }, 3000);
 
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [msg]);
+    form.reset();
+  };
 
   return (
     <>

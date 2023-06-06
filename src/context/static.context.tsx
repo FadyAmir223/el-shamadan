@@ -17,54 +17,21 @@ export const StaticProvider: FC<{
 }> = ({ children }) => {
   const [t] = useTranslation('products');
 
-  const products = t('productList', {
-    returnObjects: true,
-  }) as string[];
-
+  const products = t('productList', { returnObjects: true }) as string[];
   const waferProducts = [
-    {
-      id: 'king',
-      name: t('king.name'),
-      desc: t('king.desc'),
-      coverUrl: 'images/packet/king.webp',
-      characterUrl: 'images/character/king.webp',
-    },
-    {
-      id: 'mafia',
-      name: t('mafia.name'),
-      desc: t('mafia.desc'),
-      coverUrl: 'images/packet/mafia.webp',
-      characterUrl: 'images/character/mafia.webp',
-    },
-    {
-      id: 'magician',
-      name: t('magician.name'),
-      desc: t('magician.desc'),
-      coverUrl: 'images/packet/magician.webp',
-      characterUrl: 'images/character/magician.webp',
-    },
-    {
-      id: 'hero',
-      name: t('hero.name'),
-      desc: t('hero.desc'),
-      coverUrl: 'images/packet/hero.webp',
-      characterUrl: 'images/character/hero.webp',
-    },
-    {
-      id: 'joker',
-      name: t('joker.name'),
-      desc: t('joker.desc'),
-      coverUrl: 'images/packet/joker.webp',
-      characterUrl: 'images/character/joker.webp',
-    },
-    {
-      id: 'diva',
-      name: t('diva.name'),
-      desc: t('diva.desc'),
-      coverUrl: 'images/packet/diva.webp',
-      characterUrl: 'images/character/diva.webp',
-    },
-  ];
+    'king',
+    'mafia',
+    'magician',
+    'hero',
+    'joker',
+    'diva',
+  ].map((character) => ({
+    id: character,
+    name: t(`${character}.name`),
+    desc: t(`${character}.desc`),
+    coverUrl: `images/packet/${character}.webp`,
+    characterUrl: `images/character/${character}.webp`,
+  }));
 
   return (
     <StaticContext.Provider value={{ products, waferProducts }}>

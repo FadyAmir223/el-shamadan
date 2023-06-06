@@ -1,4 +1,11 @@
+import { useTranslation } from 'react-i18next';
+import { useTitle } from '../hooks/useTitle';
+
 const Error = () => {
+  const [t] = useTranslation('errors');
+
+  useTitle('error');
+
   return (
     <main className="py-16 flex flex-col items-center font-[roboto]">
       <div className="relative">
@@ -7,8 +14,12 @@ const Error = () => {
           ✋
         </span>
       </div>
-      <p className="uppercase text-yellow text-2xl pt-3">error 404</p>
-      <p className="text-yellow/90 text-sm">page not found</p>
+      <p className="uppercase dark:text-yellow text-purple text-2xl pt-3">
+        {t('pageNotFound.title')}
+      </p>
+      <p className="dark:text-yellow/90 text-purple/90 text-sm">
+        {t('pageNotFound.desc')}
+      </p>
     </main>
   );
 };
