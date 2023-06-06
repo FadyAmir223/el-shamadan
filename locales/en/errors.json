@@ -1,0 +1,10 @@
+{
+  "pageNotFound": {
+    "title": "error 404",
+    "desc": "page not found"
+  },
+  "productNotFound": {
+    "line_1": "Oops! Character Doesn't Exist",
+    "line_2": "go to {{ character }}"
+  }
+}
