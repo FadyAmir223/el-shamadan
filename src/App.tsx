@@ -99,7 +99,6 @@ const App = () => {
           />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
             <Route path="/products" element={<AllProducts />} />
             <Route path="/products/:productName" element={<SingleProduct />} />
             <Route path="/video" element={<Video />} />

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { BsSunFill, BsMoonFill } from 'react-icons/bs';
 import { FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
@@ -80,7 +80,7 @@ const Header = ({ isOpen, setOpen, isMuted, isLight, setLight }) => {
                 ['products', 'منتجاتنا'].includes(item.name) ? (
                   <div className="relative" key={item.link}>
                     <button
-                      className="border-2 border-b-transparent border-yellow p-2 bottom-up-animation dark:text-white text-black"
+                      className="ltr:font-bold border-2 border-b-transparent border-yellow p-2 bottom-up-animation dark:text-white text-black"
                       onClick={toggleDropdown}
                     >
                       {item.name}
@@ -91,25 +91,25 @@ const Header = ({ isOpen, setOpen, isMuted, isLight, setLight }) => {
                       }`}
                     >
                       {waferProducts.map((product) => (
-                        <Link
+                        <NavLink
                           key={product.id}
                           to={`/products/${product.id}`}
-                          className="block p-2 dark:hover:bg-grey hover:bg-grey-light transition-colors duration-300"
+                          className="block p-2 dark:hover:bg-grey hover:bg-grey-light transition-colors duration-300 aria-[current=page]:bg-grey-light dark:aria-[current=page]:bg-grey"
                           onClick={() => setOpen(false)}
                         >
                           {product.name}
-                        </Link>
+                        </NavLink>
                       ))}
                     </div>
                   </div>
                 ) : (
-                  <Link
+                  <NavLink
                     key={item.link}
                     to={`/${item.link.replace(' ', '-')}`}
-                    className="border-2 border-yellow border-b-transparent p-2 bottom-up-animation dark:text-white text-black"
+                    className="ltr:font-bold border-2 border-yellow border-b-transparent p-2 bottom-up-animation dark:text-white dark:aria-[current=page]:text-black aria-[current=page]:text-white"
                   >
                     {item.name}
-                  </Link>
+                  </NavLink>
                 )
               )}
             </nav>
@@ -124,13 +124,13 @@ const Header = ({ isOpen, setOpen, isMuted, isLight, setLight }) => {
               <FiX className="text-3xl cursor-pointer absolute top-5 left-5 dark:text-white text-black" />
               <nav className="contain flex flex-col dark:text-white text-black">
                 {nav.map((item) => (
-                  <Link
+                  <NavLink
                     key={item.link}
                     to={`/${item.link.replace(' ', '-')}`}
-                    className="text-center uppercase hover:text-red border-b border-b-red last:border-b-0 py-4"
+                    className="text-center uppercase hover:text-red border-b border-b-red last:border-b-0 py-4 aria-[current=page]:text-red"
                   >
                     {item.name}
-                  </Link>
+                  </NavLink>
                 ))}
               </nav>
             </div>

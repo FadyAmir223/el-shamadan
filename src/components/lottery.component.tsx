@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import ReactConfetti from 'react-confetti';
 import style from '../styles/lottery.module.css';
 import { useTranslation } from 'react-i18next';
 import Modal from './modal';
+import { StaticContext } from '../context/static.context';
 
-const imgs = ['king', 'mafia', 'diva', 'hero', 'magician'];
+// const imgs = ['king', 'mafia', 'diva', 'hero', 'magician'];
 
 const randELement = (list) => list[Math.floor(Math.random() * list.length)];
 
@@ -16,9 +17,11 @@ const getCat_Char = (path) => {
 };
 
 const Lottery = ({ categories, handleSound, setOverlay }) => {
-  const imgPath = () => {
+  const { waferProducts } = useContext(StaticContext);
+  const characters = waferProducts.map((i) => i.id);
+
     const category = randELement(categories);
-    const name = randELement(imgs);
+    const name = randELement(characters);
     return `images/${category}/${name}.webp`;
   };
 
