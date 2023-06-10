@@ -61,7 +61,9 @@ const App = () => {
 
   return (
     <div
-      className="relative dark:bg-black/90 bg-black/[23%] min-h-screen overflow-hidden"
+      className={`relative dark:bg-black/90 bg-black/[23%] min-h-screen overflow-hidden overscroll-y-contain ${
+        isOpen ? 'h-screen' : ''
+      }`}
       onClick={handleClick}
     >
       {isSoundPlaying && !isMuted && (

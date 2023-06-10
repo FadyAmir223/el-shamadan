@@ -144,7 +144,7 @@ const Header = ({ isOpen, setOpen, isMuted, isLight, setLight }) => {
                 {canInstall && !hideInstall && (
                   <div
                     id="install"
-                    className="flex justify-between bg-purple p-4 items-center rounded-lg"
+                    className="flex justify-between bg-purple p-4 items-center rounded-lg ltr:capitalize"
                   >
                     <p className="text-white">{t('install.text')}</p>
                     <span className="flex gap-x-2 items-center">
