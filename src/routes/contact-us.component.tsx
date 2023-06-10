@@ -13,6 +13,10 @@ const ContactUs = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    setTimeout(() => {
+      setMsg('');
+    }, 3000);
+
     const form = formRef.current;
 
     const name = form.name.value;
@@ -22,10 +26,6 @@ const ContactUs = () => {
     if (!(name && email && message)) return setMsg(t('errorMsg'));
 
     setMsg(t('successMsg'));
-
-    setTimeout(() => {
-      setMsg('');
-    }, 3000);
 
     form.reset();
   };

@@ -2,7 +2,7 @@
   "nav": [
     {
       "name": "home",
-      "link": "home"
+      "link": ""
     },
     {
       "name": "products",
@@ -20,5 +20,10 @@
       "name": "giveaway",
       "link": "giveaway"
     }
-  ]
+  ],
+  "install": {
+    "text": "use or app offline",
+    "button": "install app",
+    "later": "later"
+  }
 }

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { BsSunFill, BsMoonFill } from 'react-icons/bs';
@@ -6,7 +6,9 @@ import { FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
 
 import { StaticContext } from '../context/static.context';
 import { useTranslation } from 'react-i18next';
-import Modal from './modal';
+import Modal from './modal.component';
+import InstallBtn from './install-btn.component';
+import useInstall from '../hooks/useInstall';
 
 const Header = ({ isOpen, setOpen, isMuted, isLight, setLight }) => {
   const { waferProducts } = useContext(StaticContext);
@@ -14,6 +16,10 @@ const Header = ({ isOpen, setOpen, isMuted, isLight, setLight }) => {
   const nav = t('nav', {
     returnObjects: true,
   }) as { name: string; link: string }[];
+  const [hideInstall, setHideInstall] = useState(
+    localStorage.hideInstall || false
+  );
+  const canInstall = useInstall();
 
   const toggleDropdown = () => {
     setOpen(!isOpen);
@@ -30,6 +36,11 @@ const Header = ({ isOpen, setOpen, isMuted, isLight, setLight }) => {
     const newLanguage = i18n.language === 'en' ? 'ar' : 'en';
     localStorage.i18nextLng = newLanguage;
     i18n.changeLanguage(newLanguage);
+  };
+
+  const handleHideInstall = () => {
+    localStorage.hideInstall = true;
+    setHideInstall(true);
   };
 
   return (
@@ -95,7 +106,6 @@ const Header = ({ isOpen, setOpen, isMuted, isLight, setLight }) => {
                           key={product.id}
                           to={`/products/${product.id}`}
                           className="block p-2 dark:hover:bg-grey hover:bg-grey-light transition-colors duration-300 aria-[current=page]:bg-grey-light dark:aria-[current=page]:bg-grey"
-                          onClick={() => setOpen(false)}
                         >
                           {product.name}
                         </NavLink>
@@ -117,22 +127,38 @@ const Header = ({ isOpen, setOpen, isMuted, isLight, setLight }) => {
         </header>
         {isOpen && (
           <Modal>
-            <div
-              className="fixed z-50 top-0 left-0 w-full h-screen dark:bg-black bg-white py-14 overflow-hidden md:hidden ltr:text-lg rtl:text-xl ltr:font-bold ltr:dark:font-normal"
-              onClick={() => setOpen(false)}
-            >
+            <div className="fixed z-50 top-0 left-0 w-full h-screen dark:bg-black bg-white pt-14 pb-7 overflow-hidden md:hidden ltr:text-lg rtl:text-xl ltr:font-bold ltr:dark:font-normal">
               <FiX className="text-3xl cursor-pointer absolute top-5 left-5 dark:text-white text-black" />
-              <nav className="contain flex flex-col dark:text-white text-black">
-                {nav.map((item) => (
-                  <NavLink
-                    key={item.link}
-                    to={`/${item.link.replace(' ', '-')}`}
-                    className="text-center uppercase hover:text-red border-b border-b-red last:border-b-0 py-4 aria-[current=page]:text-red"
+              <div className="h-full contain flex justify-between flex-col">
+                <nav className="flex flex-col dark:text-white text-black">
+                  {nav.map((item) => (
+                    <NavLink
+                      key={item.link}
+                      to={`/${item.link.replace(' ', '-')}`}
+                      className="text-center uppercase hover:text-red border-b border-b-red last:border-b-0 py-4 aria-[current=page]:text-red"
+                    >
+                      {item.name}
+                    </NavLink>
+                  ))}
+                </nav>
+                {canInstall && !hideInstall && (
+                  <div
+                    id="install"
+                    className="flex justify-between bg-purple p-4 items-center rounded-lg"
                   >
-                    {item.name}
-                  </NavLink>
-                ))}
-              </nav>
+                    <p className="text-white">{t('install.text')}</p>
+                    <span className="flex gap-x-2 items-center">
+                      <InstallBtn text={t('install.button')} />
+                      <button
+                        className="text-[hsl(258,40%,65%)]"
+                        onClick={handleHideInstall}
+                      >
+                        {t('install.later')}
+                      </button>
+                    </span>
+                  </div>
+                )}
+              </div>
             </div>
           </Modal>
         )}

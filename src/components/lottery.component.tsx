@@ -1,11 +1,10 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import ReactConfetti from 'react-confetti';
-import style from '../styles/lottery.module.css';
 import { useTranslation } from 'react-i18next';
-import Modal from './modal';
-import { StaticContext } from '../context/static.context';
+import Modal from '../components/modal.component';
+import style from '../styles/lottery.module.css';
 
-// const imgs = ['king', 'mafia', 'diva', 'hero', 'magician'];
+const imgs = ['king', 'mafia', 'diva', 'hero', 'magician'];
 
 const randELement = (list) => list[Math.floor(Math.random() * list.length)];
 
@@ -17,25 +16,22 @@ const getCat_Char = (path) => {
 };
 
 const Lottery = ({ categories, handleSound, setOverlay }) => {
-  const { waferProducts } = useContext(StaticContext);
-  const characters = waferProducts.map((i) => i.id);
-
+  const imgPath = () => {
     const category = randELement(categories);
-    const name = randELement(characters);
+    const name = randELement(imgs);
     return `images/${category}/${name}.webp`;
   };
 
-  const randSrc = (prevSrc) => {
+  const randSrc = (src) => {
     let newPath;
     do {
       newPath = imgPath();
-    } while (prevSrc === newPath);
+    } while (src.face === newPath || src.back === newPath);
     return newPath;
   };
 
-  const srcFace = imgPath();
+  const [src, setSrc] = useState({ face: '', back: '' });
 
-  const [src, setSrc] = useState({ face: srcFace, back: randSrc(srcFace) });
   const [rotation, setRotation] = useState(0);
   const [confetti, setConfetti] = useState(false);
 
@@ -63,6 +59,8 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
   };
 
   useEffect(() => {
+    setSrc({ face: randSrc(src), back: randSrc(src) });
+
     const loops = 5;
     const init_ms = 1000;
     const duration_ms = 500;
@@ -73,9 +71,9 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
 
     for (let i = 0; i < loops; i++)
       setTimeout(() => {
-        setSrc(({ face, back }) => ({
-          face: randSrc(back),
-          back: randSrc(face),
+        setSrc(() => ({
+          face: randSrc(src),
+          back: randSrc(src),
         }));
       }, init_ms + (i * 2 + 1) * duration_ms + duration_ms / 2);
 

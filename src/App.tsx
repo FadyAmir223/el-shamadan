@@ -30,6 +30,9 @@ const App = () => {
   }, [isLight]);
 
   const handleClick = async (e) => {
+    // overlay or dropdown menu
+    if (isOpen && !e.target?.closest('#install')) setOpen(false);
+
     // mute toggle
     if (e.target.closest('[id]').id === 'mute-btn') {
       if (isMuted) setSoundPlaying(true);
@@ -50,9 +53,6 @@ const App = () => {
     setTimeout(() => {
       setStickPosition(null);
     }, 500);
-
-    // overlay or dropdown menu
-    if (isOpen) setOpen(false);
   };
 
   const handleAudioEnded = () => {

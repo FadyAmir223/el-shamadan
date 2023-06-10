@@ -1,12 +1,11 @@
 import { precacheAndRoute } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
-import { StaleWhileRevalidate } from 'workbox-strategies';
+import { StaleWhileRevalidate, CacheFirst } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
-import { googleFontsCache } from 'workbox-recipes';
 
-const revision = 'el-shamadan-static-v1';
+const revision = 'el-shamadan-static-v3';
 const repoName = '/el-shamadan';
-const cacehExpire = 60 * 60 * 24 * 3;
+// const cacehExpire = 60 * 60 * 24 * 3;
 
 declare const self: any; // ServiceWorkerGlobalScope
 
@@ -78,4 +77,10 @@ registerRoute(
   })
 );
 
-googleFontsCache({ maxAgeSeconds: cacehExpire });
+registerRoute(
+  ({ request }) => request.destination === 'font',
+  new CacheFirst({
+    cacheName: 'fonts',
+    plugins: [new CacheableResponsePlugin({ statuses: [200] })],
+  })
+);
