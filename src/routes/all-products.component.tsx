@@ -12,7 +12,7 @@ const AllProducts = () => {
       <section className="relative z-10">
         <div className="aspect-w-4 aspect-h-3 max-w-[150px] mx-auto mb-3">
           <img
-            src="images/item/face.webp"
+            src="images/item/face-150.webp"
             alt="face"
             className="object-cover w-full h-[144px]"
           />
@@ -26,19 +26,19 @@ const AllProducts = () => {
         </div>
         <div className="aspect-w-4 aspect-h-3 max-w-[150px] mx-auto mt-3">
           <img
-            src="images/item/belt.webp"
+            src="images/item/belt-150.webp"
             alt="belt"
             className="object-cover w-full h-[89px]"
           />
         </div>
       </section>
       <img
-        src="images/character/magician.webp"
+        src="images/character/magician-710.webp"
         alt="magician"
         className="absolute bottom-0 left-0 h-3/4 sm:h-4/5 -translate-x-1/2 dark:opacity-20 opacity-40 object-contain"
       />
       <img
-        src="images/character/king.webp"
+        src="images/character/king-710.webp"
         alt="king"
         className="absolute bottom-0 right-0 h-3/4 sm:h-4/5 translate-x-1/2 dark:opacity-20 opacity-40 object-contain"
       />

@@ -86,7 +86,7 @@ const App = () => {
         <div
           className="absolute top-0 left-0 w-full h-full dark:opacity-[15%] opacity-70"
           style={{
-            backgroundImage: 'url("images/item/background.webp")',
+            backgroundImage: 'url("images/item/background-100.webp")',
             backgroundSize: '100px',
           }}
         ></div>
