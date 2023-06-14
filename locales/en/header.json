@@ -23,7 +23,7 @@
   ],
   "install": {
     "text": "use our app offline",
-    "button": "install app",
+    "button": "install",
     "later": "later"
   }
 }
