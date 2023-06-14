@@ -73,24 +73,24 @@ const Home = () => {
         <section className="py-6 relative">
           <div className="contain">
             <img
-              src="images/item/curtain-left.webp"
+              src="images/item/curtain-left-95.webp"
               alt="curtain-left"
               className="absolute left-0 top-[-1px] h-4/5 md:h-[370px] dark:opacity-50 opacity-[85%] select-none"
             />
             <img
-              src="images/item/curtain-right.webp"
+              src="images/item/curtain-right-95.webp"
               alt="curtain-right"
               className="absolute right-0 top-[-1px] h-4/5 md:h-[370px] dark:opacity-50 opacity-[85%] select-none"
             />
 
             <div className="w-fit relative mx-auto">
               <img
-                src="images/item/secret.webp"
+                src="images/item/secret-420.webp"
                 alt="secret"
                 className="max-w-xs mb-4 w-full sm:h-[326px] select-none hidden dark:block"
               />
               <img
-                src="images/item/secret-dark.webp"
+                src="images/item/secret-dark-420.webp"
                 alt="secret"
                 className="max-w-xs mb-4 w-full sm:h-[326px] select-none dark:hidden"
               />

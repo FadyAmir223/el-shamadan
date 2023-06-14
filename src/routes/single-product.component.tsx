@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { StaticContext } from '../context/static.context';
 import { useTitle } from '../hooks/useTitle';
+import { getImageResolution } from '../utils/img-resolution.js';
 
 const ProductNotFound = lazy(() => import('./product-not-found.component'));
 
@@ -29,6 +30,9 @@ const SingleProduct = () => {
     navigate(`/products/${waferProducts[nextIdx].id}`);
   };
 
+  const packetSrc = getImageResolution(selectedProduct.coverUrl, [425])[0];
+  const charSrc = getImageResolution(selectedProduct.characterUrl, [710])[0];
+
   return selectedProduct ? (
     <article className="overflow-hidden relative py-8 md:py-6 h-[calc(100vh-70px)]">
       <FaAngleLeft
@@ -41,8 +45,9 @@ const SingleProduct = () => {
       />
       <section className="relative z-10 contain">
         <img
-          src={selectedProduct.coverUrl}
-          alt={`${selectedProduct.name} box`}
+          src={packetSrc}
+          // src={selectedProduct.coverUrl}
+          alt={`${selectedProduct.name} packet`}
           className="select-none h-28 sm:h-36 md:h-48 rotate-6 mx-auto my-10 hover:scale-110 hover:rotate-3 will-change-transform duration-500 shadow-md"
           key={selectedProduct.id}
         />
@@ -51,7 +56,8 @@ const SingleProduct = () => {
         </p>
       </section>
       <img
-        src={selectedProduct.characterUrl}
+        src={charSrc}
+        // src={selectedProduct.characterUrl}
         alt={`${selectedProduct.name} character`}
         className="absolute bottom-0  ltr:right-0 rtl:left-0 ltr:translate-x-[40%] rtl:-translate-x-[40%] dark:opacity-20 opacity-40 h-[80%] sm:h-[90%] object-contain"
         key={selectedProduct.id + '_'}

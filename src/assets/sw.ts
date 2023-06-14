@@ -3,8 +3,6 @@ import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate, CacheFirst } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 
-const revision = 'el-shamadan-static-v3';
-const repoName = '/el-shamadan';
 // const cacehExpire = 60 * 60 * 24 * 3;
 
 declare const self: any; // ServiceWorkerGlobalScope
@@ -19,6 +17,10 @@ self.addEventListener('install', () => {
 });
 
 self.addEventListener('activate', () => self.clients.claim());
+
+/*
+const revision = 'el-shamadan-static-v3';
+const repoName = '/el-shamadan';
 
 const path_img = (category, file) =>
   `${repoName}/images/${category}/${file}.webp`;
@@ -60,6 +62,7 @@ const assets = [
 const assetsRevision = assets.map((url) => ({ url, revision }));
 
 precacheAndRoute(assetsRevision);
+*/
 
 registerRoute(
   ({ request }) => request.mode === 'navigate',

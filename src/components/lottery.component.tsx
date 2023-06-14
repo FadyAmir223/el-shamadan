@@ -11,7 +11,7 @@ const randELement = (list) => list[Math.floor(Math.random() * list.length)];
 const getCat_Char = (path) => {
   const x = path.split('/');
   const category = x[1];
-  const character = x[2].split('.')[0];
+  const character = x[2].split('.')[0].split('-')[0];
   return { category, character };
 };
 
@@ -19,7 +19,7 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
   const imgPath = () => {
     const category = randELement(categories);
     const name = randELement(imgs);
-    return `images/${category}/${name}.webp`;
+    return `images/${category}/${name}-180.webp`;
   };
 
   const randSrc = (src) => {
@@ -89,7 +89,7 @@ const Lottery = ({ categories, handleSound, setOverlay }) => {
         <div
           className="absolute top-0 left-0 w-full h-full dark:opacity-[15%]"
           style={{
-            backgroundImage: 'url("images/item/background.webp")',
+            backgroundImage: 'url("images/item/background-100.webp")',
             backgroundSize: '100px',
           }}
         ></div>
