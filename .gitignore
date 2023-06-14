@@ -26,3 +26,4 @@ dist-ssr
 .env* 
 
 createGit.bat
+public/src-images

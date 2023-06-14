@@ -5,8 +5,6 @@ import { VitePWA } from 'vite-plugin-pwa';
 import Unfonts from 'unplugin-fonts/vite';
 import svgr from 'vite-plugin-svgr';
 
-// import legacy from '@vitejs/plugin-legacy';
-
 // import webp from 'vite-plugin-webp';
 // import { join } from 'path';
 
@@ -21,10 +19,6 @@ export default defineConfig({
     svgr(),
 
     createHtmlPlugin({ minify: true }),
-
-    // legacy({
-    //   targets: ['defaults', 'not IE 11'],
-    // }),
 
     // "build": "tsc && vite build && rm dist/images/**/*.{jpg,png}",
 

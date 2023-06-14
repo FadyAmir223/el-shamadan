@@ -13,15 +13,15 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Link to={`/products/${product.id}`} className="relative group select-none">
       <img
-        src={product.characterUrl}
-        srcSet={`${charSrcList[0]} ${screenSizes.sm}, ${charSrcList[1]} ${screenSizes.md}, `}
+        src={charSrcList[1]}
+        srcSet={`${charSrcList[0]} ${screenSizes.sm}, ${charSrcList[1]} ${screenSizes.md}`}
         alt={product.name}
         className="w-20 md:w-28 absolute top-0 md:-top-7 left-0 group-hover:translate-y-9 md:group-hover:translate-y-12 will-change-transform duration-500 transition-transform"
       />
       <div className="dark:bg-grey bg-grey-light shadow-xl rounded-lg p-4 md:p-6 lg:p-8 relative before:absolute before:left-0 before:top-0 before:bg-purple before:duration-500 before:h-full before:w-0 hover:before:w-1/2 group before:rounded-r-full mt-16 border-t-8 border-l-8 dark:border-t-yellow dark:border-l-yellow border-t-purple border-l-purple">
         <div className="relative z-10">
           <img
-            src={product.coverUrl}
+            src={packetSrcList[2]}
             alt={product.name}
             srcSet={`${packetSrcList[0]} ${screenSizes.sm},
              ${packetSrcList[1]} ${screenSizes.md},

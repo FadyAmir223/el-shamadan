@@ -4,11 +4,11 @@ import sharp from 'sharp';
 
 const rootDir = process.cwd();
 
-const srcDir = './public/images__';
+const srcDir = './public/src-images';
 const outDir = 'images';
 
-// processImg(path.join(rootDir, srcDir, 't-shirt'), [120, 180]);
-processImg(path.join(rootDir, srcDir, 'item/thumbnail.webp'), [450, 740, 945]);
+processImg(path.join(rootDir, srcDir, 'character'), [320]);
+// processImg(path.join(rootDir, srcDir, 'item/thumbnail.webp'), [945]);
 
 // processImg(path.join(rootDir, srcDir), [425]);
 // processImg(path.join(rootDir, srcDir, 'item/secret.png'));
@@ -28,7 +28,7 @@ function processImg(imagePath, resolutions) {
   } else {
     const fileExtension = path.extname(imagePath);
     const fileName = path.basename(imagePath, fileExtension);
-    const outputDir = path.dirname(imagePath.replace('images', outDir));
+    const outputDir = path.dirname(imagePath.replace('src-images', outDir));
 
     if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
 

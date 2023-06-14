@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { StaticContext } from '../context/static.context';
 import { useTitle } from '../hooks/useTitle';
-import { getImageResolution } from '../utils/img-resolution.js';
+import { getImageResolution, screenSizes } from '../utils/img-resolution.js';
 
 const ProductNotFound = lazy(() => import('./product-not-found.component'));
 
@@ -30,8 +30,11 @@ const SingleProduct = () => {
     navigate(`/products/${waferProducts[nextIdx].id}`);
   };
 
-  const packetSrc = getImageResolution(selectedProduct.coverUrl, [425])[0];
-  const charSrc = getImageResolution(selectedProduct.characterUrl, [710])[0];
+  const packetSrcList = getImageResolution(
+    selectedProduct.coverUrl,
+    [300, 370, 425]
+  );
+  const charSrc = getImageResolution(selectedProduct.characterUrl, [320])[0];
 
   return selectedProduct ? (
     <article className="overflow-hidden relative py-8 md:py-6 h-[calc(100vh-70px)]">
@@ -43,11 +46,12 @@ const SingleProduct = () => {
         className="select-none event text-4xl cursor-pointer dark:text-yellow dark:hover:text-yellow/80 text-purple hover:text-purple/80 focus:outline-0  absolute z-20 top-1/4 md:top-1/2 right-0 -translate-y-1/2 translat"
         onClick={() => handlePrevNext('next')}
       />
+
       <section className="relative z-10 contain">
         <img
-          src={packetSrc}
-          // src={selectedProduct.coverUrl}
+          src={packetSrcList[2]}
           alt={`${selectedProduct.name} packet`}
+          srcSet={`${packetSrcList[0]} ${screenSizes.sm}, ${packetSrcList[1]} ${screenSizes.md}, ${packetSrcList[2]} ${screenSizes.lg}`}
           className="select-none h-28 sm:h-36 md:h-48 rotate-6 mx-auto my-10 hover:scale-110 hover:rotate-3 will-change-transform duration-500 shadow-md"
           key={selectedProduct.id}
         />

@@ -18,29 +18,47 @@ self.addEventListener('install', () => {
 
 self.addEventListener('activate', () => self.clients.claim());
 
-/*
 const revision = 'el-shamadan-static-v3';
 const repoName = '/el-shamadan';
-
-const path_img = (category, file) =>
-  `${repoName}/images/${category}/${file}.webp`;
 
 const path_locale = (locale, file) =>
   `${repoName}/locales/${locale}/${file}.json`;
 
+const path_img = (category, file) =>
+  `${repoName}/images/${category}/${file}.webp`;
+
+function path_img_(folder, char) {
+  return assets_.folders.flatMap((folderItem) => {
+    return folderItem.key.includes(folder)
+      ? folderItem.resolution.map(
+          (resolution) =>
+            `${repoName}/images/${folder}/${char}-${resolution}.webp`
+        )
+      : [];
+  });
+}
+
 const assets_ = {
   pages: ['contact', 'footer', 'header', 'home', 'products', 'giveaway'],
-  chars: ['king', 'magician', 'hero', 'joker', 'mafia', 'diva'],
-  folders: ['character', 'packet', 'bag', 'notebook', 'mug', 't-shirt'],
   locales: ['en', 'ar'],
+
+  chars: ['king', 'magician', 'hero', 'joker', 'mafia', 'diva'],
+  folders: [
+    {
+      key: ['bag', 'notebook', 'mug', 't-shirt'],
+      resolution: [120, 180],
+    },
+    { key: ['character'], resolution: [80, 320] },
+    { key: ['packet'], resolution: [175, 300] },
+  ],
   items: [
-    'background',
-    'secret',
-    'secret-dark',
-    'face',
-    'belt',
-    'curtain-left',
-    'curtain-right',
+    'background-100',
+    'secret-420',
+    'secret-dark-420',
+    'face-150',
+    'belt-150',
+    'curtain-left-95',
+    'curtain-right-95',
     'stick-left-64',
     'thumbnail',
   ],
@@ -48,21 +66,25 @@ const assets_ = {
 
 const assets = [
   `${repoName}/favicon.ico`,
-  `${repoName}/images/logo.webp`,
+  `${repoName}/images/logo-32.webp`,
+  `${repoName}/images/logo-58.webp`,
 
-  ...assets_.items.map((item) => path_img('item', item)),
-  ...assets_.folders.flatMap((folder) =>
-    assets_.chars.map((char) => path_img(folder, char))
-  ),
   ...assets_.locales.flatMap((locale) =>
     assets_.pages.map((page) => path_locale(locale, page))
   ),
+
+  ...assets_.items.map((item) => path_img('item', item)),
+
+  ...assets_.folders.flatMap((folder) =>
+    assets_.chars.flatMap((char) => path_img_(folder.key[0], char))
+  ),
 ];
+
+console.log(assets);
 
 const assetsRevision = assets.map((url) => ({ url, revision }));
 
 precacheAndRoute(assetsRevision);
-*/
 
 registerRoute(
   ({ request }) => request.mode === 'navigate',

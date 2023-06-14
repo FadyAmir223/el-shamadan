@@ -33,12 +33,12 @@ const AllProducts = () => {
         </div>
       </section>
       <img
-        src="images/character/magician-710.webp"
+        src="images/character/magician-320.webp"
         alt="magician"
         className="absolute bottom-0 left-0 h-3/4 sm:h-4/5 -translate-x-1/2 dark:opacity-20 opacity-40 object-contain"
       />
       <img
-        src="images/character/king-710.webp"
+        src="images/character/king-320.webp"
         alt="king"
         className="absolute bottom-0 right-0 h-3/4 sm:h-4/5 translate-x-1/2 dark:opacity-20 opacity-40 object-contain"
       />

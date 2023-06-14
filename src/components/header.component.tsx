@@ -3,11 +3,11 @@ import { Link, NavLink } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { BsSunFill, BsMoonFill } from 'react-icons/bs';
 import { FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
-
-import { StaticContext } from '../context/static.context';
 import { useTranslation } from 'react-i18next';
+
 import Modal from './modal.component';
 import InstallBtn from './install-btn.component';
+import { StaticContext } from '../context/static.context';
 import useInstall from '../hooks/useInstall';
 
 const Header = ({ isOpen, setOpen, isMuted, isLight, setLight }) => {
@@ -141,8 +141,7 @@ const Header = ({ isOpen, setOpen, isMuted, isLight, setLight }) => {
                     </NavLink>
                   ))}
                 </nav>
-                {
-                  // canInstall && !hideInstall &&
+                {canInstall && !hideInstall && (
                   <div
                     id="install"
                     className="flex justify-between bg-purple p-4 items-center rounded-lg ltr:capitalize"
@@ -158,7 +157,7 @@ const Header = ({ isOpen, setOpen, isMuted, isLight, setLight }) => {
                       </button>
                     </span>
                   </div>
-                }
+                )}
               </div>
             </div>
           </Modal>
