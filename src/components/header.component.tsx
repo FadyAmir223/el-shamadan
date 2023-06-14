@@ -127,7 +127,7 @@ const Header = ({ isOpen, setOpen, isMuted, isLight, setLight }) => {
         </header>
         {isOpen && (
           <Modal>
-            <div className="fixed z-50 top-0 left-0 w-full h-screen dark:bg-black bg-white pt-14 pb-7 overflow-hidden md:hidden ltr:text-lg rtl:text-xl ltr:font-bold ltr:dark:font-normal">
+            <div className="fixed z-50 top-0 left-0 w-full h-screen dark:bg-black bg-white py-14 overflow-hidden md:hidden ltr:text-lg rtl:text-xl ltr:font-bold ltr:dark:font-normal">
               <FiX className="text-3xl cursor-pointer absolute top-5 left-5 dark:text-white text-black" />
               <div className="h-full contain flex justify-between flex-col">
                 <nav className="flex flex-col dark:text-white text-black">
@@ -141,7 +141,8 @@ const Header = ({ isOpen, setOpen, isMuted, isLight, setLight }) => {
                     </NavLink>
                   ))}
                 </nav>
-                {canInstall && !hideInstall && (
+                {
+                  // canInstall && !hideInstall &&
                   <div
                     id="install"
                     className="flex justify-between bg-purple p-4 items-center rounded-lg ltr:capitalize"
@@ -157,7 +158,7 @@ const Header = ({ isOpen, setOpen, isMuted, isLight, setLight }) => {
                       </button>
                     </span>
                   </div>
-                )}
+                }
               </div>
             </div>
           </Modal>

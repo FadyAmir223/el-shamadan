@@ -7,7 +7,7 @@ const InstallBtn = ({ text }) => {
 
   return (
     <button
-      className="ltr:font-bold text-base tracking-wide capitalize px-3 py-1 bg-white dark:bg-black dark:text-white rounded-full text-purple"
+      className="ltr:font-bold ltr:text-base rtl:text-lg tracking-wide capitalize px-3 py-1 bg-white dark:bg-black dark:text-white rounded-full text-purple"
       onClick={handleInstall}
     >
       {text}
