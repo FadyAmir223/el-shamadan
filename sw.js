@@ -97,19 +97,19 @@ class F {
     }, this._precacheController = e;
   }
 }
-let w;
+let y;
 function H() {
-  if (w === void 0) {
+  if (y === void 0) {
     const a = new Response("");
     if ("body" in a)
       try {
-        new Response(a.body), w = !0;
+        new Response(a.body), y = !0;
       } catch {
-        w = !1;
+        y = !1;
       }
-    w = !1;
+    y = !1;
   }
-  return w;
+  return y;
 }
 async function $(a, e) {
   let t = null;
@@ -306,7 +306,7 @@ class X {
     const r = await this._ensureResponseSafeToCache(t);
     if (!r)
       return !1;
-    const { cacheName: c, matchOptions: i } = this._strategy, o = await self.caches.open(c), h = this.hasCallback("cacheDidUpdate"), y = h ? await V(
+    const { cacheName: c, matchOptions: i } = this._strategy, o = await self.caches.open(c), h = this.hasCallback("cacheDidUpdate"), g = h ? await V(
       // TODO(philipwalton): the `__WB_REVISION__` param is a precaching
       // feature. Consider into ways to only add this behavior if using
       // precaching.
@@ -324,7 +324,7 @@ class X {
     for (const u of this.iterateCallbacks("cacheDidUpdate"))
       await u({
         cacheName: c,
-        oldResponse: y,
+        oldResponse: g,
         newResponse: r.clone(),
         request: n,
         event: this.event
@@ -898,7 +898,7 @@ try {
 } catch {
 }
 const M = "GET", C = (a) => a && typeof a == "object" ? a : { handle: a };
-class R {
+class m {
   /**
    * Constructor for Route class.
    *
@@ -922,7 +922,7 @@ class R {
     this.catchHandler = C(e);
   }
 }
-class Z extends R {
+class Z extends m {
   /**
    * If the regular expression contains
    * [capture groups]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp#grouping-back-references},
@@ -1036,11 +1036,11 @@ class ee {
     } catch (u) {
       h = Promise.reject(u);
     }
-    const y = c && c.catchHandler;
-    return h instanceof Promise && (this._catchHandler || y) && (h = h.catch(async (u) => {
-      if (y)
+    const g = c && c.catchHandler;
+    return h instanceof Promise && (this._catchHandler || g) && (h = h.catch(async (u) => {
+      if (g)
         try {
-          return await y.handle({ url: s, request: e, event: t, params: r });
+          return await g.handle({ url: s, request: e, event: t, params: r });
         } catch (x) {
           x instanceof Error && (u = x);
         }
@@ -1127,18 +1127,18 @@ class ee {
       throw new l("unregister-route-route-not-registered");
   }
 }
-let m;
-const te = () => (m || (m = new ee(), m.addFetchListener(), m.addCacheListener()), m);
+let w;
+const te = () => (w || (w = new ee(), w.addFetchListener(), w.addCacheListener()), w);
 function k(a, e, t) {
   let s;
   if (typeof a == "string") {
     const r = new URL(a, location.href), c = ({ url: i }) => i.href === r.href;
-    s = new R(c, e, t);
+    s = new m(c, e, t);
   } else if (a instanceof RegExp)
     s = new Z(a, e, t);
   else if (typeof a == "function")
-    s = new R(a, e, t);
-  else if (a instanceof R)
+    s = new m(a, e, t);
+  else if (a instanceof m)
     s = a;
   else
     throw new l("unsupported-route-type", {
@@ -1171,7 +1171,7 @@ function* ae(a, { ignoreURLParametersMatching: e = [/^utm_/, /^fbclid$/], direct
       yield o.href;
   }
 }
-class ne extends R {
+class ne extends m {
   /**
    * @param {PrecacheController} precacheController A `PrecacheController`
    * instance used to both match requests and respond to fetch events.
@@ -1341,15 +1341,15 @@ class v {
     this.cacheWillUpdate = async ({ response: t }) => this._cacheableResponse.isResponseCacheable(t) ? t : null, this._cacheableResponse = new le(e);
   }
 }
-O([{"revision":null,"url":"assets/all-products.component-305926ab.js"},{"revision":null,"url":"assets/contact-us.component-0c09e6a8.js"},{"revision":null,"url":"assets/error.component-7a77e7bc.js"},{"revision":null,"url":"assets/footer.component-1a9207ed.js"},{"revision":null,"url":"assets/giveaway.component-dd6b5a84.js"},{"revision":null,"url":"assets/home.component-378b0901.js"},{"revision":null,"url":"assets/img-resolution-c634a389.js"},{"revision":null,"url":"assets/index-1dc4fab4.js"},{"revision":null,"url":"assets/index-32fa3d8a.css"},{"revision":null,"url":"assets/lottery.component-171d1d7a.css"},{"revision":null,"url":"assets/lottery.component-3763eedd.js"},{"revision":null,"url":"assets/product-card.component-a591c1ab.js"},{"revision":null,"url":"assets/product-not-found.component-e552b244.js"},{"revision":null,"url":"assets/single-product.component-6df33e49.js"},{"revision":null,"url":"assets/useTitle-51cc047c.js"},{"revision":null,"url":"assets/video.component-30cb3481.js"},{"revision":"2aeb6cbb7505a27287045b121fe1852e","url":"index.html"},{"revision":"ef31508ea54c9805220261c6bd8628a1","url":"registerSW.js"},{"revision":"d5f8d8e2cd559ca3adb009856213ce35","url":"pwa-192x192.png"},{"revision":"1d809b42a4d8399ed3c3470aedfbc3e1","url":"pwa-512x512.png"},{"revision":"1e0059c966448a9cec3e100a31e57ce9","url":"manifest.webmanifest"}]);
+O([{"revision":null,"url":"assets/all-products.component-49ac0a29.js"},{"revision":null,"url":"assets/contact-us.component-2ef0bcbb.js"},{"revision":null,"url":"assets/error.component-7b30ac9e.js"},{"revision":null,"url":"assets/footer.component-8edf27d6.js"},{"revision":null,"url":"assets/giveaway.component-699f76ec.js"},{"revision":null,"url":"assets/home.component-747c8723.js"},{"revision":null,"url":"assets/img-resolution-c634a389.js"},{"revision":null,"url":"assets/index-32fa3d8a.css"},{"revision":null,"url":"assets/index-acee448c.js"},{"revision":null,"url":"assets/lottery.component-171d1d7a.css"},{"revision":null,"url":"assets/lottery.component-f1f16aba.js"},{"revision":null,"url":"assets/product-card.component-80fe5e43.js"},{"revision":null,"url":"assets/product-not-found.component-b89fa643.js"},{"revision":null,"url":"assets/single-product.component-dc52604c.js"},{"revision":null,"url":"assets/useTitle-6881284f.js"},{"revision":null,"url":"assets/video.component-a6534206.js"},{"revision":"65efa91d816cb55e3be0b97bbfc7936c","url":"index.html"},{"revision":"ef31508ea54c9805220261c6bd8628a1","url":"registerSW.js"},{"revision":"d5f8d8e2cd559ca3adb009856213ce35","url":"pwa-192x192.png"},{"revision":"1d809b42a4d8399ed3c3470aedfbc3e1","url":"pwa-512x512.png"},{"revision":"1e0059c966448a9cec3e100a31e57ce9","url":"manifest.webmanifest"}]);
 self.addEventListener("install", () => {
   self.skipWaiting(), self.registration.unregister();
 });
 self.addEventListener("activate", () => self.clients.claim());
-const he = "el-shamadan-static-v1", g = "/el-shamadan", ue = (a, e) => `${g}/locales/${a}/${e}.json`, fe = (a, e) => `${g}/images/${a}/${e}.webp`;
+const he = "el-shamadan-static-v1", R = "/el-shamadan", ue = (a, e) => `${R}/locales/${a}/${e}.json`, fe = (a, e) => `${R}/images/${a}/${e}.webp`;
 function de(a, e) {
   return p.folders.flatMap((t) => t.key.includes(a) ? t.resolution.map(
-    (s) => `${g}/images/${a}/${e}-${s}.webp`
+    (s) => `${R}/images/${a}/${e}-${s}.webp`
   ) : []);
 }
 const p = {
@@ -1376,9 +1376,8 @@ const p = {
     "thumbnail"
   ]
 }, pe = [
-  `${g}/favicon.ico`,
-  `${g}/images/logo-32.webp`,
-  `${g}/images/logo-58.webp`,
+  `${R}/favicon.ico`,
+  `${R}/images/logo-58.webp`,
   ...p.locales.flatMap(
     (a) => p.pages.map((e) => ue(a, e))
   ),
