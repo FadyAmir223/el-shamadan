@@ -1,0 +1,10 @@
+{
+  "pageNotFound": {
+    "title": "ايرور ٤٠٤",
+    "desc": "الصفحة غير موجودة"
+  },
+  "productNotFound": {
+    "line_1": "الشخصية غير موجودة",
+    "line_2": "اذهب إلى {{ character }}"
+  }
+}

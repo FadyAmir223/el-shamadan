@@ -3,10 +3,10 @@ import react from '@vitejs/plugin-react';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import { VitePWA } from 'vite-plugin-pwa';
 import Unfonts from 'unplugin-fonts/vite';
-import { join } from 'path';
-import webp from 'vite-plugin-webp';
-// import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
-// import legacy from '@vitejs/plugin-legacy';
+import svgr from 'vite-plugin-svgr';
+
+// import webp from 'vite-plugin-webp';
+// import { join } from 'path';
 
 export default defineConfig({
   base: '/el-shamadan/',
@@ -16,26 +16,19 @@ export default defineConfig({
 
   plugins: [
     react(),
+    svgr(),
 
     createHtmlPlugin({ minify: true }),
 
-    // ViteImageOptimizer({
-    //   png: {
-    //     quality: 10,
+    // "build": "tsc && vite build && rm dist/images/**/*.{jpg,png}",
+
+    // webp({
+    //   onlyWebp: join(__dirname, 'public/images'),
+    //   sharpOptions: {
+    //     quality: 70,
+    //     force: true,
     //   },
     // }),
-
-    // legacy({
-    //   targets: ['defaults', 'not IE 11'],
-    // }),
-
-    webp({
-      onlyWebp: join(__dirname, 'public/images'),
-      sharpOptions: {
-        quality: 70,
-        force: true,
-      },
-    }),
 
     Unfonts({
       custom: {
@@ -66,6 +59,8 @@ export default defineConfig({
         orientation: 'portrait',
         theme_color: '#181a1B',
         background_color: '#181a1B',
+
+        // npx pwa-asset-generator ./logo.png icons
         icons: [
           {
             src: 'pwa-192x192.png',

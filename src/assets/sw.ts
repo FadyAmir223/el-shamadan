@@ -1,44 +1,64 @@
 import { precacheAndRoute } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
-import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
+import { StaleWhileRevalidate, CacheFirst } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
-import { ExpirationPlugin } from 'workbox-expiration';
+
+// const cacehExpire = 60 * 60 * 24 * 3;
 
 declare const self: any; // ServiceWorkerGlobalScope
 
 precacheAndRoute(self.__WB_MANIFEST);
 
-const revision = 'el-shamadan-static-v18';
-
+// Forces the waiting service worker to become the active service worker
+// Unregisters any previous service worker
 self.addEventListener('install', () => {
-  // Forces the waiting service worker to become the active service worker
   self.skipWaiting();
-
-  // Unregisters any previous service worker
   self.registration.unregister();
 });
 
-const repoName = '/el-shamadan';
-const cacehExpire = 60 * 60 * 24 * 3;
+self.addEventListener('activate', () => self.clients.claim());
 
-const path_img = (category, file) =>
-  `${repoName}/images/${category}/${file}.webp`;
+const revision = 'el-shamadan-static-v1';
+const repoName = '/el-shamadan';
 
 const path_locale = (locale, file) =>
   `${repoName}/locales/${locale}/${file}.json`;
 
+const path_img = (category, file) =>
+  `${repoName}/images/${category}/${file}.webp`;
+
+function path_img_(folder, char) {
+  return assets_.folders.flatMap((folderItem) => {
+    return folderItem.key.includes(folder)
+      ? folderItem.resolution.map(
+          (resolution) =>
+            `${repoName}/images/${folder}/${char}-${resolution}.webp`
+        )
+      : [];
+  });
+}
+
 const assets_ = {
   pages: ['contact', 'footer', 'header', 'home', 'products', 'giveaway'],
-  chars: ['king', 'magician', 'hero', 'joker', 'mafia', 'diva'],
-  folders: ['character', 'packet', 'bag', 'notebook', 'mug', 't-shirt'],
   locales: ['en', 'ar'],
+
+  chars: ['king', 'magician', 'hero', 'joker', 'mafia', 'diva'],
+  folders: [
+    {
+      key: ['t-shirt', 'bag', 'notebook', 'mug'],
+      resolution: [120, 180],
+    },
+    { key: ['character'], resolution: [80, 115, 320] },
+    { key: ['packet'], resolution: [175, 300, 370, 425] },
+  ],
   items: [
-    'background',
-    'secret',
-    'face',
-    'belt',
-    'curtain-left',
-    'curtain-right',
+    'background-100',
+    'secret-420',
+    'secret-dark-420',
+    'face-150',
+    'belt-150',
+    'curtain-left-145',
+    'curtain-right-145',
     'stick-left-64',
     'thumbnail',
   ],
@@ -46,14 +66,14 @@ const assets_ = {
 
 const assets = [
   `${repoName}/favicon.ico`,
-  `${repoName}/images/logo.webp`,
-
-  ...assets_.items.map((item) => path_img('item', item)),
-  ...assets_.folders.flatMap((folder) =>
-    assets_.chars.map((char) => path_img(folder, char))
-  ),
+  `${repoName}/images/logo-58.webp`,
+  `${repoName}/images/logo-90.webp`,
   ...assets_.locales.flatMap((locale) =>
     assets_.pages.map((page) => path_locale(locale, page))
+  ),
+  ...assets_.items.map((item) => path_img('item', item)),
+  ...assets_.folders.flatMap((folder) =>
+    assets_.chars.flatMap((char) => path_img_(folder.key[0], char))
   ),
 ];
 
@@ -65,13 +85,7 @@ registerRoute(
   ({ request }) => request.mode === 'navigate',
   new StaleWhileRevalidate({
     cacheName: 'navigate',
-    plugins: [
-      new CacheableResponsePlugin({ statuses: [200] }),
-      new ExpirationPlugin({
-        maxEntries: 30,
-        maxAgeSeconds: cacehExpire,
-      }),
-    ],
+    plugins: [new CacheableResponsePlugin({ statuses: [200] })],
   })
 );
 
@@ -79,13 +93,7 @@ registerRoute(
   ({ request }) => request.destination === 'script',
   new StaleWhileRevalidate({
     cacheName: 'scripts',
-    plugins: [
-      new CacheableResponsePlugin({ statuses: [200] }),
-      new ExpirationPlugin({
-        maxEntries: 30,
-        maxAgeSeconds: cacehExpire,
-      }),
-    ],
+    plugins: [new CacheableResponsePlugin({ statuses: [200] })],
   })
 );
 
@@ -93,12 +101,6 @@ registerRoute(
   ({ request }) => request.destination === 'font',
   new CacheFirst({
     cacheName: 'fonts',
-    plugins: [
-      new CacheableResponsePlugin({ statuses: [200] }),
-      new ExpirationPlugin({
-        maxEntries: 10,
-        maxAgeSeconds: cacehExpire,
-      }),
-    ],
+    plugins: [new CacheableResponsePlugin({ statuses: [200] })],
   })
 );

@@ -1,47 +1,43 @@
 import { lazy, useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Header from './components/header/header.component';
+import Header from './components/header.component';
 import { useTranslation } from 'react-i18next';
 
-const Home = lazy(() => import('./routes/home/home.component'));
-const AllProducts = lazy(
-  () => import('./routes/all-products/all-products.component')
-);
-const SingleProduct = lazy(
-  () => import('./routes/single-product/single-product.component')
-);
-const Video = lazy(() => import('./routes/video/video.component'));
-const ContactUs = lazy(
-  () => import('./routes/contact-us/contact-us.component')
-);
-const Giveaway = lazy(() => import('./routes/giveaway/giveaway.component'));
-const Error = lazy(() => import('./routes/error/error.component'));
+const Home = lazy(() => import('./routes/home.component'));
+const AllProducts = lazy(() => import('./routes/all-products.component'));
+const SingleProduct = lazy(() => import('./routes/single-product.component'));
+const Video = lazy(() => import('./routes/video.component'));
+const ContactUs = lazy(() => import('./routes/contact-us.component'));
+const Giveaway = lazy(() => import('./routes/giveaway.component'));
+const Error = lazy(() => import('./routes/error.component'));
 
 const App = () => {
   const [stickPosition, setStickPosition] = useState(null);
   const [isSoundPlaying, setSoundPlaying] = useState(false);
   const [isOpen, setOpen] = useState(false);
-  const [isMuted, setMuted] = useState(
-    localStorage.isMuted === 'true' || false
-  );
-  const [isDark, setIsDark] = useState(localStorage.isDark === 'true' || false);
-
-  useEffect(() => {
-    isDark
-      ? document.body.classList.remove('dark')
-      : document.body.classList.add('dark');
-  }, [isDark]);
+  const [isMuted, setMuted] = useState(localStorage.muted === 'true' || false);
+  const [isLight, setLight] = useState(localStorage.dark === 'true' || false);
 
   const [, i18n] = useTranslation('header');
+
   document.body.dir = i18n.dir();
 
+  useEffect(() => {
+    isLight
+      ? document.body.classList.remove('dark')
+      : document.body.classList.add('dark');
+  }, [isLight]);
+
   const handleClick = async (e) => {
+    // overlay or dropdown menu
+    if (isOpen && !e.target?.closest('#install')) setOpen(false);
+
     // mute toggle
     if (e.target.closest('[id]').id === 'mute-btn') {
       if (isMuted) setSoundPlaying(true);
       setMuted((prevMuted) => {
-        localStorage.isMuted = !prevMuted;
+        localStorage.muted = !prevMuted;
         return !prevMuted;
       });
     } else if (!isMuted) setSoundPlaying(true);
@@ -57,9 +53,6 @@ const App = () => {
     setTimeout(() => {
       setStickPosition(null);
     }, 500);
-
-    // overlay or dropdown menu
-    if (isOpen) setOpen(false);
   };
 
   const handleAudioEnded = () => {
@@ -68,7 +61,9 @@ const App = () => {
 
   return (
     <div
-      className="relative dark:bg-black/90 bg-black/[23%] min-h-screen overflow-hidden"
+      className={`relative dark:bg-black/90 bg-black/[23%] min-h-screen overflow-hidden overscroll-y-contain ${
+        isOpen ? 'h-screen' : ''
+      }`}
       onClick={handleClick}
     >
       {isSoundPlaying && !isMuted && (
@@ -91,7 +86,7 @@ const App = () => {
         <div
           className="absolute top-0 left-0 w-full h-full dark:opacity-[15%] opacity-70"
           style={{
-            backgroundImage: 'url("images/item/background.webp")',
+            backgroundImage: 'url("images/item/background-100.webp")',
             backgroundSize: '100px',
           }}
         ></div>
@@ -99,14 +94,13 @@ const App = () => {
         <div className="relative flex flex-col">
           <Header
             isOpen={isOpen}
-            setIsOpen={setOpen}
+            setOpen={setOpen}
             isMuted={isMuted}
-            isDark={isDark}
-            setIsDark={setIsDark}
+            isLight={isLight}
+            setLight={setLight}
           />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
             <Route path="/products" element={<AllProducts />} />
             <Route path="/products/:productName" element={<SingleProduct />} />
             <Route path="/video" element={<Video />} />

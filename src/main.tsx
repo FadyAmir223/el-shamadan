@@ -4,10 +4,10 @@ import { createRoot } from 'react-dom/client';
 
 import '../i18n.js';
 import App from './App.tsx';
-import './index.css';
+import './styles/index.css';
 import 'unfonts.css';
 
-import LoadingSpinnter from './components/loading-spinnter/loading-spinnter.component.tsx';
+import LoadingSpinnter from './components/loading-spinnter.component.tsx';
 import { StaticProvider } from './context/static.context.tsx';
 
 createRoot(document.getElementById('root') as HTMLElement).render(
