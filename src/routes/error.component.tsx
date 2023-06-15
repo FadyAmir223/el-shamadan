@@ -9,7 +9,11 @@ const Error = () => {
   return (
     <main className="py-16 flex flex-col items-center font-[roboto]">
       <div className="relative">
-        <img src="images/character/king.webp" alt="error" className="h-48" />
+        <img
+          src="images/character/king-320.webp"
+          alt="error"
+          className="w-28"
+        />
         <span className="absolute text-5xl right-3 top-1/2 translate-x-1/3 -scale-x-100">
           ✋
         </span>

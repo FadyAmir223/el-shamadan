@@ -73,12 +73,12 @@ const Home = () => {
         <section className="py-6 relative">
           <div className="contain">
             <img
-              src="images/item/curtain-left-95.webp"
+              src="images/item/curtain-left-145.webp"
               alt="curtain-left"
               className="absolute left-0 top-[-1px] h-4/5 md:h-[370px] dark:opacity-50 opacity-[85%] select-none"
             />
             <img
-              src="images/item/curtain-right-95.webp"
+              src="images/item/curtain-right-145.webp"
               alt="curtain-right"
               className="absolute right-0 top-[-1px] h-4/5 md:h-[370px] dark:opacity-50 opacity-[85%] select-none"
             />

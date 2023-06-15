@@ -7,11 +7,11 @@ const rootDir = process.cwd();
 const srcDir = './public/src-images';
 const outDir = 'images';
 
-processImg(path.join(rootDir, srcDir, 'character'), [320]);
+// processImg(path.join(rootDir, srcDir, 'character'), [320]);
 // processImg(path.join(rootDir, srcDir, 'item/thumbnail.webp'), [945]);
 
-// processImg(path.join(rootDir, srcDir), [425]);
-// processImg(path.join(rootDir, srcDir, 'item/secret.png'));
+// processImg(path.join(rootDir, srcDir));
+processImg(path.join(rootDir, srcDir, 'logo.png'), [90]);
 
 // ############################################################
 

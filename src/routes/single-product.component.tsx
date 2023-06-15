@@ -31,10 +31,12 @@ const SingleProduct = () => {
   };
 
   const packetSrcList = getImageResolution(
-    selectedProduct.coverUrl,
+    selectedProduct?.coverUrl || '',
     [300, 370, 425]
   );
-  const charSrc = getImageResolution(selectedProduct.characterUrl, [320])[0];
+  const charSrc = getImageResolution(selectedProduct?.characterUrl || '', [
+    320,
+  ])[0];
 
   return selectedProduct ? (
     <article className="overflow-hidden relative py-8 md:py-6 h-[calc(100vh-70px)]">
@@ -61,7 +63,6 @@ const SingleProduct = () => {
       </section>
       <img
         src={charSrc}
-        // src={selectedProduct.characterUrl}
         alt={`${selectedProduct.name} character`}
         className="absolute bottom-0  ltr:right-0 rtl:left-0 ltr:translate-x-[40%] rtl:-translate-x-[40%] dark:opacity-20 opacity-40 h-[80%] sm:h-[90%] object-contain"
         key={selectedProduct.id + '_'}

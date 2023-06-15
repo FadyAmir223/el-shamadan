@@ -8,7 +8,7 @@ const CardGroup = ({ category }: CardGroupProps) => {
       <div className="w-28 aspect-[5/7] bg-yellow rounded-lg absolute -translate-x-[10%] -rotate-1 group-hover:-translate-x-[75%] group-hover:translate-y-[16%] group-hover:-rotate-[24deg] time-curve grid place-items-center select-none will-change-transform">
         <img
           src={`images/${category}/diva-120.webp`}
-          alt="king bag"
+          alt={'diva' + category}
           className="p-3"
         />
       </div>
@@ -16,7 +16,7 @@ const CardGroup = ({ category }: CardGroupProps) => {
       <div className="w-28 aspect-[5/7] bg-purple rounded-lg absolute rotate-2 group-hover:-translate-x-[25%] group-hover:translate-y-[8%] group-hover:-rotate-[8deg] time-curve grid place-items-center select-none will-change-transform">
         <img
           src={`images/${category}/hero-120.webp`}
-          alt="hero notebook"
+          alt={'hero' + category}
           className="p-3"
         />
       </div>
@@ -24,7 +24,7 @@ const CardGroup = ({ category }: CardGroupProps) => {
       <div className="w-28 aspect-[5/7] bg-yellow rounded-lg absolute -translate-x-[6%] -rotate-3 group-hover:translate-x-[25%] group-hover:translate-y-[8%] group-hover:rotate-[8deg] time-curve grid place-items-center select-none will-change-transform">
         <img
           src={`images/${category}/magician-120.webp`}
-          alt="hero mug"
+          alt={'magician' + category}
           className="p-3"
         />
       </div>
@@ -32,7 +32,7 @@ const CardGroup = ({ category }: CardGroupProps) => {
       <div className="w-28 aspect-[5/7] bg-purple rounded-lg absolute translate-x-[10%] translate-y-[3%] rotate-[5deg] group-hover:translate-x-[75%] group-hover:translate-y-[16%] group-hover:rotate-[24deg] time-curve grid place-items-center overflow-hidden select-none will-change-transform">
         <img
           src={`images/${category}/king-120.webp`}
-          alt="real stick"
+          alt={'king' + category}
           className="p-3"
         />
       </div>

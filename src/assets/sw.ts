@@ -18,7 +18,7 @@ self.addEventListener('install', () => {
 
 self.addEventListener('activate', () => self.clients.claim());
 
-const revision = 'el-shamadan-static-v3';
+const revision = 'el-shamadan-static-v1';
 const repoName = '/el-shamadan';
 
 const path_locale = (locale, file) =>
@@ -45,11 +45,11 @@ const assets_ = {
   chars: ['king', 'magician', 'hero', 'joker', 'mafia', 'diva'],
   folders: [
     {
-      key: ['bag', 'notebook', 'mug', 't-shirt'],
+      key: ['t-shirt', 'bag', 'notebook', 'mug'],
       resolution: [120, 180],
     },
-    { key: ['character'], resolution: [80, 320] },
-    { key: ['packet'], resolution: [175, 300] },
+    { key: ['character'], resolution: [80, 115, 320] },
+    { key: ['packet'], resolution: [175, 300, 370, 425] },
   ],
   items: [
     'background-100',
@@ -57,8 +57,8 @@ const assets_ = {
     'secret-dark-420',
     'face-150',
     'belt-150',
-    'curtain-left-95',
-    'curtain-right-95',
+    'curtain-left-145',
+    'curtain-right-145',
     'stick-left-64',
     'thumbnail',
   ],
@@ -66,21 +66,16 @@ const assets_ = {
 
 const assets = [
   `${repoName}/favicon.ico`,
-  `${repoName}/images/logo-32.webp`,
   `${repoName}/images/logo-58.webp`,
-
+  `${repoName}/images/logo-90.webp`,
   ...assets_.locales.flatMap((locale) =>
     assets_.pages.map((page) => path_locale(locale, page))
   ),
-
   ...assets_.items.map((item) => path_img('item', item)),
-
   ...assets_.folders.flatMap((folder) =>
     assets_.chars.flatMap((char) => path_img_(folder.key[0], char))
   ),
 ];
-
-console.log(assets);
 
 const assetsRevision = assets.map((url) => ({ url, revision }));
 

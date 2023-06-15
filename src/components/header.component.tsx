@@ -51,7 +51,7 @@ const Header = ({ isOpen, setOpen, isMuted, isLight, setLight }) => {
             <div className="flex justify-between w-[calc(50%+53px)] md:w-1/2">
               <Link to="/">
                 <img
-                  src="images/logo-32.webp"
+                  src="images/logo-58.webp"
                   alt="logo"
                   className="w-8 select-none"
                 />
