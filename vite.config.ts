@@ -5,9 +5,6 @@ import { VitePWA } from 'vite-plugin-pwa';
 import Unfonts from 'unplugin-fonts/vite';
 import svgr from 'vite-plugin-svgr';
 
-// import webp from 'vite-plugin-webp';
-// import { join } from 'path';
-
 export default defineConfig({
   base: '/el-shamadan/',
   build: {
@@ -19,16 +16,6 @@ export default defineConfig({
     svgr(),
 
     createHtmlPlugin({ minify: true }),
-
-    // "build": "tsc && vite build && rm dist/images/**/*.{jpg,png}",
-
-    // webp({
-    //   onlyWebp: join(__dirname, 'public/images'),
-    //   sharpOptions: {
-    //     quality: 70,
-    //     force: true,
-    //   },
-    // }),
 
     Unfonts({
       custom: {
@@ -63,12 +50,12 @@ export default defineConfig({
         // npx pwa-asset-generator ./logo.png icons
         icons: [
           {
-            src: 'pwa-192x192.png',
+            src: 'icons/pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: 'pwa-512x512.png',
+            src: 'icons/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
           },

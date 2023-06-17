@@ -3,9 +3,8 @@ import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate, CacheFirst } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 
-// const cacehExpire = 60 * 60 * 24 * 3;
-
-declare const self: any; // ServiceWorkerGlobalScope
+// ServiceWorkerGlobalScope
+declare const self: any;
 
 precacheAndRoute(self.__WB_MANIFEST);
 
@@ -18,7 +17,7 @@ self.addEventListener('install', () => {
 
 self.addEventListener('activate', () => self.clients.claim());
 
-const revision = 'el-shamadan-static-v1';
+const revision = 'el-shamadan-static-v23';
 const repoName = '/el-shamadan';
 
 const path_locale = (locale, file) =>
@@ -27,16 +26,15 @@ const path_locale = (locale, file) =>
 const path_img = (category, file) =>
   `${repoName}/images/${category}/${file}.webp`;
 
-function path_img_(folder, char) {
-  return assets_.folders.flatMap((folderItem) => {
-    return folderItem.key.includes(folder)
+const path_img_ = (folder, char) =>
+  assets_.folders.flatMap((folderItem) =>
+    folderItem.key.includes(folder)
       ? folderItem.resolution.map(
           (resolution) =>
             `${repoName}/images/${folder}/${char}-${resolution}.webp`
         )
-      : [];
-  });
-}
+      : []
+  );
 
 const assets_ = {
   pages: ['contact', 'footer', 'header', 'home', 'products', 'giveaway'],
@@ -46,7 +44,7 @@ const assets_ = {
   folders: [
     {
       key: ['t-shirt', 'bag', 'notebook', 'mug'],
-      resolution: [120, 180],
+      resolution: [180],
     },
     { key: ['character'], resolution: [80, 115, 320] },
     { key: ['packet'], resolution: [175, 300, 370, 425] },
@@ -73,7 +71,9 @@ const assets = [
   ),
   ...assets_.items.map((item) => path_img('item', item)),
   ...assets_.folders.flatMap((folder) =>
-    assets_.chars.flatMap((char) => path_img_(folder.key[0], char))
+    assets_.chars.flatMap((char) =>
+      Object.keys(folder.key).flatMap((key) => path_img_(folder.key[key], char))
+    )
   ),
 ];
 

@@ -1341,25 +1341,23 @@ class v {
     this.cacheWillUpdate = async ({ response: t }) => this._cacheableResponse.isResponseCacheable(t) ? t : null, this._cacheableResponse = new le(e);
   }
 }
-O([{"revision":null,"url":"assets/all-products.component-26d55b05.js"},{"revision":null,"url":"assets/contact-us.component-03106994.js"},{"revision":null,"url":"assets/error.component-0cd99fec.js"},{"revision":null,"url":"assets/footer.component-77104c4d.js"},{"revision":null,"url":"assets/giveaway.component-04f5303a.js"},{"revision":null,"url":"assets/home.component-01b42e01.js"},{"revision":null,"url":"assets/img-resolution-c634a389.js"},{"revision":null,"url":"assets/index-1c1ee66e.js"},{"revision":null,"url":"assets/index-32fa3d8a.css"},{"revision":null,"url":"assets/lottery.component-171d1d7a.css"},{"revision":null,"url":"assets/lottery.component-e49e54ce.js"},{"revision":null,"url":"assets/product-card.component-615597e2.js"},{"revision":null,"url":"assets/product-not-found.component-926e383a.js"},{"revision":null,"url":"assets/single-product.component-aa91fcca.js"},{"revision":null,"url":"assets/useTitle-f3f37c20.js"},{"revision":null,"url":"assets/video.component-6c74d938.js"},{"revision":"c7af1a97cc5715c6fa8e19ec2b9f34bd","url":"index.html"},{"revision":"ef31508ea54c9805220261c6bd8628a1","url":"registerSW.js"},{"revision":"d5f8d8e2cd559ca3adb009856213ce35","url":"pwa-192x192.png"},{"revision":"1d809b42a4d8399ed3c3470aedfbc3e1","url":"pwa-512x512.png"},{"revision":"1e0059c966448a9cec3e100a31e57ce9","url":"manifest.webmanifest"}]);
+O([{"revision":null,"url":"assets/all-products.component-b58267c1.js"},{"revision":null,"url":"assets/contact-us.component-1edc0154.js"},{"revision":null,"url":"assets/error.component-145571f7.js"},{"revision":null,"url":"assets/footer.component-a4320dd0.js"},{"revision":null,"url":"assets/giveaway.component-2ad18258.js"},{"revision":null,"url":"assets/home.component-2010d5d3.js"},{"revision":null,"url":"assets/img-resolution-c634a389.js"},{"revision":null,"url":"assets/index-32fa3d8a.css"},{"revision":null,"url":"assets/index-8f32e641.js"},{"revision":null,"url":"assets/lottery.component-171d1d7a.css"},{"revision":null,"url":"assets/lottery.component-69a592dd.js"},{"revision":null,"url":"assets/product-card.component-c07b7f47.js"},{"revision":null,"url":"assets/product-not-found.component-86178287.js"},{"revision":null,"url":"assets/single-product.component-27163671.js"},{"revision":null,"url":"assets/useTitle-8c08f8b6.js"},{"revision":null,"url":"assets/video.component-4fdd0c8d.js"},{"revision":"e76c9925e4feb983ff65976ab9f78172","url":"index.html"},{"revision":"ef31508ea54c9805220261c6bd8628a1","url":"registerSW.js"},{"revision":"d5f8d8e2cd559ca3adb009856213ce35","url":"icons/pwa-192x192.png"},{"revision":"1d809b42a4d8399ed3c3470aedfbc3e1","url":"icons/pwa-512x512.png"},{"revision":"0d5f36e04bc196de4331d3bf05becd16","url":"manifest.webmanifest"}]);
 self.addEventListener("install", () => {
   self.skipWaiting(), self.registration.unregister();
 });
 self.addEventListener("activate", () => self.clients.claim());
-const he = "el-shamadan-static-v1", g = "/el-shamadan", ue = (a, e) => `${g}/locales/${a}/${e}.json`, fe = (a, e) => `${g}/images/${a}/${e}.webp`;
-function de(a, e) {
-  return p.folders.flatMap((t) => t.key.includes(a) ? t.resolution.map(
+const he = "el-shamadan-static-v23", g = "/el-shamadan", ue = (a, e) => `${g}/locales/${a}/${e}.json`, fe = (a, e) => `${g}/images/${a}/${e}.webp`, de = (a, e) => p.folders.flatMap(
+  (t) => t.key.includes(a) ? t.resolution.map(
     (s) => `${g}/images/${a}/${e}-${s}.webp`
-  ) : []);
-}
-const p = {
+  ) : []
+), p = {
   pages: ["contact", "footer", "header", "home", "products", "giveaway"],
   locales: ["en", "ar"],
   chars: ["king", "magician", "hero", "joker", "mafia", "diva"],
   folders: [
     {
       key: ["t-shirt", "bag", "notebook", "mug"],
-      resolution: [120, 180]
+      resolution: [180]
     },
     { key: ["character"], resolution: [80, 115, 320] },
     { key: ["packet"], resolution: [175, 300, 370, 425] }
@@ -1384,7 +1382,9 @@ const p = {
   ),
   ...p.items.map((a) => fe("item", a)),
   ...p.folders.flatMap(
-    (a) => p.chars.flatMap((e) => de(a.key[0], e))
+    (a) => p.chars.flatMap(
+      (e) => Object.keys(a.key).flatMap((t) => de(a.key[t], e))
+    )
   )
 ], ge = pe.map((a) => ({ url: a, revision: he }));
 O(ge);

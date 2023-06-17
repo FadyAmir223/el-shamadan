@@ -3,15 +3,14 @@ import path from 'path';
 import sharp from 'sharp';
 
 const rootDir = process.cwd();
-
 const srcDir = './public/src-images';
 const outDir = 'images';
 
+// processImg(path.join(rootDir, srcDir));
+// processImg(path.join(rootDir, srcDir, 'logo.png'));
+
 // processImg(path.join(rootDir, srcDir, 'character'), [320]);
 // processImg(path.join(rootDir, srcDir, 'item/thumbnail.webp'), [945]);
-
-// processImg(path.join(rootDir, srcDir));
-processImg(path.join(rootDir, srcDir, 'logo.png'), [90]);
 
 // ############################################################
 
@@ -34,7 +33,7 @@ function processImg(imagePath, resolutions) {
 
     const outputExtension = '.webp';
 
-    resolutions = resolutions || [fileExtension === '.webp' ? null : null];
+    resolutions = resolutions || [null];
 
     resolutions.forEach((resolution) => {
       const outputName = resolution
