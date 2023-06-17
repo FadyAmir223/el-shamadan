@@ -1,8 +1,9 @@
 type CardGroupProps = {
   category: string;
+  lazy: 'lazy' | null;
 };
 
-const CardGroup = ({ category }: CardGroupProps) => {
+const CardGroup = ({ category, lazy }: CardGroupProps) => {
   return (
     <div className="flex justify-center group absolute">
       <div className="w-28 aspect-[5/7] bg-yellow rounded-lg absolute -translate-x-[10%] -rotate-1 group-hover:-translate-x-[75%] group-hover:translate-y-[16%] group-hover:-rotate-[24deg] time-curve grid place-items-center select-none will-change-transform">
@@ -10,6 +11,7 @@ const CardGroup = ({ category }: CardGroupProps) => {
           src={`images/${category}/diva-180.webp`}
           alt={'diva' + category}
           className="p-3"
+          loading={lazy}
         />
       </div>
 
@@ -18,6 +20,7 @@ const CardGroup = ({ category }: CardGroupProps) => {
           src={`images/${category}/hero-180.webp`}
           alt={'hero' + category}
           className="p-3"
+          loading={lazy}
         />
       </div>
 
@@ -26,6 +29,7 @@ const CardGroup = ({ category }: CardGroupProps) => {
           src={`images/${category}/magician-180.webp`}
           alt={'magician' + category}
           className="p-3"
+          loading={lazy}
         />
       </div>
 
@@ -34,6 +38,7 @@ const CardGroup = ({ category }: CardGroupProps) => {
           src={`images/${category}/king-180.webp`}
           alt={'king' + category}
           className="p-3"
+          loading={lazy}
         />
       </div>
     </div>

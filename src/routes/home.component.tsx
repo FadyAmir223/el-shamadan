@@ -93,6 +93,7 @@ const Home = () => {
                 src="images/item/secret-dark-420.webp"
                 alt="secret"
                 className="max-w-xs mb-4 w-full sm:h-[326px] select-none dark:hidden"
+                loading="lazy"
               />
 
               <div className="text-center grid grid-cols-4 gap-4">

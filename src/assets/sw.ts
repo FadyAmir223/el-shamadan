@@ -17,7 +17,7 @@ self.addEventListener('install', () => {
 
 self.addEventListener('activate', () => self.clients.claim());
 
-const revision = 'el-shamadan-static-v23';
+const revision = 'el-shamadan-static-v19';
 const repoName = '/el-shamadan';
 
 const path_locale = (locale, file) =>
@@ -81,11 +81,18 @@ const assetsRevision = assets.map((url) => ({ url, revision }));
 
 precacheAndRoute(assetsRevision);
 
+const maxAge = 60 * 60 * 24 * 3;
+
 registerRoute(
   ({ request }) => request.mode === 'navigate',
   new StaleWhileRevalidate({
     cacheName: 'navigate',
-    plugins: [new CacheableResponsePlugin({ statuses: [200] })],
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+        headers: { 'Cache-Control': `max-age=${maxAge}` },
+      }),
+    ],
   })
 );
 
@@ -93,7 +100,12 @@ registerRoute(
   ({ request }) => request.destination === 'script',
   new StaleWhileRevalidate({
     cacheName: 'scripts',
-    plugins: [new CacheableResponsePlugin({ statuses: [200] })],
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+        headers: { 'Cache-Control': `max-age=${maxAge}` },
+      }),
+    ],
   })
 );
 
@@ -101,6 +113,11 @@ registerRoute(
   ({ request }) => request.destination === 'font',
   new CacheFirst({
     cacheName: 'fonts',
-    plugins: [new CacheableResponsePlugin({ statuses: [200] })],
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+        headers: { 'Cache-Control': `max-age=${maxAge}` },
+      }),
+    ],
   })
 );

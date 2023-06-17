@@ -23,10 +23,9 @@ export default defineConfig({
           {
             name: 'abdo',
             local: 'abdo',
-            src: './src/assets/fonts/abdo.ttf',
+            src: './src/assets/fonts/abdo.woff2',
           },
         ],
-        injectTo: 'head-prepend',
         display: 'swap',
       },
     }),

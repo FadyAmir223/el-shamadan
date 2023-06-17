@@ -116,7 +116,7 @@ const Giveaway = () => {
                   : ''
               }`}
             >
-              <CardGroup category={i} />
+              <CardGroup category={i} lazy={idx !== 0 ? 'lazy' : null} />
             </span>
           ))}
         </div>
